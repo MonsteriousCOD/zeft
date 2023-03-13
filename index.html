@@ -1,879 +1,1652 @@
+
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@thegainlings">
+  <meta name="twitter:site" content="@thegainlings" />
+  <meta name="twitter:title" content="The Gainlings" />
+  <meta name="description" content="Checkout the gainling battlefield">
+  <meta property="og:title" content="The Gainlings">
+  <meta property="og:description" content="Checkout the gainling battlefield">
+  <meta property="og:url" content="https://testnet-fight.thegainlings.io">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://testnet-fight.thegainlings.io/assets/sprites/HeaderImage.jpg">
+  <meta property="og:image:alt" content="Logo">
+  <meta property="og:image:type" content="image/gif">
+  <meta property="og:image:width" content="380">
+  <meta property="og:image:height" content="150">
+  <meta property="og:locale" content="en_EN">
+  <meta property="og:site_name" content="The Gainlings">
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="assets/sprites/Logo.png">
+  <!--font awesome-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Compiled and minified CSS-->
+  <!--Font-->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <!--custom styles-->
   <link href="styles/style.css" rel="stylesheet">
-  <title>The Gainlings - JsFrame</title>
+  <title>The Gainlings - Fight</title>
 </head>
 
 <body>
 
+  <header>
+    <nav class="navbar">
+      <div class="nav-wrapper">
+        <image class="logo" src="assets/sprites/Logo.png" alt="logo"> </image>
 
-  <script src="https://cdn.jsdelivr.net/npm/@alch/alchemy-web3@latest/dist/alchemyWeb3.min.js"></script>
+        <div class="socialContainerInner">
+          <a href="https://twitter.com/thegainlings" class="socialButton twitter" target="_blank"> </a>
+          <a href="https://testnets.opensea.io/collection/the-gainlings-19" class="socialButton opensea" target="_blank">
+          </a>
+          <a href="https://the-gainlings.gitbook.io/the-gainlings/general/concept" class="socialButton gitbook"
+            target="_blank"> </a>
+          <a href="https://discord.gg/3v6TTkfuY8" class="socialButton discord" target="_blank"> </a>
+          <a class="socialButton audioSource" id="soundButton"> </a>
+        </div>
+
+        <div class="pageLayoutSwitchContainer" id="pageLayoutSwitchContainer">
+          <button class="pageLayoutSwitchButton itemsSwitchButton" id="itemsSwitchButton">All</button>
+          <button class="pageLayoutSwitchButton ownedSwitchButton" id="ownedSwitchButton">Owned</button>
+          <button class="pageLayoutSwitchButton historySwitchButton" id="historySwitchButton">History</button>
+        </div>
+        <div id="tokenSelectorContainer" class="tokenSelectorContainer">
+          <button id="tokenSelectorButton" class="tokenSelectorButton">
+            Select player
+            <div class="imageInSelectorOptionContainer">
+              <image id="clientBackground" class="imageInSelectorOption imagebehind selectedImage"
+                src="assets/sprites/Character.png" alt="logo"> </image>
+              <image id="clientCharacter" class="imageInSelectorOption imageTop selectedImage"
+                src="assets/sprites/Character.png" alt="logo"> </image>
+              <image id="clientHelmet" class="imageInSelectorOption imageTop selectedImage"
+                src="assets/sprites/Character.png" alt="logo"> </image>
+              <image id="clientWeapon" class="imageInSelectorOption imageTop selectedImage"
+                src="assets/sprites/Character.png" alt="logo"> </image>
+              <image id="clientArmour" class="imageInSelectorOption imageTop selectedImage"
+                src="assets/sprites/Character.png" alt="logo"> </image>
+              <image id="clientShield" class="imageInSelectorOption imageTop selectedImage"
+                src="assets/sprites/Character.png" alt="logo"> </image>
+              <image id="clientBoots" class="imageInSelectorOption imageTop selectedImage"
+                src="assets/sprites/Character.png" alt="logo"> </image>
+            </div>
+          </button>
+
+          <div id="tokenSelectorOptionContainer" class="tokenSelectorOptionContainer">
+
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <audio id="audioElement" src="assets/sounds/cave.wav" loop> </audio>
+    <div class="easyMeasure" id="easyMeasure">
+
+    </div>
+
+
+    <div class="flashyContainer" id="connectContainer">
+      <div class="flashyRoundButton" id="connectButtonContainer">
+        <div class="connectButtonContent" id="connectButtonContent">
+          Please connect wallet
+        </div>
+      </div>
+    </div>
+
+    <div class="bannerContainer">
+      <a class="className"></a>
+      <div class="collectionCardContainer" id="collectionCardContainer">
+        <div class="collectionCard" id="collectionCardSeason">
+          Season: 1
+        </div>
+        <div class="distancer"></div>
+        <div class="collectionCard" id="collectionCardStage">
+          Stage: 0
+        </div>
+        <div class="distancer"></div>
+        <div class="collectionCard" id="collectionCardAlive">
+          Supply alive: 0
+        </div>
+
+      </div>
+
+      <image src="assets/sprites/Sunrise.png" class="banner"></image>
+    </div>
+
+    <div class="filterHeader">
+      <button class="filterButton" id="filterButton"></button>
+      <div class="searchInputContainer">
+        <input type="text" class="searchInput" placeholder="Search victim" id="tokenSearch">
+        <label class="search" for="input-search"></label>
+      </div>
+
+      <div id="sortSelectorContainer" class="sortSelectorContainer">
+        <button id="sortingButton" class="fakeSortSelector">Sort by</button>
+        <button id="sortingBounty" class="fakeSortSelectorOption">Bounty </button>
+        <button id="sortingStack" class="fakeSortSelectorOption">Stack </button>
+        <button id="sortingAttack" class="fakeSortSelectorOption">Attack </button>
+        <button id="sortingDefense" class="fakeSortSelectorOption">Defense </button>
+        <button id="sortingPrice" class="fakeSortSelectorOption">Price </button>
+      </div>
+
+      <button class="refreshButton" id="refreshButton"></button>
+    </div>
+
+    <div class="totalContainer" id="mainContainer">
+
+      <div class="leftPanelContainer" id="leftPanelContainer">
+
+        <div class="traitContainer clearAllFilterButtonContainer" id="clearFilterContainer">
+
+          <!--filled from js-->
+        </div>
+
+        <div class="traitGroupContainer" id="stringTraitGroupContainer">
+
+          <!--filled from js-->
+        </div>
+
+        <div class="traitGroupContainer" id="intTraitGroupContainer">
+
+          <!--filled from js-->
+        </div>
+
+
+      </div>
+
+      <div class="rightPanelContainer" id="rightPanelContainer">
+        <div class="tokenDisplayContainer" id="tokenDisplayContainer">
+
+        </div>
+        <div class="historyContainer" id="historyContainer">
+
+        </div>
+      </div>
+
+    </div>
+
+
+  </main>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/web3@1.8.1/dist/web3.min.js"></script>
-  <script src="scripts/abiContract.js"> </script>
-  <script src="scripts/abiMarketPlaceContract.js"> </script>
+  <script src="scripts/cacheDb.js"> </script>
   <script src="scripts/traits.js"> </script>
+  <script src="scripts/abiTokenContract.js"> </script>
+  <script src="scripts/abiMarketPlaceContract.js"> </script>
   <script src="scripts/contractApi.js"> </script>
+  <script src="scripts/fancyLogs.js"> </script>
   <script>
 
+    let blockPerLogRequest = 20000;
 
+    printGainling();
 
-    //TODO::::
+  
+    console.log(" ");
+    console.log("*** Loading tokens from cache ***")
+    loadFromCache();
 
-    //ADD FIGHT BUTTON FOR OPENSEA
-    //ADD MULTI CALL TO CONTRACT (SEED,BOUNTY,STACK,COOLDOWN)
-
-    //version
-    console.log("Version 0.27");
-    //parameters
     let alchemyUrl = "wss://arb-goerli.g.alchemy.com/v2/A4AucuSw5Uzjp4tMj6NR_g4cujQkgUn-";
     let contractAddress = "0xE5aB75F9384045f82b0a464d09753B2abEFeC1a7";
     let marketPlaceContractAddress = "0x17596F4C9AAfa38Ca0Cd11DE76977A16e1a120D6";
-    //query
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const tokenId = urlParams.get('tokenId')
-    // var seed = urlParams.get('seed')
+
+    let oldestBlock = getOldestStorageBlock();
+    console.log(`Oldest datapoint block: ${oldestBlock}`);
+
+    let pastTokenEventsQueueLenght = 0;
+    let topBlock = 0;
+    let allNftTransfers = [];
+    let allClientNftsEver = [];
+    let clientTokens = [];
+    let nonIndexedApproachEvents = [];
+    let clientLiveTokens = 0;
+    let _seasonStartBlock = 0;
+    let _seasonBattleStartBlockTime;
+    let _setupBlockNumber;
+    /*_________________________________________________________________________
+     DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP 
+     `````````````````````````````````````````````````````````````````````````*/
+
+    let secondsSinceSeasonStart;
+    
+    document.getElementById('connectButtonContainer').addEventListener("click", function () {
+
+      setupWalletConnection(contractAddress, abiTokenContract.abi, marketPlaceContractAddress, abiMarketPlaceContract.abi, con => {
+        if (con) {
+          connected = true;
+          updateConnectionText("Successfully connected!");
+          console.log(" ");
+          console.log("*** Connection to web3 established ***")
+          getUserChain().then(chainOk => {
+            let chainString = chainOk ? "network correct" : "switch network please";
+            console.log(chainString);
+
+            allNftTransfers = [];
+            allClientNftsEver = [];
 
 
-    //GAMEVARIABLES\\
-    let fightData = {};
-    let _defenderId;
-    let _talkLoop = false;
-    let _baseView = true;
-    let _attackerSeed;
-    let _prisonValue;
-    let sentences = [
-      "Where are you mfer?!",
-      "I will break your gains!",
-      "Did you buy seals, coward?",
-      "I brawled with the bearz im ready!",
-      "Special thanks to @scottybmitch!",
-      "Here could be your Ad!",
-      "I'm not afraid!",
-      "I don't know what to say anymore",
-      "Are you hiding?",
-      "Don't you dare invading my frame!",
-      "This is the way!",
-      "Pew Pew",
-      "B U R N",
-      "Show me your pixels",
-      "I am a winling!",
-      "Wen die?",
-      "Are those people over there trembling in fear ready for the battle?",
-      "Victory is certain",
-      "Luke, I am your gainling",
-      "If you see me, it’s to late. Destiny is here",
-      "I am ready to embrace death. Are you?",
-      "You are going to regret crossing me",
-      "They'll never see what's comming!",
-      "Hodl my cosmo",
-      "Stop starring at my frame!",
-      "You burn... NOW!",
-      "Better make room for my fist, I'm going to ram it into your stomach",
-      "I will defend my frame with my life!"];
+            if (chainOk) {
+              updateConnectionText("Load mint history...");
+            }
+            else {
+              updateConnectionText(chainString);
+              return;
+            }
 
-    let testAttack = { "0": "2", "1": "{\"attacker\": \"0\",\"defender\": \"4\",\"aRandom\": \"94\",\"dRandom\": \"895\",\"time\": \"1677966743\",\"winner\": \"0\"}", "__length__": 2, "defender": "2", "output": "{\"attacker\": \"0\",\"defender\": \"4\",\"aRandom\": \"94\",\"dRandom\": \"895\",\"time\": \"1677966743\",\"winner\": \"0\"}" }
-    let testApproach = { "0": "1", "1": "{\"attacker\": \"0\",\"defender\": \"4\",\"aBounty\": \"12000000000000000\",\"dBounty\": \"12000000000000000\",\"aStack\": \"0\",\"dStack\": \"0\"}", "__length__": 2, "defender": "1", "output": "{\"attacker\": \"0\",\"defender\": \"4\",\"aBounty\": \"12000000000000000\",\"dBounty\": \"12000000000000000\",\"aStack\": \"0\",\"dStack\": \"0\"}" };
 
-    _setupAlchemyConnection(contractAddress, abiContract.abi, marketPlaceContractAddress, abiMarketPlaceContract.abi, alchemyUrl).then(() => {
-      console.log("Correctly setup alchemyProvider and contract at: " + contractAddress);
+            getTransfersToClient().then(toEvents => {
+              toEvents.forEach(toEvent => {
+                let tokenEvent = {
+                  data: toEvent,
+                  type: "transferTo",
+                  block: toEvent.blockNumber
+                };
+                printEventToHistory(tokenEvent);
+                //console.log(JSON.stringify(toEvent));
+                allNftTransfers.push(toEvent);
+              })
 
-      _getTokenSeed(tokenId, seed => {
+              getTransfersFromClient().then(fromEvents => {
+                fromEvents.forEach(fromEvent => {
+                  let tokenEvent = {
+                    data: fromEvent,
+                    type: "transferFrom",
+                    block: fromEvent.blockNumber
+                  };
+                  printEventToHistory(tokenEvent);
+                  //console.log(JSON.stringify(fromEvent));
+                  allNftTransfers.push(fromEvent);
+                })
 
-        setup(document.body, seed, tokenId);
-        _subscribeGainlingsEvents(onLiveGainlingsEvent, onLiveGainlingsEventError);
 
-        _getBounty(tokenId, bounty => {
-          onBountyUpdate(bounty);
-        })
-        _getStack(tokenId, stack => {
-          onStackUpdate(stack);
-        })
-        _getCooldown(tokenId, cooldown => {
-          onCooldownUpdate(cooldown);
-        })
+                allNftTransfers.sort(dynamicSort("-blockNumber"));
+                allNftTransfers.forEach(historyTokenTransfer => {
+                  if (!allClientNftsEver.includes(historyTokenTransfer.returnValues.tokenId)) {
+                    allClientNftsEver.push(historyTokenTransfer.returnValues.tokenId);
+                  }
+                });
 
-        checkHistoryApproachEvents();
 
+                setTimeout((async) => {
+                  getPhase().then(phase => {
+
+                    setStageLabel(phase);
+                  });
+                }, 200);
+
+                setTimeout((async) => {
+                  getSupply().then(supply => {
+                    document.getElementById('collectionCardAlive').innerText = `Supply alive: ${supply.toString()}`;
+                  });
+                }, 400);
+
+                setTimeout((async) => {
+                  getSeasonNumber().then(season => {
+                    document.getElementById('collectionCardSeason').innerText = `Season: ${season.toString()}`;
+                  });
+                }, 600);
+
+
+                setTimeout((async) => {
+                  getBlockNumber().then(currentBlockNr => {
+                    _setupBlockNumber = currentBlockNr;
+                    console.log(`Current block: ${currentBlockNr}`);
+                    getSeasonStartBlock().then(seasonStartBlock => {
+                      _seasonStartBlock = seasonStartBlock;
+                      getSeasonBattleStartBlockTime().then(seasonBattleStartBlockTime => {
+                        _seasonBattleStartBlockTime = seasonBattleStartBlockTime;
+                        var seconds = new Date().getTime() / 1000;
+                        secondsSinceSeasonStart = seconds - seasonBattleStartBlockTime;
+                        console.log("Seasonstart at: " + seasonBattleStartBlockTime);
+                        console.log("Time: " + seconds);
+                        console.log("Seconds since seasonstart: " + secondsSinceSeasonStart);
+                        var startBlock = seasonStartBlock > oldestBlock ? seasonStartBlock : oldestBlock;
+                        var endBlock = startBlock + blockPerLogRequest > currentBlockNr ? currentBlockNr : startBlock + blockPerLogRequest;
+                        pastTokenEventsQueueLenght = Math.floor((currentBlockNr - startBlock) / blockPerLogRequest) + 1;
+                        console.log(`Fetch events from ${startBlock} to ${currentBlockNr} in ${pastTokenEventsQueueLenght} requests`);
+
+
+
+                        fetchNextEventBlockRecursive(startBlock, endBlock, currentBlockNr);
+                      });
+                    });
+                  });
+                }, 800);
+              });
+            });
+          });
+        }
       })
 
 
+    });
+
+    function killTokenFromView(tokenId,ownedView){
+      if(ownedView && !privateView) return;
+
+      let tokenElement = document.getElementById('triplet_' + tokenId);
+      if(tokenElement == null) return; 
+
+      document.getElementById('tokenDisplayContainer').removeChild(tokenElement);
+
+    }
+    function updateTokenDisplay(tokenId){
+      var token = getToken(tokenId);
+      var priceString = token.price && token.price > 0 ? `${ToEth(token.price.toString())}⟠` : ``;
+      var tokenElement = document.getElementById('tokenPrice_' + tokenId);
+      if(tokenElement !== null){
+        tokenElement.innerText = priceString;
+      }
+    }
+    function fetchNextMarketEventRecursive(startBlock, endBlock, lastBlock) {
+
+
+      if (startBlock == lastBlock) {
+        console.log("Latest market events block: " + topBlock);
+        //updateConnectionText("Load mint history...");
+        subscribeItemChangedEvent(lastBlock,onAnyMarketEvent);
+        refresh();
+        
+        return;
+      }
+
+      getPastItemChangedEvents(startBlock, endBlock).then(events => {
+        events.forEach(marketEvent => {
+          onPastMarketEvent(marketEvent);
+        });
+        //madeTokenEventLoadingProgress(events.length);
+        startBlock = endBlock;
+        endBlock = startBlock + blockPerLogRequest > lastBlock ? lastBlock : startBlock + blockPerLogRequest;
+
+        setTimeout(fetchNextMarketEventRecursive(startBlock, endBlock, lastBlock), 200);
+      });
+    }
+    function onAnyMarketEvent(data, event) {
+      var eventType = data.eventData["changeType"];
+      var tokenId = data.eventData["tokenId"];
+      var token = getToken(tokenId);
+
+      console.log("MARKET EVENT LIVE: " + eventType);
+      if(eventType == 0){
+        console.log("LIVE listing event");
+        token.listed = true;
+        token.price =  data.eventData["price"];
+      }
+      else if(eventType == 1){
+        console.log("LIVE delisting event");
+        token.listed = false;
+        token.price = 0;
+      }
+      else if(eventType == 2){
+        console.log("LIVE sale event");
+        token.listed = false;
+        token.price = 0;
+        killTokenFromView(tokenId,true);
+      }
+
+      setToken(tokenId, token);
+      updateTokenDisplay(tokenId);
+    }
+    function onPastMarketEvent(eventData) {
+      //console.log("MARKET EVENT PAST: " + JSON.stringify(eventData));
+      var eventType = eventData.returnValues["changeType"];
+
+      var tokenId = eventData.returnValues["tokenId"];
+      var token = getToken(tokenId);
+
+      if(eventType == 0){
+        //console.log("PAST listing event " + JSON.stringify(eventData));
+        token.listed = true;
+        token.price = eventData.returnValues["price"];
+      }
+      else if(eventType == 1){
+        //console.log("PAST delisting event");
+        token.listed = false;
+        token.price = 0;
+      }
+      else if(eventType == 2){
+        //console.log("PAST sale event");
+        token.listed = false;
+        token.price = 0;
+      }
+
+      setToken(tokenId, token);
+    }
+
+    document.getElementById('soundButton').addEventListener('click', function (e) { togglePlay(); });
+    let startDataReceived = false;
+
+    const traits = {
+      "data": [
+        {
+          "name": "aura", "values": [
+            "Angel",
+            "Aqua",
+            "Blood",
+            "Cute",
+            "Dark",
+            "Earth",
+            "Gold",
+            "Heaven",
+            "Nature",
+            "Orc",
+            "Paladin",
+            "Psychic",
+            "Sweet",
+            "Werewolf",
+            "Wizards"
+          ]
+        },
+        {
+          "name": "armour", "values": [
+            "Chainmail",
+            "Fatbelly",
+            "Firechain",
+            "Golden",
+            "Jedi",
+            "Leather",
+            "LifeJacket",
+            "Ninja",
+            "None",
+            "NunTop",
+            "Sixpack",
+            "SwimWear",
+            "Target",
+            "Toga",
+            "TornTop"
+          ]
+        },
+        {
+          "name": "boots", "values": [
+            "Cowboy",
+            "Diving",
+            "Electric",
+            "Fine",
+            "Fire",
+            "Grass",
+            "Heals",
+            "Hover",
+            "Leatherette",
+            "Rockets",
+            "Rollers",
+            "Sandals",
+            "Sneakers",
+            "Socks",
+            "Winged"
+          ]
+        },
+        {
+          "name": "helmet", "values": [
+            "Bloody",
+            "DirtyTrucker",
+            "Feather",
+            "Gasmask",
+            "Headphones",
+            "Hockeymask",
+            "Ninjamask",
+            "Paperboat",
+            "Propeller",
+            "Sombrero",
+            "Spartan",
+            "Sweatband",
+            "Trucker",
+            "Viking",
+            "Witch"
+          ]
+        },
+        {
+          "name": "shield", "values": [
+            "Blank Face",
+            "Butterknife",
+            "Gold Square",
+            "Gold Studded Square",
+            "Hardened Buckler",
+            "Legion Square",
+            "Light Bucklery",
+            "Liquid Studded Heater",
+            "Plain Square",
+            "Rusty Buckler",
+            "Solid Gold Heater",
+            "Storm Plate",
+            "Thunderbolt",
+            "Trophy",
+            "Weighted Heater"
+          ]
+        },
+        {
+          "name": "weapon", "values": [
+            "Bubblegun",
+            "Calculator",
+            "Chainsaw",
+            "Dog Leash",
+            "Golfbat",
+            "Hammer",
+            "Laser",
+            "Lasso",
+            "Light Saber",
+            "Longsword",
+            "Luxury Pistol",
+            "Molotov",
+            "Rocket Launcher",
+            "Scissors",
+            "Scoped Pistol"
+          ]
+        }
+      ]
+    }
+
+    //const animationUrl = "https://hidden-frog-6004.on.fleek.co/?";
+    const animationUrl = "https://webgl.thegainlings.io/?"
+    const myNode = document.getElementById("tokenDisplayContainer");
+    myNode.innerHTML = '';
+
+    /*_________________________________________________________________________
+     QUERY PARAMS QUERY PARAMS QUERY PARAMS QUERY PARAMS QUERY PARAMS QUERY PARAMS 
+     `````````````````````````````````````````````````````````````````````````*/
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let defender = urlParams.get('defender');
+
+    /*_________________________________________________________________________
+    WALLET CONNECTION WALLET CONNECTION WALLET CONNECTION WALLET CONNECTION
+    `````````````````````````````````````````````````````````````````````````*/
+
+    let connected = false;
+    let isApprovedForAll = false;
+    let connectWalletButton = document.getElementById("connectWalletButton");
+
+    /*_________________________________________________________________________
+    FILTER AND REFRESH FILTER AND REFRESH FILTER AND REFRESH FILTER AND REFRESH
+    `````````````````````````````````````````````````````````````````````````*/
+
+    let filterMenuOpen = true;
+    var stringFilterValues = {};
+    var intFilterValues = {};
+    var filterToggles = {};
+    let allCheckBoxInputs = {};
+    let stringCategoryNames = [];
+    let allIntValueInputs = {};
+    let intCategoryNames = [];
+
+    let filterContainer = document.getElementById("leftPanelContainer");
+    let stringTraitGroupContainer = document.getElementById("stringTraitGroupContainer");
+    let filterButton = document.getElementById("filterButton");
+    let refreshButton = document.getElementById("refreshButton");
+
+    filterButton.addEventListener("click", function () {
+      filterButtonClicked();
+    });
+    refreshButton.addEventListener("click", function () {
+      refresh();
+    });
+
+
+    let searchInput = document.getElementById('tokenSearch');
+    searchInput.addEventListener('input', function () {
+      var valu = document.getElementById("tokenSearch").value;
+      console.log(valu);
+      var idStrings = valu.split(',');
+      var ids = [];
+      idStrings.forEach(idString => {
+        var idInt = parseInt(idString);
+        if(idInt > 0 && !ids.includes(idInt)){
+          ids.push(idInt.toString());
+        }
+      })
+      if(ids.length > 0){
+        console.log(JSON.stringify(ids));
+      }
+      GetTokenData(true,0,ids)
 
     });
-    let unfilledApproachEvents = [];
-    function checkHistoryApproachEvents() {
-      _getLatestBlock().then(blockNr => {
-        console.log("Fetched blocknr: " + JSON.stringify(blockNr.number));
-        _getPastGainlingEvents(blockNr.number - 500, blockNr.number).then(pastEvents => {
-          console.log("PastEvents: " + JSON.stringify(pastEvents));
-          pastEvents.forEach(gainlingEvent => {
-            processPastGainlingEvent(gainlingEvent);
-          });
 
-          pastEventsFetched = true;
-          incectOpenAttack();
 
-        });
+    /*_________________________________________________________________________
+    SORTING SELECTOR SORTING SELECTOR SORTING SELECTOR SORTING SELECTOR
+    `````````````````````````````````````````````````````````````````````````*/
+
+    let sortingOpen = false;
+    let autoCloseSorting = true;
+    var sorting = "Bounty";
+
+    let sortingButton = document.getElementById("sortingButton");
+    let sortingBounty = document.getElementById("sortingBounty");
+    let sortingStack = document.getElementById("sortingStack");
+    let sortingAttack = document.getElementById("sortingAttack");
+    let sortingDefense = document.getElementById("sortingDefense");
+    let sortingPrice = document.getElementById("sortingPrice");
+
+    sortingButton.addEventListener("click", function () {
+      autoCloseSorting = false;
+      sortingButton.blur();
+      let width = sortingOpen ? '50px' : '300px';
+      document.getElementById("sortSelectorContainer").style.height = width;
+      sortingOpen = !sortingOpen;
+      setTimeout(resetAutoCloseSertSelector, 10);
+    });
+    sortingBounty.addEventListener("click", function () {
+      sorting = sorting == "Bounty" ? "ascBounty" : "Bounty";
+      closeSortSelector();
+      GetTokenData(true, 0);
+    });
+    sortingStack.addEventListener("click", function () {
+      sorting = sorting == "Stack" ? "ascStack" : "Stack";
+      closeSortSelector();
+      GetTokenData(true, 0);
+    });
+    sortingAttack.addEventListener("click", function () {
+      sorting = sorting == "Attack" ? "ascAttack" : "Attack";
+      closeSortSelector();
+      GetTokenData(true, 0);
+    });
+    sortingDefense.addEventListener("click", function () {
+      sorting = sorting == "Defense" ? "ascDefense" : "Defense";
+      closeSortSelector();
+      GetTokenData(true, 0);
+    });
+    sortingPrice.addEventListener("click", function () {
+      sorting = sorting == "Price" ? "ascPrice" : "Price";
+      closeSortSelector();
+      GetTokenData(true, 0);
+    });
+
+    /*_________________________________________________________________________
+    TOKEN SELECTOR TOKEN SELECTOR TOKEN SELECTOR TOKEN SELECTOR TOKEN SELECTOR 
+    `````````````````````````````````````````````````````````````````````````*/
+
+    let tokenSelectorOpen = false;
+    let autoCloseTokenSelector = true;
+    let clientSelectedToken = -1;
+
+    let clientBackground = document.getElementById("clientBackground");
+    let clientHelmet = document.getElementById("clientHelmet");
+    let clientWeapon = document.getElementById("clientWeapon");
+    let clientShield = document.getElementById("clientShield");
+    let clientBoots = document.getElementById("clientBoots");
+    let clientArmour = document.getElementById("clientArmour");
+    let tokenSelectorButton = document.getElementById("tokenSelectorButton");
+    let tokenSelectorContainer = document.getElementById("tokenSelectorContainer");
+    let tokenSelectorOptionContainer = document.getElementById("tokenSelectorOptionContainer");
+
+    tokenSelectorButton.addEventListener("click", function () {
+      if (!connected) return;
+
+      autoCloseTokenSelector = false;
+      tokenSelectorButton.blur();
+      tokenSelectorOpen = !tokenSelectorOpen;
+
+      if (tokenSelectorOpen) {
+        updateClientTokenSelector();
+      }
+      setClientTokenSelectorSize();
+      setTimeout(resetAutoCloseTokenSelector, 10);
+      setClientTokenSelectorText();
+    });
+
+    /*____________________________________________________________
+    PAGE LAYOUT PAGE LAYOUT PAGE LAYOUT PAGE LAYOUT PAGE LAYOUT 
+    ````````````````````````````````````````````````````````````*/
+    let privateView = false;
+    let historyOpen = false;
+
+    let tokenDisplayContainer = document.getElementById("tokenDisplayContainer");
+    let historyContainer = document.getElementById("historyContainer");
+
+    let itemsSwitchButton = document.getElementById("itemsSwitchButton");
+    itemsSwitchButton.addEventListener('click', function () {
+      historyOpen = false;
+      privateView = false;
+
+      itemsSwitchButton.style.backgroundColor = '#ffbb00';
+      itemsSwitchButton.style.color = '#181818';
+
+      historySwitchButton.style.backgroundColor = '#181818';
+      historySwitchButton.style.color = '#A1A1A1';
+
+      ownedSwitchButton.style.backgroundColor = '#181818';
+      ownedSwitchButton.style.color = '#A1A1A1';
+
+      historyContainer.style.visibility = 'hidden';
+      tokenDisplayContainer.style.visibility = 'visible';
+      refresh();
+    });
+
+    let historySwitchButton = document.getElementById("historySwitchButton");
+    historySwitchButton.addEventListener('click', function () {
+      historyOpen = true;
+      privateView = false;
+      filterMenuOpen = false;
+
+      historySwitchButton.style.backgroundColor = '#ffbb00';
+      historySwitchButton.style.color = '#181818';
+
+      itemsSwitchButton.style.backgroundColor = '#181818';
+      itemsSwitchButton.style.color = '#A1A1A1';
+
+      ownedSwitchButton.style.backgroundColor = '#181818';
+      ownedSwitchButton.style.color = '#A1A1A1';
+
+      historyContainer.style.visibility = 'visible';
+      tokenDisplayContainer.style.visibility = 'hidden';
+
+      toggleFilterMenu();
+    });
+
+    let ownedSwitchButton = document.getElementById("ownedSwitchButton");
+    ownedSwitchButton.addEventListener('click', function () {
+      privateView = true;
+      historyOpen = false;
+
+      historySwitchButton.style.backgroundColor = '#181818';
+      historySwitchButton.style.color = '#A1A1A1';
+
+      itemsSwitchButton.style.backgroundColor = '#181818';
+      itemsSwitchButton.style.color = '#A1A1A1';
+
+      ownedSwitchButton.style.backgroundColor = '#ffbb00';
+      ownedSwitchButton.style.color = '#181818';
+
+      historyContainer.style.visibility = 'hidden';
+      tokenDisplayContainer.style.visibility = 'visible';
+
+      getTokenIdsOfOwner(walletProvider.account).then(resp => {
+        clientTokens = resp;
+        updateClientTokenSelector();
+        clearFilters();
+        refresh();
       });
+    });
+
+
+
+    /*_________________________________________________________________________
+    HANDLE BODY CLICKS HANDLE BODY CLICKS HANDLE BODY CLICKS HANDLE BODY CLICKS 
+    `````````````````````````````````````````````````````````````````````````*/
+
+    let measureBox = document.getElementById("easyMeasure");
+
+    document.body.addEventListener('click', function () {
+
+      if (sortingOpen && autoCloseSorting) {
+        closeSortSelector();
+      }
+      if (tokenSelectorOpen && autoCloseTokenSelector) {
+        console.log("close");
+        closeClientTokenSelector();
+      }
+    });
+    let userPage = 0;
+    let device = 0; //0 is desktop 1 is tablet 2 is mobile
+    let deviceString = "desktop";
+    window.addEventListener('resize', function (event) {
+      getResolution();
+    });
+
+    //GetContractInfo();
+    buildClearFilterButton();
+    readTraits()
+    buildIntCategorySelector('ATTACK', 0, 2500);
+    buildIntCategorySelector('DEFENSE', 0, 2500);
+    buildIntCategorySelector('WEIGHT', 0, 50000);
+    buildIntCategorySelector('PRICE', 0, 10);
+    getResolution();
+    filterButtonClicked();
+
+    //refresh();
+    //startAutoRefresh();
+
+    window.addEventListener("load", function () {
+      window.addEventListener("scroll", myFunction());
+      window.onscroll = function () { myFunction() };
+
+      function myFunction() {
+        if (!startDataReceived) return;
+        if (pageScrollTimer) return;
+        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+          pageScrollTimer = true;
+          setTimeout(resetScrollTimer);
+          //alert("you're at the bottom of the page");
+          console.log("Page bottom. Call page " + userPage);
+          GetTokenData(false, userPage);
+          userPage++;
+        }
+      }
+      function resetScrollTimer() {
+        pageScrollTimer = false;
+      }
+    });
+
+    let pageScrollTimer = false;
+
+    if (defender) {
+      console.log(defender);
+      let tokenInfo = getToken(defender)
+      setupWegGl(tokenInfo);
+    }
+
+
+    /*_________________________________________________________________________
+    DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP DAPP  
+    `````````````````````````````````````````````````````````````````````````*/
+    function updateConnectionText(content) {
+      let textElement = document.getElementById('connectButtonContent');
+      if (content == textElement.textContent) return;
+
+      textElement.textContent = `${content}`;
+    }
+    function fetchNextEventBlockRecursive(startBlock, endBlock, lastBlock) {
+      if (startBlock == lastBlock) {
+        console.log("Latest events block: " + topBlock);
+        updateConnectionText("Load mint history...");
+        subscribeLiveGainlingEvent( topBlock + 1,onAnyGainlingEvent);
+        historyFetched();
+        return;
+      }
+      updateConnectionText(`Fetch events, ${pastTokenEventsQueueLenght} left`);
+      getPastGainlingEvents(startBlock, endBlock).then(events => {
+        events.forEach(gainlingEvent => {
+          processPastGainlingEvent(gainlingEvent);
+        });
+        madeTokenEventLoadingProgress(events.length);
+        startBlock = endBlock;
+        endBlock = startBlock + blockPerLogRequest > lastBlock ? lastBlock : startBlock + blockPerLogRequest;
+
+        setTimeout(fetchNextEventBlockRecursive(startBlock, endBlock, lastBlock), 200);
+      });
+    }
+    function madeTokenEventLoadingProgress(piecesLoaded) {
+      pastTokenEventsQueueLenght--;
+
     }
     function processPastGainlingEvent(eventData) {
 
       let evString = JSON.stringify(eventData);
-      console.log(evString);
+      //console.log(evString);
 
       let block = eventData.blockNumber;
       let type = eventData.returnValues["0"];
       let content = eventData.returnValues["1"];
 
-      processAnyEvent(block, type, content);
+      if (block > topBlock) {
+        topBlock = block;
+      }
+
+      processAnyEvent(block, type, content, true);
     }
-    function processAnyEvent(block, type, content) {
+    function setAndSaveSupply(supplyUpdate) {
+      setSupply(supplyUpdate);
+      document.getElementById('collectionCardAlive').innerText = `Supply alive: ${(supplyUpdate).toString()}`;
+    }
+    function processSeededMint(seed, id, block) {
+      setAndSaveSupply(totalSupply + 1);
+      var token = getToken(id);
+      var metadata = getMetadataFromCache(seed);
+      
+      token.seed = seed.toString();
+      token.bounty = 0.012;
+      token.metadata = metadata;
+      token.attack = getAttackFromTraits(metadata);
+      token.defense = getDefenseFromTraits(metadata);
+      token.weight = getWeightFromTraits(metadata);
+      token.alive = true;
+      token.block = block;
+      var cooldown = token.weight - secondsSinceSeasonStart;
+      token.lastAttackTime = _seasonBattleStartBlockTime;
+      //console.log(_seasonBattleStartBlockTime);
+      token.cooldown = cooldown > 0 ? cooldown : 0;
+      //console.log(token.cooldown);
+      token.kills = 0;
+      setToken(id, token);
+    }
+    function processAttack(data, block, past) {
+      updateConnectionText("Load attack history...");
+      var winnerNr = data.winner;
+      var loserNr = data.defender == winnerNr ? data.attacker : data.defender;
+
+      toggleFrame(data.defender, false);
+
+      var winnerToken = getToken(winnerNr);
+      var loserToken = getToken(loserNr);
+      //console.log(`${winnerNr} wins against ${loserNr} :  ${JSON.stringify(data)}`);
+      var split = loserToken.bounty / 2;
+      winnerToken.bounty += split;
+      winnerToken.stack += split;
+      winnerToken.block = block;
+      winnerToken.lastAttackBlock = block;
+      winnerToken.kills += 1;
+
+
+      if (data.attacker == winnerNr) {
+        winnerToken.lastAttackTime = parseInt(data.time);
+
+        if (!past) {
+          var timeNow = Math.floor(Date.now() / 1000);
+          var nextAttackTime = winnerToken.lastAttackTime + winnerToken.weight;
+          var secondsLeft = nextAttackTime - timeNow > 0 ? nextAttackTime - timeNow : 0;
+          var minutesLeft = Math.floor(secondsLeft / 60);
+          setTokenCooldown(winnerNr, minutesLeft);
+        }
+
+      }
+
+
+      loserToken.bounty = 0;
+      loserToken.stack = 0;
+      loserToken.block = block;
+      loserToken.alive = false;
+
+      setAndSaveSupply(totalSupply - 1);
+      setToken(winnerNr, winnerToken);
+      setToken(loserNr, loserToken);
+      killTokenFromView(loserToken.id,false);
+    }
+    function processAppraoch(data, block) {
+      toggleFrame(data.defender, true);
+    }
+    function processStageIncrease(block, type, content) {
+      if (content == "4") {
+        console.log(`Fight started at block ${block}`)
+
+
+
+      }
+    }
+    function onAnyGainlingEvent(data, event) {
+      //console.log(JSON.stringify(data) + JSON.stringify(event));
+      let block = event.blockNumber;
+      let type = data["0"];
+      let content = data["1"];
+
+      processAnyEvent(block, type, content, false);
+    }
+    function setStageLabel(phase) {
+      //console.log("stage switch")
+      let stageText = "";
+      if (phase == 0) {
+        stageText = "Inactive"
+      }
+      else if (phase == 1) {
+        stageText = "Allowlist mint"
+      }
+      else if (phase == 2) {
+        stageText = "Public mint"
+      }
+      else if (phase == 3) {
+        stageText = "Prepare"
+      }
+      else if (phase == 4) {
+        stageText = "Fight"
+      }
+      document.getElementById('collectionCardStage').innerText = `Stage: ${stageText}`;
+    }
+    function setTokenCooldown(id, minutes) {
+
+      var tokenFrame = document.getElementById("tokenCooldownFrame_" + id);
+      if (tokenFrame != undefined && tokenFrame != null) {
+        tokenFrame.innerHTML = `(ready in ${minutes.toString()} min)`;
+        tokenFrame.value = minutes;
+        setTimeout(function () { CountDownCooldown(tokenFrame, false); }, 60000);
+      }
+
+      var selectorFrame = document.getElementById(`tokenCooldownInSelector_${id.toString()}`);
+      if (selectorFrame != undefined && selectorFrame != null) {
+        selectorFrame.innerHTML = `${minutes.toString()}'`;
+        selectorFrame.value = minutes;
+        setTimeout(function () { CountDownCooldown(selectorFrame, true); }, 60000);
+      }
+    }
+    function processAnyEvent(block, type, content, past) {
+     // console.log(JSON.stringify(content) + JSON.stringify(type) + " " + past);
       if (type == 0) {
-        console.log("mint");
+        //console.log("mint");
+        for (let i = 0; i < content; i++) {
+          //processNakedMint(block);
+        }
       }
       else if (type == 1) {
-        console.log("approach");
+        //console.log("approach");
         let data = JSON.parse(content);
-        unfilledApproachEvents.push(data);
-        console.log("Added approach to history: A:" + data.attacker + " D:" + data.defender);
+        addToClientEvents(data, "approach", block);
+        processAppraoch(data, block);
       }
       else if (type == 2) {
-        console.log("attack");
-        if (unfilledApproachEvents.length < 1) return;
+        //console.log("attack");
         let data = JSON.parse(content);
-        let indexToRemove;
-        unfilledApproachEvents.forEach(unfilled => {
-          if (unfilled.attacker == data.attacker && unfilled.defender == data.defener) {
-            indexToRemove = unfilledApproachEvents.indexOf(unfilled);
-          }
-        })
-        unfilledApproachEvents.splice(indexToRemove, 1);
-        console.log("Resolved approach to history: A:" + data.attacker + " D:" + data.defender);
+        addToClientEvents(data, "attack", block);
+        processAttack(data, block, past);
       }
       else if (type == 3) {
-        console.log("stage");
+        processStageIncrease(block, type, content);
+        setStageLabel(content);
       }
       else if (type == 4) {
-        console.log("tokendata")
+        //console.log("tokendata")
+        let data = JSON.parse(content);
+        processSeededMint(data.seed, data.id, block);
       }
     }
-    function incectOpenAttack() {
-      unfilledApproachEvents.forEach(unfilled => {
-        console.log("Unfilled approach event: " + JSON.stringify(unfilled));
-        onLiveApproach(unfilled);
-        var attackerId = unfilled.attacker;
+    function addToClientEvents(data, type, block) {
+      if (allClientNftsEver.includes(data.attacker) || allClientNftsEver.includes(data.defender)) {
+        let tokenEvent = {
+          data: data,
+          type: type,
+          block: block
+        };
+        printEventToHistory(tokenEvent);
+      }
+    }
+    function historyFetched() {
+      document.getElementById('pageLayoutSwitchContainer').style.visibility = 'visible';
 
-        _getTokenSeed(attackerId, seed => {
-          onAttackerSeed(seed);
-        })
+      updateFightOutputText();
+
+      getTokenIdsOfOwner(walletProvider.account).then(resp => {
+        clientTokens = resp;
+        console.log(" ")
+        console.log("*** Fetch client data ***");
+        updateClientTokenSelector();
+        updateIsApprovedForAll();
+        console.log("Loaded " + clientTokens.length + " tokens into selection");
+      });
+
+      document.getElementById('connectContainer').style.visibility = "hidden";
+      var endBlock = _seasonStartBlock + blockPerLogRequest > _setupBlockNumber ? _setupBlockNumber : _seasonStartBlock + blockPerLogRequest;
+      fetchNextMarketEventRecursive(_seasonStartBlock, endBlock, _setupBlockNumber);
+
+    }
+    function printEventToHistory(eventData) {
+
+      if (eventData.type == "approach") {
+        nonIndexedApproachEvents.push(eventData);
         return;
+      }
+      var historyElement = getHistoryElement(eventData);
+      historyContainer.insertBefore(historyElement, historyContainer.firstChild);
+
+
+
+
+    }
+    let soundON;
+    function togglePlay() {
+      soundON = !soundON;
+      if (soundON) {
+        document.getElementById('audioElement').play();
+        document.getElementById('soundButton').style.backgroundImage = "url('assets/sprites/SpeakerOnSmall.png')";
+      }
+      else {
+        document.getElementById('audioElement').pause();
+        document.getElementById('soundButton').style.backgroundImage = "url('assets/sprites/SpeakerOffSmall.png')";
+      }
+
+    }
+
+    /*_________________________________________________________________________
+    TOKEN DISPLAY TOKEN DISPLAY TOKEN DISPLAY TOKEN DISPLAY TOKEN DISPLAY 
+    `````````````````````````````````````````````````````````````````````````*/
+    function startAutoRefresh() {
+      refresh();
+      setTimeout(startAutoRefresh, 5000);
+    }
+    function resetAutoRefresh() {
+
+    }
+    function refresh() {
+      GetTokenData(true, 0);
+    }
+    function GetTokenData(empty, toPage,_idFilter = null) {
+      var idFilter = privateView ? clientTokens : _idFilter == null ? [] : _idFilter;
+      let tokensFromCache = getTokensFiltered(toPage, sorting.toLowerCase(), idFilter, stringFilterValues, intFilterValues, 20);
+      //console.log("Tokens from CACHE: " + JSON.stringify(tokensFromCache));
+
+      startDataReceived = true;
+      if (empty) {
+        const myNode = document.getElementById("tokenDisplayContainer");
+        myNode.innerHTML = '';
+        userPage = 1;
+      }
+      if (tokensFromCache.length == 0) {
+        userPage--;
+      }
+
+
+      tokensFromCache.forEach(token => {
+        buildTokenDisplayNew(token);
       })
     }
-
-    setTimeout(() => {
-      //onLiveGainlingsEvent(testApproach);
-
-    }, 5000);
-
-    setTimeout(() => {
-      //onLiveGainlingsEvent(testAttack);
-
-    }, 9000);
-
-    //EXTERNAL DATA\\
-
-    function onLiveGainlingsEvent(data) {
-      let type = data["0"];
-
-      if (type == 0) {
-        console.log("mint");
-        return;
+    function toggleFrame(tokenId, state) {
+      let tokenDisplay = document.getElementById(`flashyTriplet_${tokenId}`);
+      if (tokenDisplay === undefined || tokenDisplay === null) return;
+      var _state = state ? "visible" : "hidden";
+      tokenDisplay.style.visibility = _state;
+    }
+    function CountDownCooldown(coolDownFrame, selector) {
+      var oldValue = coolDownFrame.value;
+      if (oldValue - 1 > 0) {
+        var newValue = oldValue - 1;
+        console.log(newValue);
+        var text = selector ? `${newValue.toString()}'` : `(ready in ${newValue.toString()} min)`;
+        coolDownFrame.innerHTML = text;
+        coolDownFrame.value = newValue;
+        setTimeout(function () { CountDownCooldown(coolDownFrame, selector); }, 60000);
       }
-      else if (type == 1) {
-        console.log("approach: " + JSON.stringify(data));
-        let attackSetupEvent = data["1"];
-        let eventJ = JSON.parse(attackSetupEvent);
-        let defenderId = eventJ["defender"];
-        if (defenderId == tokenId) {
-          let attackerId = eventJ["attacker"];
-          onLiveApproach(eventJ);
-          _getTokenSeed(attackerId, seed => {
-            onAttackerSeed(seed);
+      else {
+        if (selector) {
+          coolDownFrame.innerHTML = `ready`;
+        }
+        else {
+          coolDownFrame.innerHTML = `(ready to fight)`;
+        }
+
+      }
+    }
+
+    function buildAuraDisplay(auraString, titleString) {
+      var tabAuraSplitter = buildElement("div", "tokenTabSplitter", "tokenTabSplitter", ``);
+      var tokenTabSplitLeft = buildElement("div", "tokenTabSplit", "tokenTabSplit", ``);
+      var tokenTabSplitRight = buildElement("div", "tokenTabSplit", "tokenTabSplit", ``);
+      var tabAuraNameTitle = buildElement("div", "tokenAuraTitle", "tokenAuraTitle", `${titleString}`);
+      tabAuraNameTitle.style.marginTop = '8px';
+      var tabAuraName = buildElement("div", "tokenAuraTitle", "tokenAuraTitle", `${auraString}`);
+      var tabAuraTokenAuraImage = buildElement("img", "tokenTabAuraImage", "tokenTabAuraImage");
+      tabAuraTokenAuraImage.src = `assets/traits/Aura/${auraString}.png`;
+      tokenTabSplitLeft.appendChild(tabAuraNameTitle);
+      tokenTabSplitLeft.appendChild(tabAuraName);
+      tokenTabSplitRight.appendChild(tabAuraTokenAuraImage);
+      tabAuraSplitter.appendChild(tokenTabSplitLeft);
+      tabAuraSplitter.appendChild(tokenTabSplitRight);
+      return tabAuraSplitter;
+    }
+    function buildAttributeContainer(attributeName, attributeImagePath) {
+
+      let attributeContainer = buildElement("div", "attributeContainer", "attributeContainer", "");
+      let attributeImage = buildElement("div", "partsImage", "partsImage " + attributeImagePath, ``);
+      let attributeDescription = buildElement("div", "attributeDescription", "attributeDescription", "");
+      let attributeNameLabel = buildElement("div", "tokenPartsPartLabel", "tokenPartsPartLabel", `${attributeName}`);
+      let attributeValueContainer = buildElement("div", "signerPartValueContainer", "signerPartValueContainer", ``);
+      let signerAttackImage = buildElement("div", "partsIcon", "signerPartValueContainerImage tokenAttackStatIcon", ``);
+      let signerAttackValue = buildElement("div", "partsValue", "partsValue", `${getAttributeAttack(attributeName)}`);
+      let signerDefenseImage = buildElement("div", "partsIcon", "signerPartValueContainerImage tokenDefenseStatIcon", ``);
+      let signerDefenseValue = buildElement("div", "partsValue", "partsValue", `${getAttributeDefense(attributeName)}`);
+      let signerWeightImage = buildElement("div", "partsIcon", "signerPartValueContainerImage tokenWeightStatIcon", ``);
+      let signerWeightValue = buildElement("div", "partsValue", "partsValue", `${getAttributeWeight(attributeName)}`);
+
+      attributeValueContainer.appendChild(signerAttackImage);
+      attributeValueContainer.appendChild(signerAttackValue);
+
+      attributeValueContainer.appendChild(signerDefenseImage);
+      attributeValueContainer.appendChild(signerDefenseValue);
+
+      attributeValueContainer.appendChild(signerWeightImage);
+      attributeValueContainer.appendChild(signerWeightValue);
+
+      attributeDescription.appendChild(attributeNameLabel);
+      attributeDescription.appendChild(attributeValueContainer);
+
+
+      attributeContainer.appendChild(attributeImage);
+      attributeContainer.appendChild(attributeDescription);
+      return attributeContainer;
+    }
+    function getWinningChance(attackerTotal, defenderTotal, randomBonusMax = 1000) {
+      const isAttackerStronger = attackerTotal >= defenderTotal;
+      const diff = Math.abs(attackerTotal - defenderTotal);
+      if (diff == 0) {
+        return 50 - 1 / randomBonusMax * 50;
+      }
+      if (diff >= randomBonusMax) {
+        return isAttackerStronger ? 100 : 0;
+      }
+      const remainder = randomBonusMax - diff;
+      const allPossibilitiesCount = randomBonusMax * randomBonusMax;
+      const clearWins = diff * randomBonusMax + remainder * diff;
+      const draws = remainder;
+      const fiftyfifties = remainder * remainder - draws;
+      const wins = (fiftyfifties / 2) + clearWins;
+      const percents = 100 / allPossibilitiesCount * wins;
+      return isAttackerStronger ? percents : 100 - percents;
+    }
+    function GetAttackerWinChance(attackerBaseScore, defenderBaseScore, attackerMinLuck, defenderMinLuck, maxLuck) {
+      // Calculate the total number of possible outcomes
+      var possibleOutcomes = (maxLuck - attackerMinLuck + 1) * (maxLuck - defenderMinLuck + 1);
+
+      // Calculate the minimum and maximum possible scores for each player
+      var attackerMinScore = attackerBaseScore + attackerMinLuck;
+      var attackerMaxScore = attackerBaseScore + maxLuck;
+
+      var defenderMinScore = defenderBaseScore + defenderMinLuck;
+      var defenderMaxScore = defenderBaseScore + maxLuck;
+
+      // Check if the attacker can win every round
+      if (attackerMinScore > defenderMaxScore)
+        return 100.0;
+
+      // Check if the defender can win every round
+      if (defenderMinScore >= attackerMaxScore)
+        return 0.0;
+
+      // Calculate the number of times the attacker wins
+      var attackerWins = 0;
+      var iterations = 0;
+      for (var attackerScore = attackerMinScore; attackerScore <= attackerMaxScore; attackerScore++) {
+        iterations++;
+        if (attackerScore > defenderMinScore) {
+          var remainingOutcomes = defenderMaxScore - defenderMinScore;
+          var defenderWins = defenderMaxScore - attackerScore;
+          if (defenderWins < 0)
+            attackerWins += remainingOutcomes;
+          else
+            attackerWins += remainingOutcomes - defenderWins;
+        }
+      }
+      //console.log("Iterations: " + iterations.toLocaleString());
+
+      // Calculate the probability of the attacker winning
+      var winChance = 100.0 * attackerWins / possibleOutcomes;
+
+      // Return the win chance as a percentage
+      return winChance;
+    }
+    function simulate(attacker, defender) {
+      //console.log(`Simulate ${JSON.stringify(attacker)} against ${JSON.stringify(defender)}`);
+      let result = "-";
+      let resultString = "";
+      if (attacker == "-1") {
+        resultString = "Please select a token in the top right of the page"
+      }
+      else {
+        var attackerAura = attacker.metadata[5];
+        var defenderAura = defender.metadata[5];
+        var attackerWeakness = getAuraWeakness(attackerAura);
+        var defenderWeakness = getAuraWeakness(defenderAura);
+        let attackerTotal = defenderAura == attackerWeakness ? attacker.attack : attacker.attack + attacker.defense;
+        let defenderTotal = attackerAura == defenderWeakness ? defender.attack : defender.attack + defender.defense;
+
+        let _buffStartFactor = 60;
+        var attRandMin = ((_buffStartFactor + (_buffStartFactor - (attacker.kills * 2))) / 2) * attacker.kills;
+        var defRandMin = ((_buffStartFactor + (_buffStartFactor - (defender.kills * 2))) / 2) * defender.kills;
+        let oldWinningChance = getWinningChance(attackerTotal, defenderTotal);
+        let newWinningChance = GetAttackerWinChance(attackerTotal, defenderTotal, attRandMin, defRandMin, 1000);
+        newWinningChance = Math.floor(newWinningChance * 100) / 100;
+        oldWinningChance = Math.floor(oldWinningChance * 100) / 100;
+        resultString = "Your chance to win against this Gainling is " + newWinningChance + "%";
+      }
+
+
+
+      alert(resultString)
+    }
+    function buildTokenDisplayNew(tokenInfo) {
+      if (tokenInfo.metadata[2] == undefined) return;
+      //Build tableContainer
+      var tripletContainerDiv = buildElement("div", "triplet_" + tokenInfo.id.toString(), "triplet");
+
+
+      //build flashy frame
+      var frame = buildElement("div", "flashyTriplet_" + tokenInfo.id, "flashyTriplet");
+      tripletContainerDiv.appendChild(frame);
+
+      //console.log(JSON.stringify(tokenInfo));
+      //Get Stacked images
+      var stackContainer = getStackedImageNew(tokenInfo);
+
+      tripletContainerDiv.appendChild(stackContainer);
+
+      //// BUILD TABS \\\\
+
+      //TAB AURA
+
+      var tabAura = buildElement("div", "tokenTabAura", "tokenTab tokenTabAura", ``);
+      var tabAuraTitle = buildElement("div", "tokenTabTitle", "tokenTabTitle", `Strength | Weakness`); //Gainling #${tokenInfo.id}
+
+      let aura = tokenInfo.metadata[5];
+      let tokenAuraDisplay = buildAuraDisplay(aura, "Aura:");
+      let strength = getAuraStrength(aura);
+      let tokenStrengthAuraDisplay = buildAuraDisplay(strength, "Strength:");
+      let weakness = getAuraWeakness(aura);
+      let tokenWeaknessAuraDisplay = buildAuraDisplay(weakness, "Weakness:");
+
+
+      tabAura.appendChild(tabAuraTitle);
+
+      tabAura.appendChild(tokenAuraDisplay);
+      tabAura.appendChild(tokenStrengthAuraDisplay);
+      tabAura.appendChild(tokenWeaknessAuraDisplay);
+      tripletContainerDiv.appendChild(tabAura);
+
+
+      //TAB EQUIPMENT
+      var tabEquipment = buildElement("div", "tokenTabEquipment", "tokenTab tokenTabEquipment", "");
+      var tabEquipmentTitle = buildElement("div", "tokenTabTitle", "tokenTabTitle", `Parts`);
+
+      tabEquipment.appendChild(tabEquipmentTitle);
+
+      let imageClasses = ["armourPartsImage", "bootsPartsImage", "helmetPartsImage", "shieldPartsImage", "weaponPartsImage"];
+      let sortingOrder = [2,0,4,3,1];
+
+      let ct = 0;
+
+      sortingOrder.forEach(elementId => {
+        let index = sortingOrder[ct];
+        let attributeName = tokenInfo.metadata[index];
+        let attributeContainer = buildAttributeContainer(attributeName, imageClasses[index]);
+        tabEquipment.appendChild(attributeContainer);
+        ct++;
+      })
+      /*
+      for (let index = 0; index < tokenInfo.metadata.length - 1; index++) {
+        let attributeName = tokenInfo.metadata[index];
+        let attributeContainer = buildAttributeContainer(attributeName, imageClasses[index]);
+        tabEquipment.appendChild(attributeContainer);
+      }
+      */
+
+      //tabEquipment.appendChild(tabEquipmentTitle);
+      tripletContainerDiv.appendChild(tabEquipment);
+
+      //TAB SIMULATION
+      var tabSim = buildElement("div", "tokenTabSim", "tokenTab tokenTabSim", "");
+      var tabSimTitle = buildElement("div", "tokenTabTitle", "tokenTabTitle", `Simulation`);
+      var simDescription = buildElement("div", "simDescription", "simDescription", `Select an attacker in the top right corner of the page and click on simulate`);
+      var simButton = buildElement("div", "simButton", "simButton", `SIMULATE`);
+      simButton.addEventListener('click', function () {
+        simulate(getToken(clientSelectedToken), tokenInfo);
+      });
+      tabSim.appendChild(tabSimTitle);
+      tabSim.appendChild(simDescription);
+      tabSim.appendChild(simButton);
+      tripletContainerDiv.appendChild(tabSim);
+
+
+
+      //TAB BUTTONS
+      var tokenFooter = buildElement("div", "tokenFooter", "tokenFooter", ``);
+
+      var tokenFooterButtonChar = buildElement("div", "tokenFooterButtonChar", "tokenFooterButton", "CHAR");
+      tokenFooterButtonChar.addEventListener('click', function () {
+        hideAll();
+      });
+      var tokenFooterButtonAura = buildElement("div", "tokenFooterButtonAura", "tokenFooterButton", "AURA");
+      tokenFooterButtonAura.addEventListener('click', function () {
+        hideAll();
+        tabAura.style.visibility = 'visible';
+      });
+      var tokenFooterButtonEquipment = buildElement("div", "tokenFooterButtonEquipment", "tokenFooterButton", "PARTS");
+      tokenFooterButtonEquipment.addEventListener('click', function () {
+        hideAll();
+        tabEquipment.style.visibility = 'visible';
+      });
+      var tokenFooterButtonSim = buildElement("div", "tokenFooterButtonSim", "tokenFooterButton", "SIM");
+      tokenFooterButtonSim.addEventListener('click', function () {
+        hideAll();
+        tabSim.style.visibility = 'visible';
+      });
+
+      tokenFooter.appendChild(tokenFooterButtonChar);
+      tokenFooter.appendChild(tokenFooterButtonAura);
+      tokenFooter.appendChild(tokenFooterButtonEquipment);
+      tokenFooter.appendChild(tokenFooterButtonSim);
+
+      tripletContainerDiv.appendChild(tokenFooter);
+
+      function hideAll() {
+        tabAura.style.visibility = 'hidden';
+        tabSim.style.visibility = 'hidden';
+        tabEquipment.style.visibility = 'hidden';
+      }
+
+      //build infoFrame  
+      var infoFrame = document.createElement("div");
+      infoFrame.id = "infoFrame";
+      infoFrame.classList = "infoFrame";
+      infoFrame.addEventListener('click', function () {
+        setupWegGl(tokenInfo);
+      });
+
+
+      //build trophyStack
+      var trophyImg = buildElement("img", "trophyImg", "trophyImg");
+      trophyImg.src = "assets/sprites/tropthyC.png";
+      infoFrame.appendChild(trophyImg);
+
+
+      var trophyText = buildElement("div", "trophyText", "trophyText", tokenInfo.kills);
+      infoFrame.appendChild(trophyText);
+      //build tokenHeaderContainer
+      var tokenHeaderContainer = buildElement("div", "tokenHeaderContainer", "tokenHeaderContainer");
+      infoFrame.appendChild(tokenHeaderContainer);
+
+      //build tokenNameFrame
+      var tokenNameFrame = buildElement("div", "tokenNameFrame", "tokenNameFrame");
+      tokenNameFrame.innerHTML = `Gainling #${tokenInfo.id.toString()}`;
+      tokenHeaderContainer.appendChild(tokenNameFrame);
+
+      //build tokenCooldownFrame
+      var tokenCooldownFrame = buildElement("div", "tokenCooldownFrame_" + tokenInfo.id, "tokenCooldownFrame");
+      var timeNow = Math.floor(Date.now() / 1000);
+      var nextAttackTime = Number(tokenInfo.lastAttackTime) + Number(tokenInfo.weight);
+      var secondsLeft = nextAttackTime - timeNow > 0 ? nextAttackTime - timeNow : 0;
+      var minutesLeft = Math.floor(secondsLeft / 60);
+      if (minutesLeft > 0) {
+        tokenCooldownFrame.innerHTML = `(ready in ${minutesLeft.toString()} min)`;
+        tokenCooldownFrame.value = minutesLeft;
+        setTimeout(function () { CountDownCooldown(tokenCooldownFrame); }, 60000);
+      }
+      else {
+        tokenCooldownFrame.innerHTML = `(ready to fight)`;
+      }
+      tokenHeaderContainer.appendChild(tokenCooldownFrame);
+
+      //build tokenCashFlowContainer
+      var tokenCashFlowContainer = buildElement("div", "tokenCashFlowContainer", "tokenCashFlowContainer");
+
+      var bty = Math.round((tokenInfo.bounty + Number.EPSILON) * 10000) / 10000;
+      var stk = Math.round((tokenInfo.stack + Number.EPSILON) * 10000) / 10000;
+      var tokenBountyContainer = buildElement("div", "tokenBountyContainer", "tokenBountyContainer");
+      var tokenBountyTitle = buildElement("div", "tokenBountyTitle", "tokenBountyTitle", "Bounty");
+      var tokenBountyValue = buildElement("div", "tokenBountyValue", "tokenBountyValue", bty + "⟠");
+
+      var tokenStackContainer = buildElement("div", "tokenStackContainer", "tokenStackContainer");
+      var tokenStackTitle = buildElement("div", "tokenStackTitle", "tokenStackTitle", "Stack");
+      var tokenStackValueN = buildElement("div", "tokenStackValue", "tokenStackValue", stk + "⟠");
+
+
+      tokenBountyContainer.appendChild(tokenBountyTitle);
+      tokenBountyContainer.appendChild(tokenBountyValue);
+      tokenStackContainer.appendChild(tokenStackTitle);
+      tokenStackContainer.appendChild(tokenStackValueN);
+      tokenCashFlowContainer.appendChild(tokenBountyContainer);
+      tokenCashFlowContainer.appendChild(tokenStackContainer);
+      infoFrame.appendChild(tokenCashFlowContainer);
+      tripletContainerDiv.appendChild(infoFrame);
+
+      /////// build tokenDetailsContainer \\\\\\\
+      var tokenDetailsContainer = buildElement("div", "tokenDetailsContainer", "tokenDetailsContainer");
+
+      // Left Side (Combat Stats)
+      var tokenCombatStatsContainer = buildElement("div", "tokenCombatStatsContainer", "tokenCombatStatsContainer");
+
+      let attack = tokenInfo.attack;
+      var tokenAttackStatContainer = buildElement("div", "tokenStatContainer", "tokenStatContainer");
+      var tokenAttackStatIcon = buildElement("image", "tokenAttackStatIcon", "tokenStatIcon tokenAttackStatIcon");
+      var tokenStatAttackValue = buildElement("div", "tokenStatValue", "tokenStatValue", attack);
+      tokenAttackStatContainer.appendChild(tokenAttackStatIcon);
+      tokenAttackStatContainer.appendChild(tokenStatAttackValue);
+
+      let defense = tokenInfo.defense;
+      var tokenDefenseStatContainer = buildElement("div", "tokenStatContainer", "tokenStatContainer");
+      var tokenDefenseStatIcon = buildElement("image", "tokenDefenseStatIcon", "tokenStatIcon tokenDefenseStatIcon");
+      var tokenStatDefenseValue = buildElement("div", "tokenStatValue", "tokenStatValue", defense);
+      tokenDefenseStatContainer.appendChild(tokenDefenseStatIcon);
+      tokenDefenseStatContainer.appendChild(tokenStatDefenseValue);
+
+      let weight = tokenInfo.weight;
+      var tokenWeightStatContainer = buildElement("div", "tokenStatContainer", "tokenStatContainer");
+      var tokenWeightStatIcon = buildElement("image", "tokenWeightStatIcon", "tokenStatIcon tokenWeightStatIcon");
+      var tokenStatWeightValue = buildElement("div", "tokenStatValue", "tokenStatValue", weight);
+      tokenWeightStatContainer.appendChild(tokenWeightStatIcon);
+      tokenWeightStatContainer.appendChild(tokenStatWeightValue);
+
+      tokenCombatStatsContainer.appendChild(tokenAttackStatContainer);
+      tokenCombatStatsContainer.appendChild(tokenDefenseStatContainer);
+      tokenCombatStatsContainer.appendChild(tokenWeightStatContainer);
+
+
+      tokenDetailsContainer.appendChild(tokenCombatStatsContainer);
+
+      // Right Side (Combat Stats)
+      var tokenExchangeStatsContainer = buildElement("div", "tokenExchangeStatsContainer", "tokenExchangeStatsContainer");
+
+
+      var priceString = tokenInfo.price && tokenInfo.price > 0 ? `${ToEth(tokenInfo.price.toString())}⟠` : ``;
+      var tokenPrice = buildElement("div", "tokenPrice_" + tokenInfo.id, "tokenPrice", priceString);
+      tokenExchangeStatsContainer.appendChild(tokenPrice);
+      var tokenButtonsContainer = document.createElement("div");
+      tokenButtonsContainer.id = "tokenButtonsContainer";
+      tokenButtonsContainer.classList = "tokenButtonsContainer";
+      tokenExchangeStatsContainer.appendChild(tokenButtonsContainer);
+
+      //build tokenTradeButton
+      var tokenTradeButton = document.createElement("button");
+      tokenTradeButton.id = "tokenTradeButton";
+      tokenTradeButton.classList = "tokenButton";
+      tokenTradeButton.style.backgroundImage = "url('assets/sprites/CartIcon.png')"
+      tokenButtonsContainer.appendChild(tokenTradeButton);
+      tokenTradeButton.addEventListener('click', function () {
+        openTokenTradeCard(tokenInfo);
+      });
+
+      //build tokenAttackButton
+      var tokenAttackButton = document.createElement("button");
+      tokenAttackButton.id = "tokenAttackButton";
+      tokenAttackButton.classList = "tokenButton";
+      tokenAttackButton.style.backgroundImage = "url('assets/sprites/Attack.png')"
+      tokenButtonsContainer.appendChild(tokenAttackButton);
+      tokenAttackButton.addEventListener('click', function () {
+        setupWegGl(tokenInfo);
+      });
+
+      tokenDetailsContainer.appendChild(tokenExchangeStatsContainer);
+      tripletContainerDiv.appendChild(tokenDetailsContainer);
+
+
+      document.getElementById("tokenDisplayContainer").appendChild(tripletContainerDiv);
+
+
+    }
+    function openTokenTradeCard(tokenInfo) {
+      if (clientTokens.includes(tokenInfo.id.toString())) {
+        openSellerUI(tokenInfo);
+      } else {
+        openBuyerUI(tokenInfo);
+      }
+    }
+    function setupWegGl(tokenInfo) {
+
+      //Build FightBoxContainer
+      var fightBoxContainer = document.createElement("div");
+      fightBoxContainer.id = "fightBoxContainer";
+      fightBoxContainer.classList = "fightBoxContainer";
+      fightBoxContainer.innerHTML = ``;
+
+      //Build webglHeader
+      var webglHeader = document.createElement("div");
+      webglHeader.classList = "webglHeader";
+      webglHeader.innerHTML = ``;
+
+      //build webGlClose
+      var webGlClose = document.createElement("button");
+      webGlClose.classList = "webGlClose";
+      webGlClose.innerHTML = ` X `;
+      webGlClose.addEventListener('click', function (e) {
+        let gainlingContainer = document.getElementById("fightBoxContainer");
+        document.body.removeChild(gainlingContainer);
+        refresh();
+      });
+
+      //webglHeader.appendChild(webGlClose);
+      fightBoxContainer.appendChild(webGlClose);
+
+      //build webglFrame
+      var height = device < 2 ? '506px' : '406';
+      var webglFrame = document.createElement("iframe");
+      webglFrame.classList = "webglFrame";
+      webglFrame.innerHTML = ``;
+      //webglFrame.maxHeight = '506px';
+      //webglFrame.maxWidth = '505px';
+      webglFrame.height = '506px';
+      webglFrame.width = '496px';
+      webglFrame.width = '104%';
+      webglFrame.src = animationUrl + `tokenId=${tokenInfo.id}`
+      fightBoxContainer.appendChild(webglFrame);
+
+      //Build webGlButtonCover
+      var webGlButtonCover = document.createElement("div");
+      webGlButtonCover.classList = "webGlButtonCover";
+      webGlButtonCover.innerHTML = ``;
+      fightBoxContainer.appendChild(webGlButtonCover);
+
+      //Build webGlFooter
+      var webGlFooter = document.createElement("div");
+      webGlFooter.classList = "webGlFooter";
+      webGlFooter.innerHTML = ``;
+
+      //build webGlTokenInfoText
+      let outputText = `Seems to be alive`;
+      if (!connected) outputText = `Connect metamask first`;
+      else if (clientSelectedToken < 0) outputText = `Select player first`;
+
+      var webGlTokenInfoText = document.createElement("a");
+      webGlTokenInfoText.id = "webGlTokenInfoText";
+      webGlTokenInfoText.classList = "webGlTokenInfoText";
+      webGlTokenInfoText.innerHTML = outputText;
+
+      //build webGlAttackButton
+      var webGlAttackButton = document.createElement("button");
+      webGlAttackButton.id = "webGlAttackButton";
+      webGlAttackButton.classList = "webGlAttackButton";
+      webGlAttackButton.innerHTML = `ATTACK`;
+
+      webGlAttackButton.addEventListener('click', function (e) {
+
+        if (!connected) {
+          reject('Not connected to metamask');
+          return;
+        }
+
+        attackGainling(clientSelectedToken, tokenInfo.id)
+          .then(attackResult => {
+            console.log("Success Attack result: " + attackResult);
           })
-        }
-      }
-      else if (type == 2) {
-        console.log("attack: " + JSON.stringify(data));
-        let attackStartEvent = data["1"];
-        let eventJ = JSON.parse(attackStartEvent);
-        let defenderId = eventJ["defender"];
-        if (defenderId == tokenId) {
-          let attackerId = eventJ["attacker"];
-          onLiveAttack(eventJ);
-        }
-      }
-      else if (type == 3) {
-        console.log("stage");
-        return;
-      }
-      else if (type == 4) {
-        console.log("tokendata")
-        return;
-      }
-    }
-    function onLiveGainlingsEventError(data) {
-
-    }
-    function onPastGainlingsEvent(data) {
-
-    }
-
-
-    //INTERFACE\\
-    function setup(parent, defenderSeed, defenderId, bounty = 0, stack = 0) {
-      _defenderId = defenderId;
-      buildDefenderBaseView(parent, defenderSeed, bounty, stack, defenderId);
-      handleBubble("setup");
-
-    }
-    function onLiveApproach(attackSetupEvent) {
-      let defenderId = attackSetupEvent["defender"];
-      if (defenderId != _defenderId) return;
-      fightData.approach = attackSetupEvent;
-      approach();
-    }
-    function onLiveAttack(attackStartEvent) {
-      let defenderId = attackStartEvent["defender"];
-      if (defenderId != _defenderId) return;
-      fightData.attack = attackStartEvent;
-      attack();
-    }
-    function onAttackerSeed(seed) {
-      fightData.seed = seed;
-      buildAttacker(document.getElementById('frame'), seed);
-
-    }
-    function onBountyUpdate(update) {
-      update = ToEth(update);
-      document.getElementById('bountyValue').innerText = `${update}`;
-    }
-    function onStackUpdate(update) {
-      update = ToEth(update);
-      document.getElementById('stackValue').innerText = `${update}`;
-    }
-    function onCooldownUpdate(update) {
-
-      if (parseInt(update) <= 0) return;
-
-      var prisonBowl = buildElement("div", "prisonBowl", "prisonBowl");
-      document.getElementById('frame').appendChild(prisonBowl);
-      var prisonValueTitle = buildElement("div", "prisonValueTitle", "prisonValue prisonValueTitle baseText", "seconds")
-      prisonBowl.appendChild(prisonValueTitle);
-      var prisonValue = buildElement("div", "prisonValue", "prisonValue baseText", update.toString())
-      prisonBowl.appendChild(prisonValue);
-      _prisonValue = update;
-      setTimeout(() => {
-        countDownPrisonValue();
-      }, "1000");
-    }
-
-    function countDownPrisonValue() {
-      console.log(_prisonValue);
-      _prisonValue = _prisonValue - 1 <= 0 ? 0 : _prisonValue - 1;
-      document.getElementById('prisonValue').innerText = _prisonValue;
-
-      if (_baseView) {
-        document.getElementById('prisonBowl').style.visibility = 'visible';
-      }
-      else {
-        document.getElementById('prisonBowl').style.visibility = 'hidden';
-      }
-
-
-      if (_prisonValue > 0) {
-        setTimeout(() => {
-          countDownPrisonValue();
-        }, "1000");
-      }
-      else {
-        document.getElementById('prisonBowl').style.visibility = 'hidden';
-      }
-
-
-    }
-    //GAME\\
-
-    function approach() {
-      _baseView = false;
-      _talkLoop = true;
-      animateFlipping();
-      talk();
-    }
-
-    function talk() {
-      if (!_talkLoop) return;
-
-      var rnd = Math.floor(Math.random() * (sentences.length - 1));
-      var text = sentences[rnd];
-      handleBubble(text);
-      setTimeout(() => {
-        handleBubble("clear");
-      }, 4000);
-      setTimeout(() => {
-        talk();
-      }, 6000);
-    }
-
-    function attack() {
-      _talkLoop = false;
-      var bowl = document.getElementById('prisonBowl');
-      if (bowl != undefined) {
-        bowl.style.visibility = 'hidden';
-      }
-      handleBubble("clear");
-      resetFlip();
-      animateBackflip();
-
-      setTimeout(() => {
-        animateDrop();
-
-      }, 1000);
-
-      setTimeout(() => {
-        animateAttack();
-      }, 2000);
-
-      setTimeout(() => {
-        blinkElement(document.getElementById('attackerContainer'), 6);
-      }, 2300);
-
-
-      setTimeout(() => {
-        animateAttackerAttack();
-      }, 3000);
-
-      setTimeout(() => {
-        blinkElement(document.getElementById('tokenContainer'), 6);
-      }, 3300);
-
-
-      setTimeout(() => {
-        if (fightData.attack["winner"] == tokenId) {
-          console.log("defenderWon")
-          burn('attackerContainer', 'burnedAttacker', fightData.attack["winner"] == tokenId);
-        }
-        else {
-          console.log("defenderLost")
-          burn('tokenContainer', 'burnedDefender', fightData.attack["winner"] == tokenId);
-        }
-
-      }, 5000);
-
-      setTimeout(() => {
-        showBattleReport();
-      }, 10000);
-
-    }
-
-    function showBattleReport() {
-      console.log("-- Battle report --");
-      console.log(JSON.stringify(fightData));
-
-      var battleReportContainer = buildElement("div", "battleReportContainer", "battleReportContainer");
-      var battleReport = buildElement("img", "battleReport", "battleReport");
-      battleReport.src = `assets/sprites/BattleReportBackground.png`;
-      battleReportContainer.appendChild(battleReport);
-
-      var titleString = `#${fightData.approach.attacker} vs #${fightData.approach.defender}`;
-      var titleElement = buildElement("div", "br_title", "battleReportTitle", titleString);
-      battleReportContainer.appendChild(titleElement);
-
-      let attID = fightData.approach.attacker;
-      let attMD = fightData.attackerMetadata;
-      let attATT = getAttackFromTraits(attMD);
-      let attDEF = getDefenseFromTraits(attMD);
-      let attRND = fightData.attack["aRandom"];
-      let attPreBTY = parseFloat(fightData.approach["aBounty"]);
-      let attPreSTK = parseFloat(fightData.approach["aStack"]);
-
-      let defID = tokenId;
-      let defMD = fightData.defenderMetadata;
-      let defATT = getAttackFromTraits(defMD);
-      let defDEF = getDefenseFromTraits(defMD);
-      let defRND = fightData.attack["dRandom"];
-      let defPreBTY = parseFloat(fightData.approach["dBounty"]);
-      let defPreSTK = parseFloat(fightData.approach["dStack"]);
-
-      let attIsWeak = getAuraWeakness(attMD[5]) == defMD[5];
-      let attTOT = attIsWeak ? parseFloat(attATT) + parseFloat(attRND) : parseFloat(attATT) + parseFloat(attRND) + parseFloat(attDEF);
-
-      let defIsWeak = getAuraWeakness(defMD[5]) == attMD[5];
-      let defTOT = defIsWeak ? parseFloat(defATT) + parseFloat(defRND) : parseFloat(defATT) + parseFloat(defRND) + parseFloat(defDEF);
-
-      buildBattleReportElement("br_attackerIdCalc", '11%', '3%', '12%', '44%', 'left', `#${attID}`, battleReportContainer) // 
-      buildBattleReportElement("br_attackerAuraCalc", '17%', '3%', '24%', '44%', 'left', `${attMD[5].toUpperCase()}`, battleReportContainer) // 
-      buildBattleReportElement("br_attackerAttackValueCalc", '9%', '3%', '42%', '44%', 'right', `${attATT}`, battleReportContainer) // `${fightData.metadata[5]}`
-      buildBattleReportElement("br_attackerLuckValueCalc", '9%', '3%', '54%', '44%', 'right', `${attRND}`, battleReportContainer) // `${fightData.metadata[5]}`
-      buildBattleReportElement("br_attackerDefValueCalc", '9%', '3%', '66%', '44%', 'right', `${attDEF}`, battleReportContainer, attIsWeak) // `${fightData.metadata[5]}`
-      buildBattleReportElement("br_attackerTotalValueCalc", '9%', '3%', '78%', '44%', 'right', `${attTOT}`, battleReportContainer) // `${fightData.metadata[5]}`
-
-      buildBattleReportElement("br_defenderIdCalc", '11%', '3%', '12%', '48%', 'left', `#${defID}`, battleReportContainer) // `#${fightData.approach.attacker}`
-      buildBattleReportElement("br_defenderAuraCalc", '17%', '3%', '24%', '48%', 'left', `${defMD[5].toUpperCase()}`, battleReportContainer) // `${fightData.metadata[5]}`
-      buildBattleReportElement("br_defenderAttackValueCalc", '9%', '3%', '42%', '48%', 'right', `${defATT}`, battleReportContainer) // `${fightData.metadata[5]}`
-      buildBattleReportElement("br_defenderLuckValueCalc", '9%', '3%', '54%', '48%', 'right', `${defRND}`, battleReportContainer) // `${fightData.metadata[5]}`
-      buildBattleReportElement("br_defenderDefValueCalc", '9%', '3%', '66%', '48%', 'right', `${defDEF}`, battleReportContainer, defIsWeak) // `${fightData.metadata[5]}`
-      buildBattleReportElement("br_defenderTotalValueCalc", '9%', '3%', '78%', '48%', 'right', `${defTOT}`, battleReportContainer) // `${fightData.metadata[5]}`
-
-      var auraString = `${attMD[5].toUpperCase()} AND ${defMD[5].toUpperCase()} HAVE NO WEAKNESS AGAINST EACH OTHER`;
-      if (attIsWeak) auraString = `${attMD[5].toUpperCase()} IS WORTH NOTHING AGAINST ${defMD[5].toUpperCase()}`;
-      else if (defIsWeak) auraString = `${defMD[5].toUpperCase()} IS WORTH NOTHING AGAINST ${attMD[5].toUpperCase()}`;
-      buildBattleReportElement("br_defenderTotalValueCalc", '70%', '8%', '15%', '54%', 'center', `${auraString}`, battleReportContainer) // `${auraString}`
-
-
-
-
-      let attackerWon = fightData.attack["winner"] == attID;
-      let loserId = attackerWon ? defID : attID;
-      let winnerId = attackerWon ? attID : defID;
-
-      var resultString = `#${winnerId} WON THE FIGHT`;
-      buildBattleReportElement("br_defenderTotalValueCalc", '70%', '8%', '15%', '64.5%', 'center', `${resultString}`, battleReportContainer) // `${auraString}`
-
-      let lBountyChange = attackerWon ? defPreBTY : attPreBTY;
-      let wBountyChange = attackerWon ? defPreBTY / 2 : attPreBTY / 2;
-      let lStackChange = attackerWon ? defPreSTK : attPreSTK;
-      let wStackChange = attackerWon ? defPreBTY / 2 : attPreBTY / 2;
-
-      let lBountyChangeEth = ToEth(lBountyChange.toString());
-      let wBountyChangeEth = ToEth(wBountyChange.toString());
-      let lStackChangeEth = ToEth(lStackChange.toString());
-      let wStackChangeEth = ToEth(wStackChange.toString());
-
-      let loserBtyChangeString = `-${lBountyChangeEth}`;
-      let winnerBtyChangeString = `+${wBountyChangeEth}`;
-
-      let loserStackChangeString = `-${lStackChangeEth}`;
-      let winnerStackChangeString = `+${wStackChangeEth}`;
-
-      let winnerBtyFinal = attackerWon ? wBountyChange + attPreBTY : wBountyChange + defPreBTY;
-      let winnerStkFinal = attackerWon ? wStackChange + attPreSTK : wStackChange + defPreSTK;
-
-      let winnerBtyFinalEth = ToEth(winnerBtyFinal.toString());
-      let winnerStkFinalEth = ToEth(winnerStkFinal.toString());
-
-      let winnerBtyFinalString = `${winnerBtyFinalEth}`;
-      let winnerStkFinalString = `${winnerStkFinalEth}`;
-
-
-      let loserIcon = buildElement("img", "loserIcon", "brIcon");
-      loserIcon.src = `assets/sprites/skull.png`;
-      loserIcon.style.left = '22%';
-      loserIcon.style.top = '81.6%';
-      battleReportContainer.appendChild(loserIcon);
-
-      let winnerIcon = buildElement("img", "loserIcon", "brIcon");
-      winnerIcon.src = `assets/sprites/reward.png`;
-      winnerIcon.style.left = '22%';
-      winnerIcon.style.top = '85.6%'
-      battleReportContainer.appendChild(winnerIcon);
-
-      buildBattleReportElement("br_attackerIdResult", '11%', '3%', '12%', '82%', 'left', `#${loserId}`, battleReportContainer);
-      buildBattleReportElement("br_attackerBountyChange", '15%', '3%', '24%', '82%', 'right', loserBtyChangeString, battleReportContainer);
-      buildBattleReportElement("br_attackerStackChange", '15%', '3%', '40%', '82%', 'right', loserStackChangeString, battleReportContainer);
-      buildBattleReportElement("br_attackerBountyResult", '15%', '3%', '56%', '82%', 'right', 0, battleReportContainer);
-      buildBattleReportElement("br_attackerStackResult", '15%', '3%', '72%', '82%', 'right', 0, battleReportContainer);
-
-      buildBattleReportElement("br_defenderIdResult", '11%', '3%', '12%', '86%', 'left', `#${winnerId}`, battleReportContainer);
-      buildBattleReportElement("br_defenderBountyChange", '15%', '3%', '24%', '86%', 'right', winnerBtyChangeString, battleReportContainer);
-      buildBattleReportElement("br_defenderStackChange", '15%', '3%', '40%', '86%', 'right', winnerStackChangeString, battleReportContainer);
-      buildBattleReportElement("br_defenderBountyResult", '15%', '3%', '56%', '86%', 'right', winnerBtyFinalString, battleReportContainer);
-      buildBattleReportElement("br_defenderStackResult", '15%', '3%', '72%', '86%', 'right', winnerStkFinalString, battleReportContainer);
-
-
-      let closeButton = buildElement("img", "brCloseButton", "brCloseButton");
-      closeButton.src = `assets/sprites/close.png`;
-      closeButton.style.left = '85%';
-      closeButton.style.top = '9%';
-      closeButton.addEventListener("click", function () {
-        document.getElementById('tokenContainer').classList = 'tokenContainer';
-        document.getElementById('attackerContainer').classList = 'attackerContainer';
-        document.getElementById('burnedAttacker').style.visibility = 'hidden';
-        document.getElementById('burnedDefender').style.visibility = 'hidden';
-        battleReportContainer.style.visibility = 'hidden';
-        if (attackerWon) {
-          let grave = buildElement("img", "grave", "grave");
-          grave.src = `assets/sprites/ThombstoneBackground.png`;
-          document.getElementById('frame').appendChild(grave);
-        }
-        else {
-          document.getElementById('bountyValue').textContent = winnerBtyFinalString;
-          document.getElementById('stackValue').textContent = winnerStkFinalString;
-          _baseView = true;
-          _talkLoop = false;
-        }
-      });
-
-      battleReportContainer.appendChild(closeButton);
-
-
-      document.getElementById('frame').appendChild(battleReportContainer);
-    }
-
-    function burn(hideId, showId, defenderWon) {
-      var fire = buildElement("img", "fire", "fire");
-      fire.src = `assets/sprites/Explosion.gif`;
-      if (defenderWon) {
-        fire.style.left = '5%';
-      }
-      else {
-        fire.style.left = '55%';
-      }
-      document.getElementById('frame').appendChild(fire);
-
-      setTimeout(() => {
-        document.getElementById(hideId).style.visibility = 'hidden';
-        document.getElementById(showId).style.visibility = 'visible';
-      }, 800);
-
-
-      setTimeout(() => {
-        document.getElementById('frame').removeChild(fire);
-      }, 1900);
-
-    }
-
-
-    function animateBackflip() {
-      document.getElementById('tokenContainer').classList.add("backflipAnimation");
-    }
-
-    function animateAttack() {
-      document.getElementById('tokenContainer').classList.add("attackAnimation");
-    }
-
-    function animateFlipping(direction = false) {
-      if (!_talkLoop) return;
-      var time = Math.random() * 5;
-      time = time < 0.7 ? 0.7 : time;
-      var element = document.getElementById('tokenContainer');
-      direction = !direction;
-      var flip = direction ? 1 : -1;
-      element.style.transform = `scaleX(${flip})`;
-      setTimeout(function () { animateFlipping(direction); }, (time * 1000));
-
-    }
-
-    function resetFlip() {
-      var element = document.getElementById('tokenContainer');
-      element.style.transform = `scaleX(${1})`;
-      direction = false;
-    }
-
-    function animateDrop() {
-      var attacker = document.getElementById('attackerContainer').classList.add("dropAnimation");
-
-    }
-
-    function animateAttackerAttack() {
-      var attacker = document.getElementById('attackerContainer').classList.add("attackerAttackAnimation");
-    }
-
-    function blinkElement(element, blinks, toggle = false) {
-      blinks--;
-      if (blinks < 0) return;
-      toggle = !toggle;
-      var state = toggle ? 'hidden' : 'visible';
-      element.style.visibility = state;
-      setTimeout(function () { blinkElement(element, blinks, toggle); }, (200));
-    }
-
-    function handleBubble(text, approach = true) {
-      if (!_baseView && !approach) return;
-      if (text == "setup") {
-        var bubble = buildElement("img", "bubble", "bubble", "bubble");
-        bubble.src = `assets/sprites/SpeakBubble.png`;
-        frame.appendChild(bubble);
-
-        var bubbleText = buildElement("div", "bubbleText", "baseText bubbleText", `Lorem ipsum dolor`);
-        frame.appendChild(bubbleText);
-      }
-      else if (text == "clear") {
-        var bubbleText = document.getElementById('bubbleText');
-        var bubble = document.getElementById('bubble');
-        bubble.style.visibility = 'hidden';
-        bubbleText.style.visibility = 'hidden';
-      }
-      else {
-        var bubbleText = document.getElementById('bubbleText');
-        var bubble = document.getElementById('bubble');
-        bubbleText.innerText = text;
-        bubble.style.visibility = 'visible';
-        bubbleText.style.visibility = 'visible';
-
-
-      }
-    }
-
-    function buildLink() {
-      var button = buildElement("div", "btn", "attackBtn");
-      button.addEventListener("mouseover", (event) => {
-        handleBubble("CTRL + CLICK TO ATTACK ME! DONT YOU DARE!", false);
-      });
-      button.addEventListener("mouseleave", (event) => {
-        handleBubble("clear");
-      });
-
-      button.style.backgroundImage = "url('assets/sprites/Attack.gif')"
-      var href = buildElement("a", "attackBtn", "none");
-      href.appendChild(button);
-      let newUrl = `https://zeft-yw5x.vercel.app/defender=${tokenId}`;
-      href.href = newUrl;
-      return href;
-    }
-   
-    function buildDefenderBaseView(parent, seeed, bounty, stack, tokenId) {
-      var metadata = buildTraitsFromSeed(seeed);
-      fightData.defenderMetadata = metadata;
-      var frame = buildElement("div", "frame", "frame");
-
-      var link = buildLink();
-      frame.appendChild(link);
-
-     
-
-      var aura = buildElement("img", "background", "background");
-      aura.src = `assets/traits/Aura/${metadata[5]}.png`;
-      frame.appendChild(aura);
-
-      var burned = buildElement("img", "burnedDefender", "burnedDefender");
-      burned.src = `assets/sprites/CharacterBurned.png`;
-      frame.appendChild(burned);
-
-
-
-      var tokenContainer = buildElement("div", "tokenContainer", "tokenContainer");
-
-      var characterImage = buildElement("img", "traitImage", "traitImage");
-      characterImage.src = "assets/sprites/Character.png";
-      tokenContainer.appendChild(characterImage);
-
-      for (let index = 0; index < metadata.length - 1; index++) {
-        var traitImage = buildElement("img", "traitImage", "traitImage");
-        traitImage.src = `assets/traits/${_traitTypeNames[index]}/${metadata[index]}.png`;
-        tokenContainer.appendChild(traitImage);
-      }
-      frame.appendChild(tokenContainer);
-
-      var nameFrame = buildElement("img", "nameFrame", "nameFrame");
-      nameFrame.src = "assets/sprites/FrameFullTinyThin.png";
-      frame.appendChild(nameFrame);
-
-      var nameValue = buildElement("div", "nameValue", "baseText nameValue", `GAINLING #${tokenId}`);
-      frame.appendChild(nameValue);
-
-
-      var nameButton = buildElement("div", "nameButton", "nameButton");
-      nameButton.addEventListener("mouseover", (event) => {
-        handleBubble("THAT'S MY NAME! ISN'T IT A REAL GAINERS NAME?", false);
-      });
-      nameButton.addEventListener("mouseleave", (event) => {
-        handleBubble("clear");
-      });
-      frame.appendChild(nameButton);
-
-      var bountyFrame = buildElement("img", "bountyFrame", "woodenFrame bountyFrame");
-      bountyFrame.src = "assets/sprites/FrameFullSmaller.png";
-      frame.appendChild(bountyFrame);
-
-      var bountyIcon = buildElement("img", "bountyIcon", "icon bountyIcon");
-      bountyIcon.src = "assets/sprites/BountyIcon.png";
-      frame.appendChild(bountyIcon);
-
-      var bountyValue = buildElement("div", "bountyValue", "baseText bountyValue", `${bounty}`);
-      frame.appendChild(bountyValue);
-
-      var bountyCurrency = buildElement("div", "bountyCurrency", "baseText bountyCurrency", "ETH");
-      frame.appendChild(bountyCurrency);
-
-      var bountyButton = buildElement("div", "bountyButton", "bountyButton");
-      bountyButton.addEventListener("mouseover", (event) => {
-        handleBubble("THE BOUNTY IS WHAT YOU GET WEN YOU KILL ME!", false);
-      });
-      bountyButton.addEventListener("mouseleave", (event) => {
-        handleBubble("clear");
-      });
-      frame.appendChild(bountyButton);
-
-      var stackFrame = buildElement("img", "stackFrame", "woodenFrame stackFrame");
-      stackFrame.src = "assets/sprites/FrameFullSmaller.png";
-      frame.appendChild(stackFrame);
-
-      var stackIcon = buildElement("img", "stackIcon", "icon stackIcon");
-      stackIcon.src = "assets/sprites/StackIcon.png";
-      frame.appendChild(stackIcon);
-
-      var stackValue = buildElement("div", "stackValue", "baseText stackValue", `${stack}`);
-      frame.appendChild(stackValue);
-
-      var stackCurrency = buildElement("div", "stackCurrency", "baseText stackCurrency", "ETH");
-      frame.appendChild(stackCurrency);
-
-      var stackButton = buildElement("div", "stackButton", "stackButton");
-      stackButton.addEventListener("mouseover", (event) => {
-        handleBubble("THE STACK IS WHAT MY OWNER GETS WEN I DIE!", false);
-      });
-      stackButton.addEventListener("mouseleave", (event) => {
-        handleBubble("clear");
-      });
-      frame.appendChild(stackButton);
-
-      var statsContainer = buildElement("div", "statsContainer", "statsContainer");
-
-      var statsTitle = buildElement("div", "statsTitle", "baseText statsTitle", "STATS")
-
-      var attackStatIcon = buildElement("img", "attackStatIcon", "statIcon");
-      attackStatIcon.src = "assets/sprites/stats/AttackStat.png";
-      attackStatIcon.style.top = '35%';
-      var attackStatValue = buildElement("div", "attackStatValue", "baseText statValue", "9999")
-      attackStatValue.style.top = '35%';
-
-
-      var defenseStatIcon = buildElement("img", "defenseStatIcon", "statIcon");
-      defenseStatIcon.src = "assets/sprites/stats/DefenseStat.png";
-      defenseStatIcon.style.top = '55%';
-      var defenseStatValue = buildElement("div", "defenseStatValue", "baseText statValue", "9999")
-      defenseStatValue.style.top = '55%';
-
-      var weightStatIcon = buildElement("img", "weightStatIcon", "statIcon");
-      weightStatIcon.src = "assets/sprites/stats/WeightStat.png";
-      weightStatIcon.style.top = '75%';
-      var weightStatValue = buildElement("div", "weightStatValue", "baseText statValue", "9999")
-      weightStatValue.style.top = '75%';
-
-
-      statsContainer.appendChild(attackStatValue);
-      statsContainer.appendChild(defenseStatValue);
-      statsContainer.appendChild(weightStatValue);
-      statsContainer.appendChild(statsTitle);
-      statsContainer.appendChild(attackStatIcon);
-      statsContainer.appendChild(defenseStatIcon);
-      statsContainer.appendChild(weightStatIcon);
-      frame.appendChild(statsContainer);
-
-      var inventoryContainer = buildElement("div", "inventory", "inventory");
-
-      var helmetButton = buildStatButton("statButtonHelmet", '21%', "assets/sprites/inventory/HelmetIcon.png", metadata[2])
-      var armourButton = buildStatButton("statButtonArmour", '37%', "assets/sprites/inventory/ArmourIcon.png", metadata[0])
-      var weaponButton = buildStatButton("statButtonWeapon", '54%', "assets/sprites/inventory/WeaponIcon.png", metadata[4])
-      var shieldButton = buildStatButton("statButtonShield", '69%', "assets/sprites/inventory/ShieldIcon.png", metadata[3])
-      var shoesButton = buildStatButton("statButtonShoes", '86%', "assets/sprites/inventory/ShoesIcon.png", metadata[1])
-
-      var inventoryButton = buildElement("div", "inventoryButton", "inventoryButton");
-      inventoryButton.style.backgroundImage = "url('assets/sprites/inventory/FrameSquare.png')";
-      inventoryButton.addEventListener("mouseover", (event) => {
-        if (!_baseView) return;
-        inventoryButton.style.backgroundImage = "url('assets/sprites/inventory/InventoryFrame.png')";
-        inventoryButton.style.height = '58%';
-        helmetButton.style.visibility = 'visible';
-        armourButton.style.visibility = 'visible';
-        weaponButton.style.visibility = 'visible';
-        shieldButton.style.visibility = 'visible';
-        shoesButton.style.visibility = 'visible';
-      });
-      inventoryButton.addEventListener("mouseleave", (event) => {
-
-        helmetButton.style.visibility = 'hidden';
-        armourButton.style.visibility = 'hidden';
-        weaponButton.style.visibility = 'hidden';
-        shieldButton.style.visibility = 'hidden';
-        shoesButton.style.visibility = 'hidden';
-        inventoryButton.style.backgroundImage = "url('assets/sprites/inventory/FrameSquare.png')";
-        inventoryButton.style.height = '12%';
+          .catch((error) => {
+            console.log("Catched Attack result: " + error.message);
+            updateOutputTextFromJsonRPC(error.message);
+          });
 
       });
 
 
-      inventoryButton.appendChild(helmetButton);
-      inventoryButton.appendChild(armourButton);
-      inventoryButton.appendChild(weaponButton);
-      inventoryButton.appendChild(shieldButton);
-      inventoryButton.appendChild(shoesButton);
-
-      frame.appendChild(inventoryContainer);
-      frame.appendChild(inventoryButton);
-
-
-
-
-      parent.appendChild(frame);
+      webGlFooter.appendChild(webGlTokenInfoText);
+      webGlFooter.appendChild(webGlAttackButton);
+      fightBoxContainer.appendChild(webGlFooter);
+      document.body.appendChild(fightBoxContainer);
     }
-
-    function buildStatButton(className, top, src, metadata) {
-      var button = buildElement("img", "statButton", "statButton " + className)
-      button.src = src;
-      button.style.top = top;
-      button.value = metadata;
-
-      button.addEventListener("mouseover", (event) => {
-        showTraitStats(metadata);
-      });
-      button.addEventListener("mouseleave", (event) => {
-        document.getElementById('statsContainer').style.visibility = 'hidden';
-      });
-      return button;
-    }
-
-    function showTraitStats(trait) {
-      //console.log("show stats for " + trait);
-      var attributes = getAttributesForTrait(trait);
-
-      document.getElementById('statsContainer').style.visibility = 'visible';
-      document.getElementById('statsTitle').innerText = getShortName(trait);
-
-      document.getElementById('attackStatValue').innerText = attributes.attack;
-      document.getElementById('defenseStatValue').innerText = attributes.defense;
-      document.getElementById('weightStatValue').innerText = attributes.weight;
-
-    }
-
-    function buildBattleReportElement(id, w, h, l, t, align, content, container, lineThrough = false) {
-      var element = buildElement("div", id, "battleReportText", content);
-      element.style.height = h;
-      element.style.width = w;
-      element.style.left = l;
-      element.style.top = t;
-      element.style.textAlign = align;
-      if (lineThrough) element.style.textDecoration = 'line-through';
-      container.appendChild(element);
-    }
-
-    function buildAttacker(parent, seeed) {
-      _attackerSeed = seeed;
-
-      var metadata = buildTraitsFromSeed(seeed);
-      fightData.attackerMetadata = metadata;
-      var burned = buildElement("img", "burnedAttacker", "burnedAttacker");
-      burned.src = `assets/sprites/CharacterBurned.png`;
-      parent.appendChild(burned);
-
-      var attackerContainer = buildElement("div", "attackerContainer", "attackerContainer");
-
-      var characterImage = buildElement("img", "attackerTraitImage", "traitImage attackerTraitImage");
-      characterImage.src = "assets/sprites/Character.png";
-      attackerContainer.appendChild(characterImage);
-
-      for (let index = 0; index < metadata.length - 1; index++) {
-        var traitImage = buildElement("img", "attackerTraitImage", "traitImage attackerTraitImage");
-        traitImage.src = `assets/traits/${_traitTypeNames[index]}/${metadata[index]}.png`;
-        attackerContainer.appendChild(traitImage);
-      }
-      parent.appendChild(attackerContainer);
-    }
-
     function buildElement(elementType, id, classList, content) {
       var divElement = document.createElement(elementType);
       divElement.id = id;
@@ -888,8 +1661,1229 @@
       divElement.innerHTML = `${content.toString()}`
       return divElement;
     }
+    function getStackedImageNew(tokenInfo, spareBase = false) {
+      //Build stackContainer
+      var stackContainer = buildElement("div", "sixImagesInOne", "sixImagesInOne");
+
+
+      var characterImage = buildElement("img", "imageTop", "imageTop imageFull");
+      characterImage.src = "assets/sprites/Character.png";
+
+      if (!spareBase) {
+        let aura = tokenInfo.metadata[5];
+        var auraImage = buildElement("img", "imageBehind", "imageBehind imageFull");
+        auraImage.src = `assets/traits/Aura/${aura}.png`;
+        stackContainer.appendChild(auraImage);
+      }
+      else {
+        var signerImage = buildElement("img", "imageBehind", "imageBehind imageFull");
+        signerImage.src = `assets/sprites/PartsSigner.png`;
+        stackContainer.appendChild(signerImage);
+      }
+      stackContainer.appendChild(characterImage);
+      //console.log(JSON.stringify(tokenInfo.metadata));
+      for (let index = 0; index < tokenInfo.metadata.length - 1; index++) {
+
+        let attribute = tokenInfo.metadata[index];
+        var traitImage = document.createElement("img");
+        let path = `assets/traits/${_traitTypeNames[index]}/${attribute}.png`;
+        traitImage.src = path;
+        traitImage.classList = "imageTop imageFull";
+        stackContainer.appendChild(traitImage);
+      }
+      return stackContainer;
+    }
+
+    /*_________________________________________________________________________
+    CLIENT DEVICE HANDLING CLIENT DEVICE HANDLING CLIENT DEVICE HANDLING 
+    `````````````````````````````````````````````````````````````````````````*/
+    function getResolution() {
+      var devicenow = 2;
+      var devicenowString = "mobile";
+
+      var width = measureBox.clientWidth * window.devicePixelRatio;
+      var height = measureBox.clientHeight * window.devicePixelRatio;
+      var ratioT = height > width;
+      if (width > 1100 && !ratioT) {
+        devicenow = 0;
+        devicenowString = "desktop";
+      }
+      else if (width > 420 && !ratioT) {
+        devicenow = 1
+        devicenowString = "tablet";
+      }
+      if (devicenow != device) {
+        device = devicenow;
+        deviceString = devicenowString;
+        changeView(device);
+      }
+    }
+    function changeView(newDevice) {
+      console.log("Switched resolution to " + deviceString);
+      setClientTokenSelectorText();
+      setClientTokenSelectorSize();
+    }
+
+    /*_________________________________________________________________________
+    MARKET UI MARKET UI MARKET UI MARKET UI MARKET UI MARKET UI MARKET UI 
+    `````````````````````````````````````````````````````````````````````````*/
+    function openBuyerUI(tokenInfo) {
+
+      var wareHouseContainer = buildElement("div", "wareHouseContainer", "wareHouseContainer");
+
+      
+      //Build container for closeButton
+      var header = document.createElement("div");
+      header.classList = "webglHeader";
+      header.innerHTML = ``;
+
+      //build closeButton
+      var closeButton = document.createElement("button");
+      closeButton.classList = "webGlClose";
+      closeButton.innerHTML = ` X `;
+      closeButton.addEventListener('click', function (e) {
+        document.body.removeChild(wareHouseContainer);
+      });
+
+      header.appendChild(closeButton);
+      wareHouseContainer.appendChild(header);
+
+      //build response element 
+      var successLeft = buildElement("div","wareHouseSuccessLeft","wareHouseIcon wareHouseIconLeft wareHouseIconSuccess");
+      wareHouseContainer.appendChild(successLeft);
+
+      var successRight = buildElement("div","wareHouseSuccessRight","wareHouseIcon wareHouseIconRight wareHouseIconSuccess");
+      wareHouseContainer.appendChild(successRight);
+
+      var successText = buildElement("div","wareHouseResponseText","wareHouseResponseText","Successfully delisted");
+      wareHouseContainer.appendChild(successText);
+
+
+      var tokenTitle = buildElement("div", "wareHouseTitle", "wareHouseTitle", `Gainling #${tokenInfo.id}`);
+      wareHouseContainer.appendChild(tokenTitle);
+
+      var stackContainer = getStackedImageNew(tokenInfo);
+      stackContainer.classList = "sixImagesInOneCenterSmall";
+      wareHouseContainer.appendChild(stackContainer);
+
+
+      var buyButton = buildElement("button", "wareHouseBuyButton", "wareHouseBuyButton", `Buy`);
+      wareHouseContainer.appendChild(buyButton);
+
+      buyButton.addEventListener('click', function (e) {
+
+        getListing(tokenInfo.id).then(listing => {
+          console.log(JSON.stringify(listing));
+          var listedPrice = listing[0];
+          var listedPriceInEth = ToEth(listedPrice);
+          if (listedPriceInEth && listedPriceInEth > 0) {
+            getBalance().then(balance => {
+              if (balance > listedPriceInEth) {
+                console.log("BALANCE IS "  + JSON.stringify(balance));
+                console.log("PRICE IS:" + listedPriceInEth);
+
+                buyItem(tokenInfo.id, listedPrice).then(result => {
+                  if(result.toString().includes("transfer_error")){
+                    setWareHouseAnswer(successLeft,successRight,successText,result.split(':')[1].toString(),false,true);
+                  }
+                  else{
+                    setWareHouseAnswer(successLeft,successRight,successText,"Successfully bought",true,true);
+                  }
+                })
+              }
+              else {
+                setWareHouseAnswer(successLeft,successRight,successText,"not enough funds",false,true);
+              }
+            })
+
+          }
+        })
+
+
+      });
+
+      var wareHousePrice = buildElement("div", "wareHousePrice", "wareHousePrice");
+      wareHouseContainer.appendChild(wareHousePrice);
+
+      var wareHouseOutput = buildElement("div", "wareHouseOutput", "wareHouseOutput", `You are about to buy Gainling #${tokenInfo.id}`);
+      wareHouseContainer.appendChild(wareHouseOutput);
+
+      getListing(tokenInfo.id).then(listing => {
+        let price = listing[0];
+        if (price && price > 0) {
+          wareHousePrice.innerText = `Price ${Math.round(price * 10000) / 10000000000000000000000} ETH`;
+          wareHouseOutput.innerText = `You are about to buy Gainling #${tokenInfo.id}`
+        }
+        else {
+          wareHousePrice.innerText = ``;
+          wareHouseOutput.innerText = `This token is currently not for sale`
+        }
+      })
+
+
+
+      document.body.appendChild(wareHouseContainer);
+    }
+    function openSellerUI(tokenInfo) {
+      var tokenIsListed = tokenInfo.listed;
+      var wareHouseContainer = buildElement("div", "wareHouseContainer", "wareHouseContainer");
+
+      //Build container for closeButton
+      var header = document.createElement("div");
+      header.classList = "webglHeader";
+      header.innerHTML = ``;
+
+      //build closeButton
+      var closeButton = document.createElement("button");
+      closeButton.classList = "webGlClose";
+      closeButton.innerHTML = ` X `;
+      closeButton.addEventListener('click', function (e) {
+        document.body.removeChild(wareHouseContainer);
+      });
+
+      header.appendChild(closeButton);
+      wareHouseContainer.appendChild(header);
+
+      var tokenTitle = buildElement("div", "wareHouseTitle", "wareHouseTitle", `Gainling #${tokenInfo.id}`);
+      wareHouseContainer.appendChild(tokenTitle);
+
+      var stackContainer = getStackedImageNew(tokenInfo);
+      stackContainer.classList = "sixImagesInOneCenterSmall";
+      wareHouseContainer.appendChild(stackContainer);
+
+ 
+      //build response element 
+      var successLeft = buildElement("div","wareHouseSuccessLeft","wareHouseIcon wareHouseIconLeft wareHouseIconSuccess");
+      wareHouseContainer.appendChild(successLeft);
+
+      var successRight = buildElement("div","wareHouseSuccessRight","wareHouseIcon wareHouseIconRight wareHouseIconSuccess");
+      wareHouseContainer.appendChild(successRight);
+
+      var successText = buildElement("div","wareHouseResponseText","wareHouseResponseText","Successfully delisted");
+      wareHouseContainer.appendChild(successText);
+
+      //build sellPriceContainer
+      var sellContainer = buildElement("div", "sellContainer", "sellContainer");
+
+
+      var sellPriceTitleContainer = buildElement("div", "sellPriceTitleContainer", "sellPriceTitleContainer", "Sell price");
+
+      var sellPriceContainer = buildElement("div", "sellPriceContainer" + "_" + tokenInfo.id.toString(), "sellPriceContainer");
+      var inputId = "sellPriceInput" + "_" + tokenInfo.id.toString();
+      var sellPriceInput = buildElement("input", inputId, "sellPriceInput");
+      sellPriceInput.placeholder = `eg. 0.025`;
+      var sellPriceInputLabel = buildElement("label", "sellPriceInputLabel" + "_" + tokenInfo.id.toString(), "sellPriceInputLabel");
+      sellPriceInputLabel.htmlFor = inputId;
+
+      sellContainer.appendChild(sellPriceTitleContainer);
+      sellPriceContainer.appendChild(sellPriceInput);
+      sellPriceContainer.appendChild(sellPriceInputLabel);
+      sellContainer.appendChild(sellPriceContainer);
+      wareHouseContainer.appendChild(sellContainer);
+
+      var outputText = !connected ? "Connect wallet before you can trade" : !isApprovedForAll ? "Approve the marketplace to handle your gainlings" : `Gainling #${tokenInfo.id} is currently not listed, define a price and click on sell to list this token`;
+      let wareHouseOutput = buildElement("div", "wareHouseOutput", "wareHouseOutput", `${outputText}`);
+      wareHouseContainer.appendChild(wareHouseOutput);
+
+      var buttonText = !connected ? "Connect" : !isApprovedForAll ? "Approve collection" : "Sell";
+      var sellButton = buildElement("button", "wareHouseSellButton", "wareHouseBuyButton", buttonText);
+      wareHouseContainer.appendChild(sellButton);
+
+      sellButton.addEventListener('click', async function (e) {
+        console.log("Listed: " + tokenIsListed);
+        if (tokenIsListed) {
+          var result = await cancelListing(tokenInfo.id);
+          if(result.toString().includes("transfer_error")){
+            setWareHouseAnswer(successLeft,successRight,successText,result.split(':')[1].toString(),false,true);
+          }
+          else{
+            setWareHouseAnswer(successLeft,successRight,successText,"Successfully delisted",true,true);
+          }
+          return;
+        }
+        if (!isApprovedForAll) {
+          setApprovalForMarketPlace(true).then(approveResult => {
+            if(approveResult.toString().includes("transfer_error")){
+              setWareHouseAnswer(successLeft,successRight,successText,approveResult.split(':')[1].toString(),false,true);
+            }
+            else{
+              setWareHouseAnswer(successLeft,successRight,successText,"Successfully approved",true,true);
+            }
+            updateIsApprovedForAll();
+          });
+          return;
+        }
+
+        let price = document.getElementById(inputId).value;
+        if (price && price > 0) {
+          listItem(tokenInfo.id, price).then(result => {
+            if(result.toString().includes("transfer_error")){
+              setWareHouseAnswer(successLeft,successRight,successText,result.split(':')[1].toString(),false,true);
+            }
+            else{
+              setWareHouseAnswer(successLeft,successRight,successText,"Successfully listed",true,true);
+            }
+          })
+        }
+        else {
+          console.log("something with the price is wrong?");
+          wareHouseOutput.innerText = `Gainling #${tokenInfo.id} is currently not listed, define a price and click on sell to list this token`;
+        }
+      });
+
+
+      document.body.appendChild(wareHouseContainer);
+
+      getListing(tokenInfo.id).then(listing => {
+        console.log(listing);
+        var listedPrice = listing[0];
+        if (listedPrice && listedPrice > 0) {
+          //already listed
+          tokenIsListed = true;
+          wareHouseOutput.innerText = `Gainling #${tokenInfo.id} is already listed, you can update the price or delete your listing`;
+          sellButton.innerText = `Delist`;
+
+          var updatePriceButton = buildElement("button", "updatePriceButton", "updatePriceButton", "Update");
+          updatePriceButton.addEventListener('click', function (e) {
+            let price = document.getElementById(inputId).value;
+            if (price && price > 0) {
+              updateListing(tokenInfo.id, price).then(updatedListing => {
+                if(updatedListing.toString().includes("transfer_error")){
+                  setWareHouseAnswer(successLeft,successRight,successText,updatedListing.split(':')[1].toString(),false,true);
+                }
+                else{
+                  setWareHouseAnswer(successLeft,successRight,successText,"Successfully listed",true,true);
+                }
+              })
+            }
+            else {
+              console.log("something with the price is wrong?");
+              wareHouseOutput.innerText = `Gainling #${tokenInfo.id} is currently not fot sale, define a price and click on sell to list this token`;
+            }
+          });
+
+          sellPriceContainer.style.width = '33%';
+          sellPriceTitleContainer.style.width = '33%';
+          sellContainer.appendChild(updatePriceButton);
+
+        }
+        else {
+          //not listed
+          tokenIsListed = false;
+          wareHouseOutput.innerText = `Gainling #${tokenInfo.id} is currently not listed, define a price and click on sell to list this token`;
+          sellButton.innerText = `Sell`;
+        }
+      })
+
+
+    }
+    function setWareHouseAnswer(iconLeft,iconRight,textElement,text,state,visibility){
+        if(visibility){
+          var baseIconStyle = state ? "wareHouseIcon wareHouseIconSuccess" : "wareHouseIcon wareHouseIconFail";
+          iconLeft.classList = baseIconStyle +  " wareHouseIconLeft";
+          iconRight.classList = baseIconStyle +  " wareHouseIconRight";
+          iconLeft.style.visibility = "visible";
+          iconRight.style.visibility = "visible";
+          var textColor = state ? "rgb(123 247 122)" : "rgb(243 85 85)";
+          textElement.style.visibility = "visible";
+          textElement.style.color = textColor;
+          textElement.innerText  = text;
+
+          setTimeout(function () { 
+            setWareHouseAnswer(iconLeft,iconRight,textElement,"",false,false); }, 4000);
+        }
+        else{
+          iconLeft.style.visibility = "hidden";
+          iconRight.style.visibility = "hidden";
+          textElement.style.visibility = "hidden";
+        }
+      }
+
+
+    function updateIsApprovedForAll() {
+      getIsApprovedForAll().then(isApproved => {
+        console.log("Updated isApprovedForAll with " + isApproved);
+        isApprovedForAll = isApproved;
+        updateSellUI();
+      });
+    }
+    function updateSellUI() {
+      var buttonText = !connected ? "Connect" : !isApprovedForAll ? "Approve collection" : "Sell";
+      var sellButton = document.getElementById("wareHouseSellButton");
+      if (sellButton == null) return;
+      sellButton.textContent = `${buttonText}`;
+    }
+    function unapproveMarketplace() {
+      setApprovalForMarketPlace(false).then(approveResult => {
+
+      });
+    }
+    function getListingFromMarketPlace(tokenId) {
+      getListing(tokenId).then(resp => {
+        console.log(resp);
+      });
+    }
+
+    /*_________________________________________________________________________
+    BATTLE UI BATTLE UI BATTLE UI BATTLE UI BATTLE UI BATTLE UI BATTLE UI 
+    `````````````````````````````````````````````````````````````````````````*/
+    function updateFightOutputText() {
+      if (!connected) outputText = `Connect metamask first`;
+      else if (clientSelectedToken < 0) outputText = `Select player first`;
+      else { outputText = `Ready to attack?`; }
+      let outputTextElement = document.getElementById("webGlTokenInfoText");
+
+      if (outputTextElement) outputTextElement.innerHTML = outputText;
+
+    }
+    function updateOutputTextFromJsonRPC(message) {
+      if (message.includes("attacker already in a fight")) outputText = `Attacker already fighting`;
+      else if (message.includes("defender already in a fight")) outputText = `Defender already fighting`;
+      else if (message.includes("please cool down")) outputText = `Attacker is in cooldown`;
+      else if (message.includes("attacker is defender")) outputText = `Attacker is defender`;
+      else if (message.includes("attacker already in a fight")) outputText = `Attacker already fighting`;
+      else if (message.includes("its not the right time")) outputText = `It's too early`;
+      let outputTextElement = document.getElementById("webGlTokenInfoText");
+      outputTextElement.innerHTML = outputText;
+    }
+
+    /*_________________________________________________________________________
+    TOKEN HISTORY TOKEN HISTORY TOKEN HISTORY TOKEN HISTORY TOKEN HISTORY 
+    `````````````````````````````````````````````````````````````````````````*/
+    function updateTransferHistory() {
+      allNftTransfers = [];
+      allClientNftsEver = [];
+
+      getTransfersToClient().then(toEvents => {
+        //console.log(`Received ${toEvents.length} toevents for clientwallet`);
+        toEvents.forEach(toEvent => {
+          allNftTransfers.push(toEvent);
+        })
+        getTransfersFromClient().then(fromEvents => {
+          //console.log(`Received ${toEvents.length} fromevents for clientwallet`);
+          fromEvents.forEach(fromEvent => {
+            allNftTransfers.push(fromEvent);
+          })
+          allNftTransfers.sort(dynamicSort("-blockNumber"));
+          allNftTransfers.forEach(historyTokenTransfer => {
+            if (!allClientNftsEver.includes(historyTokenTransfer.returnValues.tokenId)) {
+              allClientNftsEver.push(historyTokenTransfer.returnValues.tokenId);
+            }
+          });
+        });
+      });
+    }
+    function getHistoryTransferText(from,to,tokenId){
+      var text = "";
+      var lFrom = from.length;
+      var lTo = to.length;
+
+      from = lFrom > 20 ? `${from.substring(0, 5)}...${from.substring(lFrom - 5, lFrom)}` : from;
+      to = to > 20 ? `${to.substring(0, 5)}...${to.substring(lTo - 5, lTo)}` : to;
+
+      text = from.includes('0x000...00000') ? 
+      `Gainling #${tokenId} has been minted to ${to}`:
+      `Gainling #${tokenId} moved from ${from} to ${to}`;
+        
+      return text;
+    }
+    function getHistoryTransferTweet(from,to,tokenId){
+      var text = "";
+      var lFrom = from.length;
+      var lTo = to.length;
+
+      from = lFrom > 20 ? `${from.substring(0, 5)}...${from.substring(lFrom - 5, lFrom)}` : from;
+      to = to > 20 ? `${to.substring(0, 5)}...${to.substring(lTo - 5, lTo)}` : to;
+
+      text = from.includes('0x000...00000') ? 
+      `Gainling ${tokenId} has been minted and is ready for the battle!`:
+      `I have transferred Gainling ${tokenId}`;
+        
+      return text;
+    }
+    function getHistoryIcon(imagePath){
+      var icon = document.createElement("img");
+      icon.src = imagePath;
+      icon.classList = "hisytoryElementImage";
+      icon.innerHTML = ``;
+      return icon;
+    }
+    function getHistoryElement(tokenEvent) {
+      //console.log("TOKEN HISTORY ELEMENT: " + JSON.stringify(tokenEvent));
+      var historyElementContainer = buildElement("div", "historyElementContainer", "historyElementContainer");
+      var timeElement = buildElement("a", "historyElementTime", "historyElementTime", "");
+
+      let tweetText = "";
+      var innerText = "";
+      var imageSource = "";
+      var timeString = "";
+      var spec = false;
+
+      if(tokenEvent.type == "transferTo" || tokenEvent.type == "transferFrom"){
+        //console.log(JSON.stringify(tokenEvent));
+        var from = tokenEvent.data.returnValues["0"];
+        from = from.toLowerCase() == walletProvider.account.toLowerCase() ? "your wallet" : from;
+        var to = tokenEvent.data.returnValues["1"];
+        to = to.toLowerCase() == walletProvider.account.toLowerCase() ? "your wallet" : to;
+        var tokenid = tokenEvent.data.returnValues["tokenId"];
+
+        var historyWrapper = buildElement("div", "historyWrapper", "historyWrapper", "");
+        var text = getHistoryTransferText(from,to,tokenid);
+        var content = buildElement("div", "historyWrapperText", "historyWrapperText", text);
+        var historyTypeIcon = getHistoryIcon("assets/sprites/transfer.png");
+        
+        var hrefArbi = buildElement("a", "tweetHref", "tweetHref", "");
+        hrefArbi.href = `${arbiscanUrl}tx/${tokenEvent.data.transactionHash}`;
+        hrefArbi.target = "_blank";
+        var arbiButton = buildElement("div", "historyArbiscanLink", "historyArbiscanLink historyLink", "");
+        hrefArbi.appendChild(arbiButton);
+
+        var hrefTweet = buildElement("a", "tweetHref", "tweetHref", "");
+        var tweet  = getHistoryTransferTweet(from,to,tokenid);
+        tweet += `\n \nhttps://fight.thegainlings.io/`;
+        hrefTweet.href = `https://twitter.com/intent/tweet?text=${tweet}`;
+        hrefTweet.target = "_blank";
+        var tweetButton = buildElement("div", "historyTweetLink", "historyTweetLink historyLink", "");
+        hrefTweet.appendChild(tweetButton);
+
+        historyElementContainer.appendChild(historyTypeIcon);
+        historyWrapper.appendChild(content);
+        historyElementContainer.appendChild(historyWrapper);
+        historyElementContainer.appendChild(hrefArbi);
+        historyElementContainer.appendChild(hrefTweet);
+
+        spec =true;
+      }
+      else if (tokenEvent.type == "transferTo" || tokenEvent.type == "transferFrom") {
+        var from = tokenEvent.data.returnValues["0"];
+        from = from.toLowerCase() == walletProvider.account.toLowerCase() ? "your wallet" : from;
+        var to = tokenEvent.data.returnValues["1"];
+        to = to.toLowerCase() == walletProvider.account.toLowerCase() ? "your wallet" : to;
+        var tokenid = tokenEvent.data.returnValues["tokenId"];
+        //console.log("Your wallet: " + blockchain.account + " wallet: " + to);
+
+        var lFrom = from.length;
+        if (lFrom > 20) {
+          from = `${from.substring(0, 5)}...${from.substring(lFrom - 5, lFrom)}`;
+        }
+
+        var lTo = to.length;
+        if (lTo > 20) {
+          to = `${to.substring(0, 5)}...${to.substring(lTo - 5, lTo)}`;
+        }
+
+        if (from.includes('0x000...00000')) {
+          //console.log("Mint of id " + tokenid + " to index into history!");
+          tweetText = `Gainling ${tokenid} has been minted and is ready for the battle!`
+          innerText = `Gainling #${tokenid} has been minted to ${to}`;
+        }
+        else {
+          //console.log("Buy or TransferTo of id " + tokenid + " to index into history!");
+          innerText = `Gainling #${tokenid} has been transferred from ${from} to ${to}`;
+        }
+
+
+        imageSource = "assets/sprites/transfer.png";
+
+        timeElement.innerText = "transaction 🔗";
+        timeElement.href = `${arbiscanUrl}tx/${tokenEvent.data.transactionHash}`;
+        timeElement.target = "_blank";
+      }
+      else if (tokenEvent.type == "attack") {
+
+        var clientWon = allClientNftsEver.includes(tokenEvent.data.winner);
+        var clientDefends = allClientNftsEver.includes(tokenEvent.data.defender);
+        var clientAttacks = allClientNftsEver.includes(tokenEvent.data.attacker);
+        var clientFight = clientAttacks || clientDefends;
+
+        var actionString = "no action defined";
+        var resultString = "no result defined";
+        var opponent = '';
+        var clientFighter;
+        if (clientAttacks) {
+          actionString = "has attacked";
+          opponent = tokenEvent.data.defender;
+          clientFighter = tokenEvent.data.attacker;
+        }
+        else {
+          actionString = "has been attacked by";
+          opponent = tokenEvent.data.attacker;
+          clientFighter = tokenEvent.data.defender;
+        }
+
+        if (clientWon) {
+          imageSource = "assets/sprites/trophy.png";
+          resultString = "won the battle 🏆";
+        }
+        else {
+          imageSource = "assets/sprites/fire.png";
+          resultString = "lost and has been burned 🔥";
+        }
+
+        tweetText = `My Gainling ${actionString} another Gainling and it ${resultString}!`;
+
+        var dateFormat = new Date(tokenEvent.data.time * 1000);
+        var tString = dateFormat.toLocaleDateString();
+        var hours = dateFormat.getHours();
+        var minutes = "0" + dateFormat.getMinutes();
+        tString += ' - ' + hours + ':' + minutes.substr(-2);
+        
+        var historyWrapper = buildElement("div", "historyWrapper", "historyWrapper", "");
+        var text = `Gainling #${clientFighter} ${actionString} Gainling #${opponent} and ${resultString}`;
+        text += " - " + tString;
+        var content = buildElement("div", "historyWrapperText", "historyWrapperText", text);
+        var historyTypeIcon = getHistoryIcon(imageSource);
+
+        var hrefTweet = buildElement("a", "tweetHref", "tweetHref", "");
+        tweetText += `\n \nhttps://fight.thegainlings.io/`;
+        hrefTweet.href = `https://twitter.com/intent/tweet?text=${tweetText}`;
+        hrefTweet.target = "_blank";
+        var tweetButton = buildElement("div", "historyTweetLink", "historyTweetLink historyLink", "");
+        hrefTweet.appendChild(tweetButton);
+
+        historyElementContainer.appendChild(historyTypeIcon);
+        historyWrapper.appendChild(content);
+        historyElementContainer.appendChild(historyWrapper);
+        historyElementContainer.appendChild(hrefTweet);
+        spec =true;
+
+      }
+
+      if(!spec){
+      tweetText += `\n \nhttps://fight.thegainlings.io/`;
+      var historyElementText = buildElement("div", "historyElementText", "historyElementText", innerText);
+      var twitterShareButton = buildElement("a", "twitterShareButton", "twitterShareButton", "Tweet");
+      twitterShareButton.href = `https://twitter.com/intent/tweet?text=${tweetText}`;
+      twitterShareButton.dataSize = "large";
+      twitterShareButton.target = "_blank";
+
+      var icon = document.createElement("img");
+      icon.src = imageSource;
+      icon.classList = "hisytoryElementImage";
+      icon.innerHTML = ``;
+
+
+      historyElementContainer.appendChild(icon);
+      historyElementContainer.appendChild(historyElementText);
+      historyElementContainer.appendChild(timeElement);
+      historyElementContainer.appendChild(twitterShareButton);
+      }
+
+      return historyElementContainer;
+
+    }
+
+    /*_________________________________________________________________________
+    CLIENT TOKEN SELECTOR CLIENT TOKEN SELECTOR CLIENT TOKEN SELECTOR 
+    `````````````````````````````````````````````````````````````````````````*/
+    function updateClientTokenSelector() {
+      tokenSelectorOptionContainer.innerHTML = ``;
+      var toPage = 0;
+      //console.log("Client tokens for selector: " + JSON.stringify(clientTokens));
+      clientTokens = clientTokens.length < 1 ? [-1] : clientTokens;
+      var tokensFromCache = getTokensFiltered(toPage, sorting.toLowerCase(), clientTokens, {}, {}, 0);
+      //console.log("Client tokens for selector: " + JSON.stringify(tokensFromCache));
+      clientLiveTokens = tokensFromCache.length;
+      tokensFromCache.forEach(x => {
+        buildOptionForTokenSelector(x);
+      })
+    }
+    function setClientSelectedToken(tokenInfo) {
+      for (let index = 0; index < tokenInfo.metadata.length; index++) {
+        let attribute = tokenInfo.metadata[index];
+        let typeName = _traitTypeNames[index];
+        let path = `assets/traits/${typeName}/${attribute}.png`;
+        //console.log("Path: " + path);
+        let id = `client${typeName}`;
+        if (typeName == "Armour") {
+          clientArmour.src = path;
+        }
+        else if (typeName == "Aura") {
+          clientBackground.src = path;
+        }
+        else if (typeName == "Helmet") {
+          clientHelmet.src = path;
+        }
+        else if (typeName == "Boots") {
+          clientBoots.src = path;
+        }
+        else if (typeName == "Weapon") {
+          clientWeapon.src = path;
+        }
+        else if (typeName == "Shield") {
+          clientShield.src = path;
+        }
+      }
+      if (device == 0) {
+        tokenSelectorButton.firstChild.nodeValue = `Gainling #${tokenInfo.id}`;
+      }
+      clientSelectedToken = tokenInfo.id;
+      closeClientTokenSelector();
+      updateFightOutputText();
+
+    }
+    function resetAutoCloseTokenSelector() {
+      autoCloseTokenSelector = true;
+    }
+    function closeClientTokenSelector() {
+      tokenSelectorContainer.style.height = '50px';
+      tokenSelectorOpen = false;
+
+      var width = device == 0 ? tokenSelectorContainer.style.width : '55px';
+      tokenSelectorContainer.style.width = width;
+
+      setClientTokenSelectorText();
+      setClientTokenSelectorSize();
+    }
+    function setClientTokenSelectorSize() {
+      console.log("RESIZE");
+      var openHeight = 50 + clientLiveTokens * 50;
+      //console.log("Set height to " + openHeight);
+      openHeight = openHeight > 500 ? 500 : openHeight;
+      var height = tokenSelectorOpen ? `${openHeight}px` : '50px';
+
+      tokenSelectorContainer.style.height = height;
+      tokenSelectorOptionContainer.style.height = height;
+      var width = '360px';
+      var padding = '0px';
+      if (device == 0) {
+        width = '360px';
+        padding = "20px";
+      }
+      else if (device == 1) {
+        width = tokenSelectorOpen ? '360px' : '55px';
+        padding = tokenSelectorOpen ? "20px" : "0px";
+      }
+      else if (device == 2) {
+        width = tokenSelectorOpen ? '95%' : '55px';
+        padding = tokenSelectorOpen ? "20px" : "0px";
+      }
+      tokenSelectorButton.style.paddingLeft = padding;
+      tokenSelectorContainer.style.width = width;
+    }
+    function setClientTokenSelectorText() {
+
+
+      if (device == 0) {
+        if (clientSelectedToken == -1) {
+          tokenSelectorButton.firstChild.nodeValue = `Select player`;
+        }
+        else {
+          tokenSelectorButton.firstChild.nodeValue = `Gainling #${clientSelectedToken}`;
+        }
+      }
+      else {
+        if (tokenSelectorOpen) {
+          if (clientSelectedToken == -1) {
+            tokenSelectorButton.firstChild.nodeValue = `Select player`;
+          }
+          else {
+            tokenSelectorButton.firstChild.nodeValue = `Gainling #${clientSelectedToken}`;
+          }
+        }
+        else {
+          tokenSelectorButton.firstChild.nodeValue = ``;
+        }
+      }
+
+    }
+    function buildOptionForTokenSelector(tokenInfo) {
+
+      //Build tokenSelectorOptionButton
+      var tokenSelectorOptionButton = document.createElement("button");
+      tokenSelectorOptionButton.id = "tokenSelectorOptionButton";
+      tokenSelectorOptionButton.classList = "tokenSelectorOptionButton";
+      //tokenSelectorOptionButton.innerHTML = `Gainling #${tokenInfo.id.toString()}`;
+      tokenSelectorOptionButton.addEventListener('click', function () {
+        setClientSelectedToken(tokenInfo);
+      });
+
+
+      var tokenSelectorOptionContentContainer = document.createElement("div");
+      tokenSelectorOptionContentContainer.id = "tokenSelectorOptionContentContainer";
+      tokenSelectorOptionContentContainer.classList = "tokenSelectorOptionContentContainer";
+
+
+      var tokenSelectorOptionTokenName = document.createElement("div");
+      tokenSelectorOptionTokenName.id = "tokenSelectorOptionTokenName";
+      tokenSelectorOptionTokenName.classList = "tokenSelectorOptionTokenName";
+      tokenSelectorOptionTokenName.innerHTML = `Gainling #${tokenInfo.id.toString()}`;
+
+
+      //STATS
+      var tokenSelectorOptionTokenStats = document.createElement("div");
+      tokenSelectorOptionTokenStats.id = "tokenSelectorOptionTokenStats";
+      tokenSelectorOptionTokenStats.classList = "tokenSelectorOptionTokenStats";
+
+      tokenSelectorOptionContentContainer.appendChild(tokenSelectorOptionTokenName);
+      tokenSelectorOptionContentContainer.appendChild(tokenSelectorOptionTokenStats);
+      tokenSelectorOptionButton.appendChild(tokenSelectorOptionContentContainer);
+
+      let attack = tokenInfo.attack;
+      var tokenAttackStatContainer = buildElement("div", "tokenSelectorOptionStatContainer", "tokenSelectorOptionStatContainer");
+      var tokenAttackStatIcon = buildElement("image", "tokenAttackStatIcon", "tokenStatIconOption tokenAttackStatIcon");
+      var tokenStatAttackValue = buildElement("div", "tokenStatValueOption", "tokenStatValueOption", attack);
+      tokenAttackStatContainer.appendChild(tokenAttackStatIcon);
+      tokenAttackStatContainer.appendChild(tokenStatAttackValue);
+
+      let defense = tokenInfo.defense;
+      var tokenDefenseStatContainer = buildElement("div", "tokenSelectorOptionStatContainer", "tokenSelectorOptionStatContainer");
+      var tokenDefenseStatIcon = buildElement("image", "tokenDefenseStatIcon", "tokenStatIconOption tokenDefenseStatIcon");
+      var tokenStatDefenseValue = buildElement("div", "tokenStatValueOption", "tokenStatValueOption", defense);
+      tokenDefenseStatContainer.appendChild(tokenDefenseStatIcon);
+      tokenDefenseStatContainer.appendChild(tokenStatDefenseValue);
+
+      let weight = tokenInfo.weight;
+      var tokenWeightStatContainer = buildElement("div", "tokenSelectorOptionStatContainer", "tokenSelectorOptionStatContainer");
+      var tokenWeightStatIcon = buildElement("image", "tokenWeightStatIcon", "tokenStatIconOption tokenWeightStatIcon");
+      var tokenStatWeightValue = buildElement("div", "tokenStatValueOption", "tokenStatValueOption", weight);
+      tokenWeightStatContainer.appendChild(tokenWeightStatIcon);
+      tokenWeightStatContainer.appendChild(tokenStatWeightValue);
+
+
+      var timeNow = Math.floor(Date.now() / 1000);
+      var nextAttackTime = Number(tokenInfo.lastAttackTime) + Number(tokenInfo.weight);
+      var secondsLeft = nextAttackTime - timeNow > 0 ? nextAttackTime - timeNow : 0;
+      var minutesLeft = Math.floor(secondsLeft / 60);
+      
+      let cooldown = minutesLeft < 1 ? "ready" : `${minutesLeft}'`
+      var tokenCooldownStatContainer = buildElement("div", "tokenCooldownStatContainer", "tokenSelectorOptionCooldownContainer");
+      var tokenCooldownStatIcon = buildElement("image", "tokenCooldownStatIcon", "tokenStatIconOption tokenCooldownStatIcon");
+      var tokenStatCooldownValue = buildElement("div", `tokenCooldownInSelector_${tokenInfo.id.toString()}`, "tokenStatValueOption", cooldown);
+      tokenStatCooldownValue.value = minutesLeft;
+      tokenCooldownStatContainer.appendChild(tokenStatCooldownValue);
+      tokenCooldownStatContainer.appendChild(tokenCooldownStatIcon);
+
+      tokenSelectorOptionTokenStats.appendChild(tokenAttackStatContainer);
+      tokenSelectorOptionTokenStats.appendChild(tokenDefenseStatContainer);
+      tokenSelectorOptionTokenStats.appendChild(tokenWeightStatContainer);
+      tokenSelectorOptionTokenStats.appendChild(tokenCooldownStatContainer);
+
+
+      //Build stackContainer
+      var stackContainer = document.createElement("div");
+      stackContainer.id = "imageInSelectorOptionContainer_" + tokenInfo.id.toString();
+      stackContainer.classList = "imageInSelectorOptionContainer";
+      stackContainer.innerHTML = ``;
+
+      let aura = tokenInfo.metadata[5];
+
+      var auraImage = document.createElement("img");
+      auraImage.id = "auraImage_" + tokenInfo.id.toString();
+      auraImage.src = `assets/traits/Aura/${aura}.png`;
+      auraImage.classList = "imageBehind imageInSelectorOption";
+      auraImage.innerHTML = ``;
+      stackContainer.appendChild(auraImage);
+
+      var characterImage = document.createElement("img");
+      characterImage.id = "charImage_" + tokenInfo.id.toString();
+      characterImage.src = "assets/sprites/Character.png";
+      characterImage.classList = "imageTop imageInSelectorOption";
+      characterImage.innerHTML = ``;
+      stackContainer.appendChild(characterImage);
+
+      for (let index = 0; index < tokenInfo.metadata.length - 1; index++) {
+
+        let attribute = tokenInfo.metadata[index];
+        var traitImage = document.createElement("img");
+        let path = `assets/traits/${_traitTypeNames[index]}/${attribute}.png`;
+        //console.log("Path: " + path);
+        traitImage.id = "sixImagesInOne_" + tokenInfo.id.toString();
+        traitImage.src = path;
+        traitImage.classList = "imageTop imageInSelectorOption";
+        traitImage.innerHTML = ``;
+        stackContainer.appendChild(traitImage);
+      }
+
+      tokenSelectorOptionButton.appendChild(stackContainer);
+      tokenSelectorOptionContainer.appendChild(tokenSelectorOptionButton);
+
+      if (minutesLeft > 0) {
+        setTimeout(function () { CountDownCooldown(tokenStatCooldownValue, true); }, 60000);
+      }
+
+    }
+    function setClientCharacterImages() {
+      document.getElementById("defenderAura").src = `assets/traits/Aura/${aura}.png`;
+      document.getElementById("defenderArmour").src = `assets/traits/Armour/${armour}.png`;
+      document.getElementById("defenderShoes").src = `assets/traits/Boots/${boots}.png`;
+      document.getElementById("defenderHelmet").src = `assets/traits/Helmet/${helmet}.png`;
+      document.getElementById("defenderShield").src = `assets/traits/Shield/${shield}.png`;
+      document.getElementById("defenderWeapon").src = `assets/traits/Weapon/${weapon}.png`;
+    }
+
+    /*_________________________________________________________________________
+    TOKEN FILTER HIEADER AND SORTING  TOKEN FILTER HIEADER AND SORTING
+    `````````````````````````````````````````````````````````````````````````*/
+    function filterButtonClicked() {
+
+      if (!filterMenuOpen && historyOpen) return;
+      filterMenuOpen = !filterMenuOpen;
+      toggleFilterMenu();
+    }
+    function toggleFilterMenu() {
+      let newWidth = filterMenuOpen ? '100%' : '0px';
+      let newHeight = filterMenuOpen ? 'auto' : '0px';
+      filterContainer.style.width = newWidth;
+      filterContainer.style.height = newHeight;
+      filterContainer.style.visibility = filterMenuOpen ? 'visible' : 'hidden';
+    }
+    function resetAutoCloseSertSelector() {
+      autoCloseSorting = true;
+    }
+    function closeSortSelector() {
+      document.getElementById("sortSelectorContainer").style.height = '50px';
+      sortingOpen = false;
+      var sortingText = sorting.includes('asc') ? sorting.substring(3) : sorting;
+      var buttonText = sorting.includes('asc') ? '▲' : '▼';
+      sortingButton.innerHTML = `${buttonText} ${sortingText} ${buttonText}`;
+    }
+    function dynamicSort(property) {
+      var sortOrder = 1;
+      if (property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+      }
+      return function (a, b) {
+        /* next line works with strings and numbers, 
+         * and you may want to customize it to your needs
+         */
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+      }
+    }
+
+    /*_________________________________________________________________________
+   TOKEN FILTER TOKEN FILTER TOKEN FILTER TOKEN FILTER TOKEN FILTER  
+   `````````````````````````````````````````````````````````````````````````*/
+
+   function clearFilters(){
+    stringCategoryNames.forEach(categoryName => {
+          allCheckBoxInputs[categoryName].forEach(inputEle => {
+            inputEle.checked = false;
+          })
+          stringFilterValues[categoryName] = [];
+        })
+        intCategoryNames.forEach(intCategoryName => {
+          allIntValueInputs[intCategoryName].forEach(intValueInput => {
+            intValueInput.value = ``;
+          })
+          intFilterValues[intCategoryName] = [0, 0];
+        })
+   }
+    function buildClearFilterButton() {
+
+      //Build clear button container container
+      var traitContainerDiv = document.getElementById("clearFilterContainer");
+
+      //build clear button container
+      var buttonContainerDiv = document.createElement("div");
+      buttonContainerDiv.classList = "buttonContainer clearFilterButtonContainer";
+
+      //build button
+      var clearButton = document.createElement("button");
+      clearButton.classList = "traitButton clearAllFilterButton";
+      clearButton.innerHTML = `Clear all`;
+
+      clearButton.addEventListener('click', function (e) {
+        clearFilters();
+        refresh();
+      });
+
+
+      buttonContainerDiv.appendChild(clearButton);
+      traitContainerDiv.appendChild(buttonContainerDiv);
+    }
+    function readTraitsFromJson() {
+      fetch("assets/docs/traits.json")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(
+          function (data) {
+            for (let index = 0; index < data.data.length; index++) {
+              const element = data.data[index];
+              let categoryName = element.name;
+              let traits = element.values;
+              buildCategorySelector(categoryName, traits);
+            }
+          })
+        .catch(function (err) {
+          console.log(err);
+        });
+    }
+    function readTraits() {
+      stringCategoryNames = [];
+      for (let index = 0; index < traits.data.length; index++) {
+        const element = traits.data[index];
+        let categoryName = element.name;
+        let traitValues = element.values;
+        buildCategorySelector(categoryName, traitValues);
+      }
+    }
+    function buildIntCategorySelector(name, min, max) {
+      filterToggles[name] = false;
+      intFilterValues[name] = [0, 0];
+      intCategoryNames.push(name);
+      let intValueInputs = [];
+      allIntValueInputs[name] = intValueInputs;
+
+      //Build Traitcontainer
+      var traitContainerDiv = document.createElement("div");
+      traitContainerDiv.id = name + "Container";
+      traitContainerDiv.classList = "traitContainer";
+      traitContainerDiv.innerHTML = ``;
+
+      //build button container
+      var buttonContainerDiv = document.createElement("div");
+      buttonContainerDiv.id = name + "ButtonContainer";
+      buttonContainerDiv.classList = "buttonContainer";
+      traitContainerDiv.innerHTML = ``;
+
+      var clearFilterButton = buildElement("button", "clearFilterButton", "clearFilterButton");
+      clearFilterButton.addEventListener('click', function (e) {
+        console.log("Clear " + name)
+        intFilterValues[name] = [0, 0];
+        statsTextInputFrom.value = ``;
+        statsTextInputTo.value = ``;
+        refresh();
+      });
+
+      //build button
+      var tButton = document.createElement("button");
+      tButton.id = name;
+      tButton.classList = "traitButton";
+      tButton.innerHTML = name;
+
+      tButton.addEventListener('click', function (e) {
+        if (!filterToggles[name]) foldAllFilterCategories();
+        toggleIntCategory(tButton, filterToggles[name]);
+        filterToggles[name] = !filterToggles[name];
+      });
+
+      buttonContainerDiv.appendChild(clearFilterButton);
+      buttonContainerDiv.appendChild(tButton);
+      traitContainerDiv.appendChild(buttonContainerDiv);
+
+      //build statsInputContainer
+      var statsInputContainer = document.createElement("div");
+      statsInputContainer.id = name + "StatsInputContainer";
+      statsInputContainer.classList = "statsInputContainer";
+      traitContainerDiv.appendChild(statsInputContainer);
+
+      //build statsTextInputContainerFrom
+      var statsTextInputContainerFrom = document.createElement("div");
+      statsTextInputContainerFrom.id = name + "StatsTextInputContainerFrom";
+      statsTextInputContainerFrom.classList = "statsTextInputContainer";
+
+      //build statsTextInputFrom
+      var statsTextInputFrom = document.createElement("input");
+      statsTextInputFrom.id = name + "StatsTextInputFrom";
+      statsTextInputFrom.classList = "statsTextInput";
+      statsTextInputFrom.placeholder = min.toString();
+      intValueInputs.push(statsTextInputFrom);
+
+      //build statsTextLabelFrom
+      var statsTextLabelFrom = document.createElement("label");
+      statsTextLabelFrom.id = name + "StatsTextLabelFrom";
+      statsTextLabelFrom.classList = "statsTextLabel";
+      statsTextLabelFrom.htmlFor = name + "StatsTextInputFrom";
+
+      statsTextInputContainerFrom.appendChild(statsTextInputFrom);
+      statsTextInputContainerFrom.appendChild(statsTextLabelFrom);
+      statsInputContainer.appendChild(statsTextInputContainerFrom);
+
+      //build toTextContainer
+      var toTextContainer = document.createElement("div");
+      toTextContainer.id = name + "ToTextContainer";
+      toTextContainer.classList = "toTextContainer";
+
+      //build "to" text
+      var toText = document.createElement("a");
+      toText.innerHTML = `to`;
+      toText.classList = "toText";
+
+      toTextContainer.appendChild(toText);
+      statsInputContainer.appendChild(toTextContainer);
+
+      //build statsTextInputContainerTo
+      var statsTextInputContainerTo = document.createElement("div");
+      statsTextInputContainerTo.id = name + "StatsTextInputContainer";
+      statsTextInputContainerTo.classList = "statsTextInputContainer";
+
+      //build statsTextInputTo
+      var statsTextInputTo = document.createElement("input");
+      statsTextInputTo.id = name + "StatsTextInputTo";
+      statsTextInputTo.classList = "statsTextInput";
+      statsTextInputTo.placeholder = max.toString();
+      intValueInputs.push(statsTextInputTo);
+
+      //build statsTextLabelTo
+      var statsTextLabelTo = document.createElement("label");
+      statsTextLabelTo.id = name + "StatsTextLabelTo";
+      statsTextLabelTo.classList = "statsTextLabel";
+      statsTextLabelTo.htmlFor = name + "StatsTextInputTo";
+
+      statsTextInputContainerTo.appendChild(statsTextInputTo);
+      statsTextInputContainerTo.appendChild(statsTextLabelTo);
+      statsInputContainer.appendChild(statsTextInputContainerTo);
+
+      //build statsInputApplyButton
+      var statsInputApplyButton = document.createElement("button");
+      statsInputApplyButton.id = name + "StatsInputApplyButton";
+      statsInputApplyButton.classList = "statsInputApplyButton";
+      statsInputApplyButton.innerHTML = "Apply";
+      statsInputApplyButton.addEventListener('click', function (e) {
+        let min = statsTextInputFrom.value;
+        let max = statsTextInputTo.value;
+        min = min && min > 0 ? min : 0;
+        max = max && max > 0 ? max : 0;
+        intFilterValues[name] = [min, max];
+        GetTokenData(true, 0);
+      });
+      traitContainerDiv.appendChild(statsInputApplyButton);
+
+
+      intTraitGroupContainer.appendChild(traitContainerDiv);
+    }
+    function buildCategorySelector(categoryName, values) {
+      stringCategoryNames.push(categoryName);
+      filterToggles[categoryName] = false; //unfolded (aufgeklappt)
+      stringFilterValues[categoryName] = [];
+      let checkBoxInputs = [];
+      allCheckBoxInputs[categoryName] = checkBoxInputs;
+
+
+      //Build Traitcontainer
+      var traitContainerDiv = buildElement("div", categoryName + "Container", "traitContainer");
+      var buttonContainerDiv = buildElement("div", categoryName + "ButtonContainer", "buttonContainer");
+
+      var clearFilterButton = buildElement("button", "clearFilterButton", "clearFilterButton");
+      clearFilterButton.addEventListener('click', function (e) {
+        checkBoxInputs.forEach(inputElement => {
+          inputElement.checked = false;
+        })
+        stringFilterValues[categoryName] = [];
+        refresh();
+      });
+
+      var tButton = buildElement("button", categoryName, "traitButton", `${categoryName.toString().toUpperCase()}`);
+      tButton.addEventListener('click', function (e) {
+        if (!filterToggles[categoryName]) foldAllFilterCategories();
+        toggleStringCategory(tButton, filterToggles[categoryName]);
+        filterToggles[categoryName] = !filterToggles[categoryName];
+      });
+
+      buttonContainerDiv.appendChild(clearFilterButton);
+      buttonContainerDiv.appendChild(tButton);
+      traitContainerDiv.appendChild(buttonContainerDiv);
+
+      //build all checkboxes
+      values.forEach(traitNameElement => {
+
+        //build checkBoxContainer
+        var checkBoxContainer = document.createElement("div");
+        checkBoxContainer.id = categoryName + "CheckBoxContainer";
+        checkBoxContainer.classList = "checkBoxContainer";
+        checkBoxContainer.innerHTML = ``;
+
+        //build traitLabel
+        var traitLabel = document.createElement("div");
+        traitLabel.id = categoryName + "TraitLabel";
+        traitLabel.classList = "traitLabel";
+        traitLabel.innerHTML = ``;
+
+        //build traitLabelText
+        var traitLabelText = document.createElement("a");
+        traitLabelText.id = categoryName + "TraitLabelText";
+        traitLabelText.classList = "traitLabelText";
+        traitLabelText.innerHTML = `${traitNameElement.toString().toUpperCase()}`;
+
+        traitLabel.appendChild(traitLabelText);
+        checkBoxContainer.appendChild(traitLabel);
+
+        //build traitCountLabel
+        var traitCount = document.createElement("div");
+        traitCount.id = categoryName + "TraitCount";
+        traitCount.classList = "traitCount";
+        traitCount.innerHTML = ``;
+
+        //build traitCountLabelText
+        var traitCountLabelText = document.createElement("a");
+        traitCountLabelText.id = categoryName + "TraitCountText";
+        traitCountLabelText.classList = "traitCountText";
+        traitCountLabelText.innerHTML = ``;
+
+        traitCount.appendChild(traitCountLabelText);
+        checkBoxContainer.appendChild(traitCount);
+
+        //build checkBox
+        var ckeckBoxDiv = document.createElement("div");
+        ckeckBoxDiv.classList = "checkbox";
+        ckeckBoxDiv.innerHTML = ``;
+
+        //build checkBox
+        let id = categoryName + "_" + traitNameElement + "_checkbox";
+        var checkboxInput = document.createElement("input");
+        checkboxInput.type = "checkbox";
+        checkboxInput.id = id;
+        checkboxInput.innerHTML = ``;
+        checkboxInput.addEventListener('change', function () {
+          setAttributeFilter(categoryName, traitNameElement, this.checked);
+        });
+        checkBoxInputs.push(checkboxInput);
+
+        //build inputlabel
+        var checkBoxInputLabel = document.createElement("label");
+        checkBoxInputLabel.htmlFor = id;
+
+        ckeckBoxDiv.appendChild(checkboxInput);
+        ckeckBoxDiv.appendChild(checkBoxInputLabel);
+        checkBoxContainer.appendChild(ckeckBoxDiv);
+
+        traitContainerDiv.appendChild(checkBoxContainer);
+      });
+
+      stringTraitGroupContainer.appendChild(traitContainerDiv);
+    }
+    function setAttributeFilter(category, filter, state) {
+      console.log(`${category}: ${filter} set to ${state ? "active" : "inactive"}`)
+      let attFilterValues = stringFilterValues[category];
+      if (state) {
+        attFilterValues.indexOf(filter) === -1 ?
+          attFilterValues.push(filter) :
+          console.log("This item already exists");
+      }
+      else {
+        attFilterValues.splice(attFilterValues.indexOf(filter), 1);
+      }
+      stringFilterValues[category] = attFilterValues;
+      console.log(`Values for ${category} are now ${attFilterValues}`)
+      GetTokenData(true, 0);
+    }
+    function foldAllFilterCategories() {
+      for (var key in filterToggles) {
+        filterToggles[key] = false;
+        let button = document.getElementById(key)
+        button.blur();
+        document.getElementById(button.id + "Container").style.height = '40px';
+      }
+    }
+    function toggleIntCategory(button, fold) {
+      button.blur();
+      let width = fold ? '40px' : '110px';
+      let containerName = button.id + "Container";
+      document.getElementById(containerName).style.height = width;
+    }
+    function toggleStringCategory(button, fold) {
+      button.blur();
+      let width = fold ? '40px' : '566px';
+      let containerName = button.id + "Container";
+      document.getElementById(containerName).style.height = width;
+    }
 
   </script>
+
 </body>
 
 </html>
