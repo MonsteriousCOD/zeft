@@ -13,26 +13,13 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@alch/alchemy-web3@latest/dist/alchemyWeb3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/web3@1.8.1/dist/web3.min.js"></script>
-  <script src="scripts/abiContract.js"> </script>
-  <script src="scripts/abiMarketPlaceContract.js"> </script>
   <script src="scripts/traits.js"> </script>
-  <script src="scripts/contractApi.js"> </script>
+  
   <script>
 
 
 
-    //TODO::::
-
-    //ADD FIGHT BUTTON FOR OPENSEA
-    //ADD MULTI CALL TO CONTRACT (SEED,BOUNTY,STACK,COOLDOWN)
-
-    //version
-    console.log("Version 0.27");
-    //parameters
-    let alchemyUrl = "wss://arb-goerli.g.alchemy.com/v2/A4AucuSw5Uzjp4tMj6NR_g4cujQkgUn-";
-    let contractAddress = "0xE5aB75F9384045f82b0a464d09753B2abEFeC1a7";
-    let marketPlaceContractAddress = "0x17596F4C9AAfa38Ca0Cd11DE76977A16e1a120D6";
-    //query
+   
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const tokenId = urlParams.get('tokenId')
@@ -76,163 +63,7 @@
       "Better make room for my fist, I'm going to ram it into your stomach",
       "I will defend my frame with my life!"];
 
-    let testAttack = { "0": "2", "1": "{\"attacker\": \"11\",\"defender\": \"71\",\"aRandom\": \"94\",\"dRandom\": \"895\",\"time\": \"1677966743\",\"winner\": \"71\"}", "__length__": 2, "defender": "2", "output": "{\"attacker\": \"11\",\"defender\": \"71\",\"aRandom\": \"94\",\"dRandom\": \"895\",\"time\": \"1677966743\",\"winner\": \"71\"}" }
-    let testApproach = { "0": "1", "1": "{\"attacker\": \"11\",\"defender\": \"71\",\"aBounty\": \"21000000000000000\",\"dBounty\": \"1004000000000000\",\"aStack\": \"0\",\"dStack\": \"0\"}", "__length__": 2, "defender": "1", "output": "{\"attacker\": \"11\",\"defender\": \"71\",\"aBounty\": \"21000000000000000\",\"dBounty\": \"100400000000000000\",\"aStack\": \"0\",\"dStack\": \"0\"}" };
-
-    _setupAlchemyConnection(contractAddress, abiContract.abi, marketPlaceContractAddress, abiMarketPlaceContract.abi, alchemyUrl).then(() => {
-      console.log("Correctly setup alchemyProvider and contract at: " + contractAddress);
-
-      _getTokenSeed(tokenId, seed => {
-
-        setup(document.body, seed, tokenId);
-        _subscribeGainlingsEvents(onLiveGainlingsEvent, onLiveGainlingsEventError);
-
-        _getBounty(tokenId, bounty => {
-          onBountyUpdate(bounty);
-        })
-        _getStack(tokenId, stack => {
-          onStackUpdate(stack);
-        })
-        _getCooldown(tokenId, cooldown => {
-          onCooldownUpdate(cooldown);
-        })
-
-        checkHistoryApproachEvents();
-
-      })
-
-
-
-    });
-    let unfilledApproachEvents = [];
-    function checkHistoryApproachEvents() {
-      _getLatestBlock().then(blockNr => {
-        console.log("Fetched blocknr: " + JSON.stringify(blockNr.number));
-        _getPastGainlingEvents(blockNr.number - 500, blockNr.number).then(pastEvents => {
-          console.log("PastEvents: " + JSON.stringify(pastEvents));
-          pastEvents.forEach(gainlingEvent => {
-            processPastGainlingEvent(gainlingEvent);
-          });
-
-          pastEventsFetched = true;
-          incectOpenAttack();
-
-        });
-      });
-    }
-    function processPastGainlingEvent(eventData) {
-
-      let evString = JSON.stringify(eventData);
-      console.log(evString);
-
-      let block = eventData.blockNumber;
-      let type = eventData.returnValues["0"];
-      let content = eventData.returnValues["1"];
-
-      processAnyEvent(block, type, content);
-    }
-    function processAnyEvent(block, type, content) {
-      if (type == 0) {
-        console.log("mint");
-      }
-      else if (type == 1) {
-        console.log("approach");
-        let data = JSON.parse(content);
-        unfilledApproachEvents.push(data);
-        console.log("Added approach to history: A:" + data.attacker + " D:" + data.defender);
-      }
-      else if (type == 2) {
-        console.log("attack");
-        if (unfilledApproachEvents.length < 1) return;
-        let data = JSON.parse(content);
-        let indexToRemove;
-        unfilledApproachEvents.forEach(unfilled => {
-          if (unfilled.attacker == data.attacker && unfilled.defender == data.defener) {
-            indexToRemove = unfilledApproachEvents.indexOf(unfilled);
-          }
-        })
-        unfilledApproachEvents.splice(indexToRemove, 1);
-        console.log("Resolved approach to history: A:" + data.attacker + " D:" + data.defender);
-      }
-      else if (type == 3) {
-        console.log("stage");
-      }
-      else if (type == 4) {
-        console.log("tokendata")
-      }
-    }
-    function incectOpenAttack() {
-      unfilledApproachEvents.forEach(unfilled => {
-        console.log("Unfilled approach event: " + JSON.stringify(unfilled));
-        onLiveApproach(unfilled);
-        var attackerId = unfilled.attacker;
-
-        _getTokenSeed(attackerId, seed => {
-          onAttackerSeed(seed);
-        })
-        return;
-      })
-    }
-
-    setTimeout(() => {
-      onLiveGainlingsEvent(testApproach);
-
-    }, 5000);
-
-    setTimeout(() => {
-      onLiveGainlingsEvent(testAttack);
-
-    }, 9000);
-
-    //EXTERNAL DATA\\
-
-    function onLiveGainlingsEvent(data) {
-      let type = data["0"];
-
-      if (type == 0) {
-        console.log("mint");
-        return;
-      }
-      else if (type == 1) {
-        console.log("approach: " + JSON.stringify(data));
-        let attackSetupEvent = data["1"];
-        let eventJ = JSON.parse(attackSetupEvent);
-        let defenderId = eventJ["defender"];
-        if (defenderId == tokenId) {
-          let attackerId = eventJ["attacker"];
-          onLiveApproach(eventJ);
-          _getTokenSeed(attackerId, seed => {
-            onAttackerSeed(seed);
-          })
-        }
-      }
-      else if (type == 2) {
-        console.log("attack: " + JSON.stringify(data));
-        let attackStartEvent = data["1"];
-        let eventJ = JSON.parse(attackStartEvent);
-        let defenderId = eventJ["defender"];
-        if (defenderId == tokenId) {
-          let attackerId = eventJ["attacker"];
-          onLiveAttack(eventJ);
-        }
-      }
-      else if (type == 3) {
-        console.log("stage");
-        return;
-      }
-      else if (type == 4) {
-        console.log("tokendata")
-        return;
-      }
-    }
-    function onLiveGainlingsEventError(data) {
-
-    }
-    function onPastGainlingsEvent(data) {
-
-    }
-
-
+   
     //INTERFACE\\
     function setup(parent, defenderSeed, defenderId, bounty = 0, stack = 0) {
       _defenderId = defenderId;
@@ -267,46 +98,7 @@
       update = Math.round((Number(update) + Number.EPSILON) * 100000000) / 100000000;
       document.getElementById('stackValue').innerText = `${update}`;
     }
-    function onCooldownUpdate(update) {
-
-      if (parseInt(update) <= 0) return;
-
-      var prisonBowl = buildElement("div", "prisonBowl", "prisonBowl");
-      document.getElementById('frame').appendChild(prisonBowl);
-      var prisonValueTitle = buildElement("div", "prisonValueTitle", "prisonValue prisonValueTitle baseText", "seconds")
-      prisonBowl.appendChild(prisonValueTitle);
-      var prisonValue = buildElement("div", "prisonValue", "prisonValue baseText", update.toString())
-      prisonBowl.appendChild(prisonValue);
-      _prisonValue = update;
-      setTimeout(() => {
-        countDownPrisonValue();
-      }, "1000");
-    }
-
-    function countDownPrisonValue() {
-      console.log(_prisonValue);
-      _prisonValue = _prisonValue - 1 <= 0 ? 0 : _prisonValue - 1;
-      document.getElementById('prisonValue').innerText = _prisonValue;
-
-      if (_baseView) {
-        document.getElementById('prisonBowl').style.visibility = 'visible';
-      }
-      else {
-        document.getElementById('prisonBowl').style.visibility = 'hidden';
-      }
-
-
-      if (_prisonValue > 0) {
-        setTimeout(() => {
-          countDownPrisonValue();
-        }, "1000");
-      }
-      else {
-        document.getElementById('prisonBowl').style.visibility = 'hidden';
-      }
-
-
-    }
+       
     //GAME\\
 
     function approach() {
@@ -849,40 +641,8 @@
 
     }
 
-    function buildBattleReportElement(id, w, h, l, t, align, content, container, lineThrough = false) {
-      var element = buildElement("div", id, "battleReportText", content);
-      element.style.height = h;
-      element.style.width = w;
-      element.style.left = l;
-      element.style.top = t;
-      element.style.textAlign = align;
-      if (lineThrough) element.style.textDecoration = 'line-through';
-      container.appendChild(element);
-    }
 
-    function buildAttacker(parent, seeed) {
-      _attackerSeed = seeed;
-
-      var metadata = buildTraitsFromSeed(seeed);
-      fightData.attackerMetadata = metadata;
-      var burned = buildElement("img", "burnedAttacker", "burnedAttacker");
-      burned.src = `assets/sprites/CharacterBurned.png`;
-      parent.appendChild(burned);
-
-      var attackerContainer = buildElement("div", "attackerContainer", "attackerContainer");
-
-      var characterImage = buildElement("img", "attackerTraitImage", "traitImage attackerTraitImage");
-      characterImage.src = "assets/sprites/Character.png";
-      attackerContainer.appendChild(characterImage);
-
-      for (let index = 0; index < metadata.length - 1; index++) {
-        var traitImage = buildElement("img", "attackerTraitImage", "traitImage attackerTraitImage");
-        traitImage.src = `assets/traits/${_traitTypeNames[index]}/${metadata[index]}.png`;
-        attackerContainer.appendChild(traitImage);
-      }
-      parent.appendChild(attackerContainer);
-    }
-
+    
     function buildElement(elementType, id, classList, content) {
       var divElement = document.createElement(elementType);
       divElement.id = id;
