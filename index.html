@@ -1,286 +1,717 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
 
 <head>
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:creator" content="@thegainlings">
-  <meta name="twitter:site" content="@thegainlings" />
-  <meta name="twitter:title" content="The Gainlings" />
-  <meta name="description" content="Checkout the gainling battlefield">
-  <meta property="og:title" content="The Gainlings">
-  <meta property="og:description" content="Checkout the gainling battlefield">
-  <meta property="og:url" content="https://testnet-fight.thegainlings.io">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://testnet-fight.thegainlings.io/assets/sprites/HeaderImage.jpg">
-  <meta property="og:image:alt" content="Logo">
-  <meta property="og:image:type" content="image/gif">
-  <meta property="og:image:width" content="380">
-  <meta property="og:image:height" content="150">
-  <meta property="og:locale" content="en_EN">
-  <meta property="og:site_name" content="The Gainlings">
-
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="assets/sprites/Logo.png">
-  <!--font awesome-->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Compiled and minified CSS-->
-  <!--Font-->
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <!--custom styles-->
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link href="styles/style.css" rel="stylesheet">
-  <title>The Gainlings - Fight</title>
+  <title>The Gainlings - JsFrame</title>
 </head>
 
 <body>
 
-  <header>
-    <nav class="navbar">
-      <div class="nav-wrapper">
-        <image class="logo" src="assets/sprites/Logo.png" alt="logo"> </image>
 
-        <div class="socialContainerInner">
-          <a href="https://twitter.com/thegainlings" class="socialButton twitter" target="_blank"> </a>
-          <a href="https://testnets.opensea.io/collection/the-gainlings-19" class="socialButton opensea" target="_blank">
-          </a>
-          <a href="https://the-gainlings.gitbook.io/the-gainlings/general/concept" class="socialButton gitbook"
-            target="_blank"> </a>
-          <a href="https://discord.gg/3v6TTkfuY8" class="socialButton discord" target="_blank"> </a>
-          <a class="socialButton audioSource" id="soundButton"> </a>
-        </div>
-
-        <div class="pageLayoutSwitchContainer" id="pageLayoutSwitchContainer">
-          <button class="pageLayoutSwitchButton itemsSwitchButton" id="itemsSwitchButton">All</button>
-          <button class="pageLayoutSwitchButton ownedSwitchButton" id="ownedSwitchButton">Owned</button>
-          <button class="pageLayoutSwitchButton historySwitchButton" id="historySwitchButton">History</button>
-        </div>
-        <div id="tokenSelectorContainer" class="tokenSelectorContainer">
-          <button id="tokenSelectorButton" class="tokenSelectorButton">
-            Select player
-            <div class="imageInSelectorOptionContainer">
-              <image id="clientBackground" class="imageInSelectorOption imagebehind selectedImage"
-                src="assets/sprites/Character.png" alt="logo"> </image>
-              <image id="clientCharacter" class="imageInSelectorOption imageTop selectedImage"
-                src="assets/sprites/Character.png" alt="logo"> </image>
-              <image id="clientHelmet" class="imageInSelectorOption imageTop selectedImage"
-                src="assets/sprites/Character.png" alt="logo"> </image>
-              <image id="clientWeapon" class="imageInSelectorOption imageTop selectedImage"
-                src="assets/sprites/Character.png" alt="logo"> </image>
-              <image id="clientArmour" class="imageInSelectorOption imageTop selectedImage"
-                src="assets/sprites/Character.png" alt="logo"> </image>
-              <image id="clientShield" class="imageInSelectorOption imageTop selectedImage"
-                src="assets/sprites/Character.png" alt="logo"> </image>
-              <image id="clientBoots" class="imageInSelectorOption imageTop selectedImage"
-                src="assets/sprites/Character.png" alt="logo"> </image>
-            </div>
-          </button>
-
-          <div id="tokenSelectorOptionContainer" class="tokenSelectorOptionContainer">
-
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <audio id="audioElement" src="assets/sounds/cave.wav" loop> </audio>
-    <div class="easyMeasure" id="easyMeasure">
-
-    </div>
-
-
-    <div class="flashyContainer" id="connectContainer">
-      <div class="flashyRoundButton" id="connectButtonContainer">
-        <div class="connectButtonContent" id="connectButtonContent">
-          Please connect wallet
-        </div>
-      </div>
-    </div>
-
-    <div class="bannerContainer">
-      <a class="className"></a>
-      <div class="collectionCardContainer" id="collectionCardContainer">
-        <div class="collectionCard" id="collectionCardSeason">
-          Season: 1
-        </div>
-        <div class="distancer"></div>
-        <div class="collectionCard" id="collectionCardStage">
-          Stage: 0
-        </div>
-        <div class="distancer"></div>
-        <div class="collectionCard" id="collectionCardAlive">
-          Supply alive: 0
-        </div>
-
-      </div>
-
-      <image src="assets/sprites/Sunrise.png" class="banner"></image>
-    </div>
-
-    <div class="filterHeader">
-      <button class="filterButton" id="filterButton"></button>
-      <div class="searchInputContainer">
-        <input type="text" class="searchInput" placeholder="Search victim" id="tokenSearch">
-        <label class="search" for="input-search"></label>
-      </div>
-
-      <div id="sortSelectorContainer" class="sortSelectorContainer">
-        <button id="sortingButton" class="fakeSortSelector">Sort by</button>
-        <button id="sortingBounty" class="fakeSortSelectorOption">Bounty </button>
-        <button id="sortingStack" class="fakeSortSelectorOption">Stack </button>
-        <button id="sortingAttack" class="fakeSortSelectorOption">Attack </button>
-        <button id="sortingDefense" class="fakeSortSelectorOption">Defense </button>
-        <button id="sortingPrice" class="fakeSortSelectorOption">Price </button>
-      </div>
-
-      <button class="refreshButton" id="refreshButton"></button>
-    </div>
-
-    <div class="totalContainer" id="mainContainer">
-
-      <div class="leftPanelContainer" id="leftPanelContainer">
-
-        <div class="traitContainer clearAllFilterButtonContainer" id="clearFilterContainer">
-
-          <!--filled from js-->
-        </div>
-
-        <div class="traitGroupContainer" id="stringTraitGroupContainer">
-
-          <!--filled from js-->
-        </div>
-
-        <div class="traitGroupContainer" id="intTraitGroupContainer">
-
-          <!--filled from js-->
-        </div>
-
-
-      </div>
-
-      <div class="rightPanelContainer" id="rightPanelContainer">
-        <div class="tokenDisplayContainer" id="tokenDisplayContainer">
-
-        </div>
-        <div class="historyContainer" id="historyContainer">
-
-        </div>
-      </div>
-
-    </div>
-
-
-  </main>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@alch/alchemy-web3@latest/dist/alchemyWeb3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/web3@1.8.1/dist/web3.min.js"></script>
-  <script src="scripts/cacheDb.js"> </script>
   <script src="scripts/traits.js"> </script>
-  <script src="scripts/fancyLogs.js"> </script>
+  
   <script>
 
-    let blockPerLogRequest = 20000;
-    
-    function setupWegGl(tokenInfo) {
+ 
+//query
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const tokenId = urlParams.get('tokenId')
+    // var seed = urlParams.get('seed')
 
-      //Build FightBoxContainer
-      var fightBoxContainer = document.createElement("div");
-      fightBoxContainer.id = "fightBoxContainer";
-      fightBoxContainer.classList = "fightBoxContainer";
-      fightBoxContainer.innerHTML = ``;
 
-      //Build webglHeader
-      var webglHeader = document.createElement("div");
-      webglHeader.classList = "webglHeader";
-      webglHeader.innerHTML = ``;
+    //GAMEVARIABLES\\
+    let fightData = {};
+    let _defenderId;
+    let _talkLoop = false;
+    let _baseView = true;
+    let _attackerSeed;
+    let _prisonValue;
+    let sentences = [
+      "Where are you mfer?!",
+      "I will break your gains!",
+      "Did you buy seals, coward?",
+      "I brawled with the bearz im ready!",
+      "Special thanks to @scottybmitch!",
+      "Here could be your Ad!",
+      "I'm not afraid!",
+      "I don't know what to say anymore",
+      "Are you hiding?",
+      "Don't you dare invading my frame!",
+      "This is the way!",
+      "Pew Pew",
+      "B U R N",
+      "Show me your pixels",
+      "I am a winling!",
+      "Wen die?",
+      "Are those people over there trembling in fear ready for the battle?",
+      "Victory is certain",
+      "Luke, I am your gainling",
+      "If you see me, it’s to late. Destiny is here",
+      "I am ready to embrace death. Are you?",
+      "You are going to regret crossing me",
+      "They'll never see what's comming!",
+      "Hodl my cosmo",
+      "Stop starring at my frame!",
+      "You burn... NOW!",
+      "Better make room for my fist, I'm going to ram it into your stomach",
+      "I will defend my frame with my life!"];
 
-      //build webGlClose
-      var webGlClose = document.createElement("button");
-      webGlClose.classList = "webGlClose";
-      webGlClose.innerHTML = ` X `;
-      webGlClose.addEventListener('click', function (e) {
-        let gainlingContainer = document.getElementById("fightBoxContainer");
-        document.body.removeChild(gainlingContainer);
-        refresh();
-      });
+//INTERFACE\\
+    function setup(parent, defenderSeed, defenderId, bounty = 0, stack = 0) {
+      _defenderId = defenderId;
+      buildDefenderBaseView(parent, defenderSeed, bounty, stack, defenderId);
+      handleBubble("setup");
 
-      //webglHeader.appendChild(webGlClose);
-      fightBoxContainer.appendChild(webGlClose);
+    }
+    function onLiveApproach(attackSetupEvent) {
+      let defenderId = attackSetupEvent["defender"];
+      if (defenderId != _defenderId) return;
+      fightData.approach = attackSetupEvent;
+      approach();
+    }
+    function onLiveAttack(attackStartEvent) {
+      let defenderId = attackStartEvent["defender"];
+      if (defenderId != _defenderId) return;
+      fightData.attack = attackStartEvent;
+      attack();
+    }
+    function onAttackerSeed(seed) {
+      fightData.seed = seed;
+      buildAttacker(document.getElementById('frame'), seed);
 
-      //build webglFrame
-      var height = device < 2 ? '506px' : '406';
-      var webglFrame = document.createElement("iframe");
-      webglFrame.classList = "webglFrame";
-      webglFrame.innerHTML = ``;
-      //webglFrame.maxHeight = '506px';
-      //webglFrame.maxWidth = '505px';
-      webglFrame.height = '506px';
-      webglFrame.width = '496px';
-      webglFrame.width = '104%';
-      webglFrame.src = animationUrl + `tokenId=${tokenInfo.id}`
-      fightBoxContainer.appendChild(webglFrame);
+    }
+    function onBountyUpdate(update) {
+      update = ToEth(update);
+      update = Math.round((Number(update) + Number.EPSILON) * 100000000) / 100000000;
+      document.getElementById('bountyValue').innerText = `${update}`;
+    }
+    function onStackUpdate(update) {
+      update = ToEth(update);
+      update = Math.round((Number(update) + Number.EPSILON) * 100000000) / 100000000;
+      document.getElementById('stackValue').innerText = `${update}`;
+    }
+    function onCooldownUpdate(update) {
 
-      //Build webGlButtonCover
-      var webGlButtonCover = document.createElement("div");
-      webGlButtonCover.classList = "webGlButtonCover";
-      webGlButtonCover.innerHTML = ``;
-      fightBoxContainer.appendChild(webGlButtonCover);
+      if (parseInt(update) <= 0) return;
 
-      //Build webGlFooter
-      var webGlFooter = document.createElement("div");
-      webGlFooter.classList = "webGlFooter";
-      webGlFooter.innerHTML = ``;
+      var prisonBowl = buildElement("div", "prisonBowl", "prisonBowl");
+      document.getElementById('frame').appendChild(prisonBowl);
+      var prisonValueTitle = buildElement("div", "prisonValueTitle", "prisonValue prisonValueTitle baseText", "seconds")
+      prisonBowl.appendChild(prisonValueTitle);
+      var prisonValue = buildElement("div", "prisonValue", "prisonValue baseText", update.toString())
+      prisonBowl.appendChild(prisonValue);
+      _prisonValue = update;
+      setTimeout(() => {
+        countDownPrisonValue();
+      }, "1000");
+    }
 
-      //build webGlTokenInfoText
-      let outputText = `Seems to be alive`;
-      if (!connected) outputText = `Connect metamask first`;
-      else if (clientSelectedToken < 0) outputText = `Select player first`;
+    function countDownPrisonValue() {
+      console.log(_prisonValue);
+      _prisonValue = _prisonValue - 1 <= 0 ? 0 : _prisonValue - 1;
+      document.getElementById('prisonValue').innerText = _prisonValue;
 
-      var webGlTokenInfoText = document.createElement("a");
-      webGlTokenInfoText.id = "webGlTokenInfoText";
-      webGlTokenInfoText.classList = "webGlTokenInfoText";
-      webGlTokenInfoText.innerHTML = outputText;
+      if (_baseView) {
+        document.getElementById('prisonBowl').style.visibility = 'visible';
+      }
+      else {
+        document.getElementById('prisonBowl').style.visibility = 'hidden';
+      }
 
-      //build webGlAttackButton
-      var webGlAttackButton = document.createElement("button");
-      webGlAttackButton.id = "webGlAttackButton";
-      webGlAttackButton.classList = "webGlAttackButton";
-      webGlAttackButton.innerHTML = `ATTACK`;
 
-      webGlAttackButton.addEventListener('click', function (e) {
+      if (_prisonValue > 0) {
+        setTimeout(() => {
+          countDownPrisonValue();
+        }, "1000");
+      }
+      else {
+        document.getElementById('prisonBowl').style.visibility = 'hidden';
+      }
 
-        if (!connected) {
-          reject('Not connected to metamask');
-          return;
+
+    }
+    //GAME\\
+
+    function approach() {
+      _baseView = false;
+      _talkLoop = true;
+      animateFlipping();
+      talk();
+    }
+
+    function talk() {
+      if (!_talkLoop) return;
+
+      var rnd = Math.floor(Math.random() * (sentences.length - 1));
+      var text = sentences[rnd];
+      handleBubble(text);
+      setTimeout(() => {
+        handleBubble("clear");
+      }, 4000);
+      setTimeout(() => {
+        talk();
+      }, 6000);
+    }
+
+    function attack() {
+      _talkLoop = false;
+      var bowl = document.getElementById('prisonBowl');
+      if (bowl != undefined) {
+        bowl.style.visibility = 'hidden';
+      }
+      handleBubble("clear");
+      resetFlip();
+      animateBackflip();
+
+      setTimeout(() => {
+        animateDrop();
+
+      }, 1000);
+
+      setTimeout(() => {
+        animateAttack();
+      }, 2000);
+
+      setTimeout(() => {
+        blinkElement(document.getElementById('attackerContainer'), 6);
+      }, 2300);
+
+
+      setTimeout(() => {
+        animateAttackerAttack();
+      }, 3000);
+
+      setTimeout(() => {
+        blinkElement(document.getElementById('tokenContainer'), 6);
+      }, 3300);
+
+
+      setTimeout(() => {
+        if (fightData.attack["winner"] == tokenId) {
+          console.log("defenderWon")
+          burn('attackerContainer', 'burnedAttacker', fightData.attack["winner"] == tokenId);
+        }
+        else {
+          console.log("defenderLost")
+          burn('tokenContainer', 'burnedDefender', fightData.attack["winner"] == tokenId);
         }
 
-        attackGainling(clientSelectedToken, tokenInfo.id)
-          .then(attackResult => {
-            console.log("Success Attack result: " + attackResult);
-          })
-          .catch((error) => {
-            console.log("Catched Attack result: " + error.message);
-            updateOutputTextFromJsonRPC(error.message);
-          });
+      }, 5000);
+
+      setTimeout(() => {
+        showBattleReport();
+      }, 10000);
+
+    }
+
+    function showBattleReport() {
+      console.log("-- Battle report --");
+      console.log(JSON.stringify(fightData));
+
+      var battleReportContainer = buildElement("div", "battleReportContainer", "battleReportContainer");
+      var battleReport = buildElement("img", "battleReport", "battleReport");
+      battleReport.src = `assets/sprites/BattleReportBackground.png`;
+      battleReportContainer.appendChild(battleReport);
+
+      var titleString = `#${fightData.approach.attacker} vs #${fightData.approach.defender}`;
+      var titleElement = buildElement("div", "br_title", "battleReportTitle", titleString);
+      battleReportContainer.appendChild(titleElement);
+
+      let attID = fightData.approach.attacker;
+      let attMD = fightData.attackerMetadata;
+      let attATT = getAttackFromTraits(attMD);
+      let attDEF = getDefenseFromTraits(attMD);
+      let attRND = fightData.attack["aRandom"];
+      let attPreBTY = parseFloat(fightData.approach["aBounty"]);
+      let attPreSTK = parseFloat(fightData.approach["aStack"]);
+
+      let defID = tokenId;
+      let defMD = fightData.defenderMetadata;
+      let defATT = getAttackFromTraits(defMD);
+      let defDEF = getDefenseFromTraits(defMD);
+      let defRND = fightData.attack["dRandom"];
+      let defPreBTY = parseFloat(fightData.approach["dBounty"]);
+      let defPreSTK = parseFloat(fightData.approach["dStack"]);
+
+      let attIsWeak = getAuraWeakness(attMD[5]) == defMD[5];
+      let attTOT = attIsWeak ? parseFloat(attATT) + parseFloat(attRND) : parseFloat(attATT) + parseFloat(attRND) + parseFloat(attDEF);
+
+      let defIsWeak = getAuraWeakness(defMD[5]) == attMD[5];
+      let defTOT = defIsWeak ? parseFloat(defATT) + parseFloat(defRND) : parseFloat(defATT) + parseFloat(defRND) + parseFloat(defDEF);
+
+      buildBattleReportElement("br_attackerIdCalc", '11%', '3%', '12%', '44%', 'left', `#${attID}`, battleReportContainer) // 
+      buildBattleReportElement("br_attackerAuraCalc", '17%', '3%', '24%', '44%', 'left', `${attMD[5].toUpperCase()}`, battleReportContainer) // 
+      buildBattleReportElement("br_attackerAttackValueCalc", '9%', '3%', '42%', '44%', 'right', `${attATT}`, battleReportContainer) // `${fightData.metadata[5]}`
+      buildBattleReportElement("br_attackerLuckValueCalc", '9%', '3%', '54%', '44%', 'right', `${attRND}`, battleReportContainer) // `${fightData.metadata[5]}`
+      buildBattleReportElement("br_attackerDefValueCalc", '9%', '3%', '66%', '44%', 'right', `${attDEF}`, battleReportContainer, attIsWeak) // `${fightData.metadata[5]}`
+      buildBattleReportElement("br_attackerTotalValueCalc", '9%', '3%', '78%', '44%', 'right', `${attTOT}`, battleReportContainer) // `${fightData.metadata[5]}`
+
+      buildBattleReportElement("br_defenderIdCalc", '11%', '3%', '12%', '48%', 'left', `#${defID}`, battleReportContainer) // `#${fightData.approach.attacker}`
+      buildBattleReportElement("br_defenderAuraCalc", '17%', '3%', '24%', '48%', 'left', `${defMD[5].toUpperCase()}`, battleReportContainer) // `${fightData.metadata[5]}`
+      buildBattleReportElement("br_defenderAttackValueCalc", '9%', '3%', '42%', '48%', 'right', `${defATT}`, battleReportContainer) // `${fightData.metadata[5]}`
+      buildBattleReportElement("br_defenderLuckValueCalc", '9%', '3%', '54%', '48%', 'right', `${defRND}`, battleReportContainer) // `${fightData.metadata[5]}`
+      buildBattleReportElement("br_defenderDefValueCalc", '9%', '3%', '66%', '48%', 'right', `${defDEF}`, battleReportContainer, defIsWeak) // `${fightData.metadata[5]}`
+      buildBattleReportElement("br_defenderTotalValueCalc", '9%', '3%', '78%', '48%', 'right', `${defTOT}`, battleReportContainer) // `${fightData.metadata[5]}`
+
+      var auraString = `${attMD[5].toUpperCase()} AND ${defMD[5].toUpperCase()} HAVE NO WEAKNESS AGAINST EACH OTHER`;
+      if (attIsWeak) auraString = `${attMD[5].toUpperCase()} IS WORTH NOTHING AGAINST ${defMD[5].toUpperCase()}`;
+      else if (defIsWeak) auraString = `${defMD[5].toUpperCase()} IS WORTH NOTHING AGAINST ${attMD[5].toUpperCase()}`;
+      buildBattleReportElement("br_defenderTotalValueCalc", '70%', '8%', '15%', '54%', 'center', `${auraString}`, battleReportContainer) // `${auraString}`
+
+
+
+
+      let attackerWon = fightData.attack["winner"] == attID;
+      let loserId = attackerWon ? defID : attID;
+      let winnerId = attackerWon ? attID : defID;
+
+      var resultString = `#${winnerId} WON THE FIGHT`;
+      buildBattleReportElement("br_defenderTotalValueCalc", '70%', '8%', '15%', '64.5%', 'center', `${resultString}`, battleReportContainer) // `${auraString}`
+
+      let lBountyChange = attackerWon ? defPreBTY : attPreBTY;
+      let wBountyChange = attackerWon ? defPreBTY / 2 : attPreBTY / 2;
+      let lStackChange = attackerWon ? defPreSTK : attPreSTK;
+      let wStackChange = attackerWon ? defPreBTY / 2 : attPreBTY / 2;
+
+      let lBountyChangeEth = ToEth(lBountyChange.toString());
+      let wBountyChangeEth = ToEth(wBountyChange.toString());
+      let lStackChangeEth = ToEth(lStackChange.toString());
+      let wStackChangeEth = ToEth(wStackChange.toString());
+
+      lBountyChangeEth = Math.round((Number(lBountyChangeEth) + Number.EPSILON) * 100000) / 100000;
+      wBountyChangeEth = Math.round((Number(wBountyChangeEth) + Number.EPSILON) * 100000) / 100000;
+      lStackChangeEth = Math.round((Number(lStackChangeEth) + Number.EPSILON) * 100000) / 100000;
+      wStackChangeEth = Math.round((Number(wStackChangeEth) + Number.EPSILON) * 100000) / 100000;
+
+      let loserBtyChangeString = `-${lBountyChangeEth}`;
+      let winnerBtyChangeString = `+${wBountyChangeEth}`;
+
+      let loserStackChangeString = `-${lStackChangeEth}`;
+      let winnerStackChangeString = `+${wStackChangeEth}`;
+
+      let winnerBtyFinal = attackerWon ? wBountyChange + attPreBTY : wBountyChange + defPreBTY;
+      let winnerStkFinal = attackerWon ? wStackChange + attPreSTK : wStackChange + defPreSTK;
+
+      let winnerBtyFinalEth = ToEth(winnerBtyFinal.toString());
+      let winnerStkFinalEth = ToEth(winnerStkFinal.toString());
+
+      winnerBtyFinalEth = Math.round((Number(winnerBtyFinalEth) + Number.EPSILON) * 100000) / 100000;
+      winnerStkFinalEth = Math.round((Number(winnerStkFinalEth) + Number.EPSILON) * 100000) / 100000;
+
+      let winnerBtyFinalString = `${winnerBtyFinalEth}`;
+      let winnerStkFinalString = `${winnerStkFinalEth}`;
+
+      let loserIcon = buildElement("img", "loserIcon", "brIcon");
+      loserIcon.src = `assets/sprites/skull.png`;
+      loserIcon.style.left = '22%';
+      loserIcon.style.top = '81.6%';
+      battleReportContainer.appendChild(loserIcon);
+
+      let winnerIcon = buildElement("img", "loserIcon", "brIcon");
+      winnerIcon.src = `assets/sprites/reward.png`;
+      winnerIcon.style.left = '22%';
+      winnerIcon.style.top = '85.6%'
+      battleReportContainer.appendChild(winnerIcon);
+
+      buildBattleReportElement("br_attackerIdResult", '11%', '3%', '12%', '82%', 'left', `#${loserId}`, battleReportContainer);
+      buildBattleReportElement("br_attackerBountyChange", '15%', '3%', '24%', '82%', 'right', loserBtyChangeString, battleReportContainer);
+      buildBattleReportElement("br_attackerStackChange", '15%', '3%', '40%', '82%', 'right', loserStackChangeString, battleReportContainer);
+      buildBattleReportElement("br_attackerBountyResult", '15%', '3%', '56%', '82%', 'right', 0, battleReportContainer);
+      buildBattleReportElement("br_attackerStackResult", '15%', '3%', '72%', '82%', 'right', 0, battleReportContainer);
+
+      buildBattleReportElement("br_defenderIdResult", '11%', '3%', '12%', '86%', 'left', `#${winnerId}`, battleReportContainer);
+      buildBattleReportElement("br_defenderBountyChange", '15%', '3%', '24%', '86%', 'right', winnerBtyChangeString, battleReportContainer);
+      buildBattleReportElement("br_defenderStackChange", '15%', '3%', '40%', '86%', 'right', winnerStackChangeString, battleReportContainer);
+      buildBattleReportElement("br_defenderBountyResult", '15%', '3%', '56%', '86%', 'right', winnerBtyFinalString, battleReportContainer);
+      buildBattleReportElement("br_defenderStackResult", '15%', '3%', '72%', '86%', 'right', winnerStkFinalString, battleReportContainer);
+
+
+      let closeButton = buildElement("img", "brCloseButton", "brCloseButton");
+      closeButton.src = `assets/sprites/close.png`;
+      closeButton.style.left = '85%';
+      closeButton.style.top = '9%';
+      closeButton.addEventListener("click", function () {
+        document.getElementById('tokenContainer').classList = 'tokenContainer';
+        document.getElementById('attackerContainer').classList = 'attackerContainer';
+        document.getElementById('burnedAttacker').style.visibility = 'hidden';
+        document.getElementById('burnedDefender').style.visibility = 'hidden';
+        battleReportContainer.style.visibility = 'hidden';
+        if (attackerWon) {
+          let grave = buildElement("img", "grave", "grave");
+          grave.src = `assets/sprites/ThombstoneBackground.png`;
+          document.getElementById('frame').appendChild(grave);
+        }
+        else {
+          document.getElementById('bountyValue').textContent = winnerBtyFinalString;
+          document.getElementById('stackValue').textContent = winnerStkFinalString;
+          _baseView = true;
+          _talkLoop = false;
+        }
+      });
+
+      battleReportContainer.appendChild(closeButton);
+
+
+      document.getElementById('frame').appendChild(battleReportContainer);
+    }
+
+    function burn(hideId, showId, defenderWon) {
+      var fire = buildElement("img", "fire", "fire");
+      fire.src = `assets/sprites/Explosion.gif`;
+      if (defenderWon) {
+        fire.style.left = '5%';
+      }
+      else {
+        fire.style.left = '55%';
+      }
+      document.getElementById('frame').appendChild(fire);
+
+      setTimeout(() => {
+        document.getElementById(hideId).style.visibility = 'hidden';
+        document.getElementById(showId).style.visibility = 'visible';
+      }, 800);
+
+
+      setTimeout(() => {
+        document.getElementById('frame').removeChild(fire);
+      }, 1900);
+
+    }
+
+
+    function animateBackflip() {
+      document.getElementById('tokenContainer').classList.add("backflipAnimation");
+    }
+
+    function animateAttack() {
+      document.getElementById('tokenContainer').classList.add("attackAnimation");
+    }
+
+    function animateFlipping(direction = false) {
+      if (!_talkLoop) return;
+      var time = Math.random() * 5;
+      time = time < 0.7 ? 0.7 : time;
+      var element = document.getElementById('tokenContainer');
+      direction = !direction;
+      var flip = direction ? 1 : -1;
+      element.style.transform = `scaleX(${flip})`;
+      setTimeout(function () { animateFlipping(direction); }, (time * 1000));
+
+    }
+
+    function resetFlip() {
+      var element = document.getElementById('tokenContainer');
+      element.style.transform = `scaleX(${1})`;
+      direction = false;
+    }
+
+    function animateDrop() {
+      var attacker = document.getElementById('attackerContainer').classList.add("dropAnimation");
+
+    }
+
+    function animateAttackerAttack() {
+      var attacker = document.getElementById('attackerContainer').classList.add("attackerAttackAnimation");
+    }
+
+    function blinkElement(element, blinks, toggle = false) {
+      blinks--;
+      if (blinks < 0) return;
+      toggle = !toggle;
+      var state = toggle ? 'hidden' : 'visible';
+      element.style.visibility = state;
+      setTimeout(function () { blinkElement(element, blinks, toggle); }, (200));
+    }
+
+    function handleBubble(text, approach = true) {
+      if (!_baseView && !approach) return;
+      if (text == "setup") {
+        var bubble = buildElement("img", "bubble", "bubble", "bubble");
+        bubble.src = `assets/sprites/SpeakBubble.png`;
+        frame.appendChild(bubble);
+
+        var bubbleText = buildElement("div", "bubbleText", "baseText bubbleText", `Lorem ipsum dolor`);
+        frame.appendChild(bubbleText);
+      }
+      else if (text == "clear") {
+        var bubbleText = document.getElementById('bubbleText');
+        var bubble = document.getElementById('bubble');
+        bubble.style.visibility = 'hidden';
+        bubbleText.style.visibility = 'hidden';
+      }
+      else {
+        var bubbleText = document.getElementById('bubbleText');
+        var bubble = document.getElementById('bubble');
+        bubbleText.innerText = text;
+        bubble.style.visibility = 'visible';
+        bubbleText.style.visibility = 'visible';
+
+
+      }
+    }
+
+    function buildLink() {
+      var button = buildElement("div", "btn", "attackBtn");
+      button.addEventListener("mouseover", (event) => {
+        handleBubble("CTRL + CLICK TO ATTACK ME! DONT YOU DARE!", false);
+      });
+      button.addEventListener("mouseleave", (event) => {
+        handleBubble("clear");
+      });
+
+      button.style.backgroundImage = "url('assets/sprites/Attack.gif')"
+      var href = buildElement("a", "attackBtn", "none");
+      href.appendChild(button);
+      let newUrl = `https://testnet-fight.thegainlings.io/?defender=${tokenId}`;
+      href.href = newUrl;
+      return href;
+    }
+   
+    function buildDefenderBaseView(parent, seeed, bounty, stack, tokenId) {
+      var metadata = buildTraitsFromSeed(seeed);
+      fightData.defenderMetadata = metadata;
+      var frame = buildElement("div", "frame", "frame");
+
+      var link = buildLink();
+      frame.appendChild(link);
+
+     
+
+      var aura = buildElement("img", "background", "background");
+      aura.src = `assets/traits/Aura/${metadata[5]}.png`;
+      frame.appendChild(aura);
+
+      var burned = buildElement("img", "burnedDefender", "burnedDefender");
+      burned.src = `assets/sprites/CharacterBurned.png`;
+      frame.appendChild(burned);
+
+
+
+      var tokenContainer = buildElement("div", "tokenContainer", "tokenContainer");
+
+      var characterImage = buildElement("img", "traitImage", "traitImage");
+      characterImage.src = "assets/sprites/Character.png";
+      tokenContainer.appendChild(characterImage);
+
+      for (let index = 0; index < metadata.length - 1; index++) {
+        var traitImage = buildElement("img", "traitImage", "traitImage");
+        traitImage.src = `assets/traits/${_traitTypeNames[index]}/${metadata[index]}.png`;
+        tokenContainer.appendChild(traitImage);
+      }
+      frame.appendChild(tokenContainer);
+
+      var nameFrame = buildElement("img", "nameFrame", "nameFrame");
+      nameFrame.src = "assets/sprites/FrameFullTinyThin.png";
+      frame.appendChild(nameFrame);
+
+      var nameValue = buildElement("div", "nameValue", "baseText nameValue", `GAINLING #${tokenId}`);
+      frame.appendChild(nameValue);
+
+
+      var nameButton = buildElement("div", "nameButton", "nameButton");
+      nameButton.addEventListener("mouseover", (event) => {
+        handleBubble("THAT'S MY NAME! ISN'T IT A REAL GAINERS NAME?", false);
+      });
+      nameButton.addEventListener("mouseleave", (event) => {
+        handleBubble("clear");
+      });
+      frame.appendChild(nameButton);
+
+      var bountyFrame = buildElement("img", "bountyFrame", "woodenFrame bountyFrame");
+      bountyFrame.src = "assets/sprites/FrameFullSmaller.png";
+      frame.appendChild(bountyFrame);
+
+      var bountyIcon = buildElement("img", "bountyIcon", "icon bountyIcon");
+      bountyIcon.src = "assets/sprites/BountyIcon.png";
+      frame.appendChild(bountyIcon);
+
+      var bountyValue = buildElement("div", "bountyValue", "baseText bountyValue", `${bounty}`);
+      frame.appendChild(bountyValue);
+
+      var bountyCurrency = buildElement("div", "bountyCurrency", "baseText bountyCurrency", "ETH");
+      frame.appendChild(bountyCurrency);
+
+      var bountyButton = buildElement("div", "bountyButton", "bountyButton");
+      bountyButton.addEventListener("mouseover", (event) => {
+        handleBubble("THE BOUNTY IS WHAT YOU GET WEN YOU KILL ME!", false);
+      });
+      bountyButton.addEventListener("mouseleave", (event) => {
+        handleBubble("clear");
+      });
+      frame.appendChild(bountyButton);
+
+      var stackFrame = buildElement("img", "stackFrame", "woodenFrame stackFrame");
+      stackFrame.src = "assets/sprites/FrameFullSmaller.png";
+      frame.appendChild(stackFrame);
+
+      var stackIcon = buildElement("img", "stackIcon", "icon stackIcon");
+      stackIcon.src = "assets/sprites/StackIcon.png";
+      frame.appendChild(stackIcon);
+
+      var stackValue = buildElement("div", "stackValue", "baseText stackValue", `${stack}`);
+      frame.appendChild(stackValue);
+
+      var stackCurrency = buildElement("div", "stackCurrency", "baseText stackCurrency", "ETH");
+      frame.appendChild(stackCurrency);
+
+      var stackButton = buildElement("div", "stackButton", "stackButton");
+      stackButton.addEventListener("mouseover", (event) => {
+        handleBubble("THE STACK IS WHAT MY OWNER GETS WEN I DIE!", false);
+      });
+      stackButton.addEventListener("mouseleave", (event) => {
+        handleBubble("clear");
+      });
+      frame.appendChild(stackButton);
+
+      var statsContainer = buildElement("div", "statsContainer", "statsContainer");
+
+      var statsTitle = buildElement("div", "statsTitle", "baseText statsTitle", "STATS")
+
+      var attackStatIcon = buildElement("img", "attackStatIcon", "statIcon");
+      attackStatIcon.src = "assets/sprites/stats/AttackStat.png";
+      attackStatIcon.style.top = '35%';
+      var attackStatValue = buildElement("div", "attackStatValue", "baseText statValue", "9999")
+      attackStatValue.style.top = '35%';
+
+
+      var defenseStatIcon = buildElement("img", "defenseStatIcon", "statIcon");
+      defenseStatIcon.src = "assets/sprites/stats/DefenseStat.png";
+      defenseStatIcon.style.top = '55%';
+      var defenseStatValue = buildElement("div", "defenseStatValue", "baseText statValue", "9999")
+      defenseStatValue.style.top = '55%';
+
+      var weightStatIcon = buildElement("img", "weightStatIcon", "statIcon");
+      weightStatIcon.src = "assets/sprites/stats/WeightStat.png";
+      weightStatIcon.style.top = '75%';
+      var weightStatValue = buildElement("div", "weightStatValue", "baseText statValue", "9999")
+      weightStatValue.style.top = '75%';
+
+
+      statsContainer.appendChild(attackStatValue);
+      statsContainer.appendChild(defenseStatValue);
+      statsContainer.appendChild(weightStatValue);
+      statsContainer.appendChild(statsTitle);
+      statsContainer.appendChild(attackStatIcon);
+      statsContainer.appendChild(defenseStatIcon);
+      statsContainer.appendChild(weightStatIcon);
+      frame.appendChild(statsContainer);
+
+      var inventoryContainer = buildElement("div", "inventory", "inventory");
+
+      var helmetButton = buildStatButton("statButtonHelmet", '21%', "assets/sprites/inventory/HelmetIcon.png", metadata[2])
+      var armourButton = buildStatButton("statButtonArmour", '37%', "assets/sprites/inventory/ArmourIcon.png", metadata[0])
+      var weaponButton = buildStatButton("statButtonWeapon", '54%', "assets/sprites/inventory/WeaponIcon.png", metadata[4])
+      var shieldButton = buildStatButton("statButtonShield", '69%', "assets/sprites/inventory/ShieldIcon.png", metadata[3])
+      var shoesButton = buildStatButton("statButtonShoes", '86%', "assets/sprites/inventory/ShoesIcon.png", metadata[1])
+
+      var inventoryButton = buildElement("div", "inventoryButton", "inventoryButton");
+      inventoryButton.style.backgroundImage = "url('assets/sprites/inventory/FrameSquare.png')";
+      inventoryButton.addEventListener("mouseover", (event) => {
+        if (!_baseView) return;
+        inventoryButton.style.backgroundImage = "url('assets/sprites/inventory/InventoryFrame.png')";
+        inventoryButton.style.height = '58%';
+        helmetButton.style.visibility = 'visible';
+        armourButton.style.visibility = 'visible';
+        weaponButton.style.visibility = 'visible';
+        shieldButton.style.visibility = 'visible';
+        shoesButton.style.visibility = 'visible';
+      });
+      inventoryButton.addEventListener("mouseleave", (event) => {
+
+        helmetButton.style.visibility = 'hidden';
+        armourButton.style.visibility = 'hidden';
+        weaponButton.style.visibility = 'hidden';
+        shieldButton.style.visibility = 'hidden';
+        shoesButton.style.visibility = 'hidden';
+        inventoryButton.style.backgroundImage = "url('assets/sprites/inventory/FrameSquare.png')";
+        inventoryButton.style.height = '12%';
 
       });
 
 
-      webGlFooter.appendChild(webGlTokenInfoText);
-      webGlFooter.appendChild(webGlAttackButton);
-      fightBoxContainer.appendChild(webGlFooter);
-      document.body.appendChild(fightBoxContainer);
+      inventoryButton.appendChild(helmetButton);
+      inventoryButton.appendChild(armourButton);
+      inventoryButton.appendChild(weaponButton);
+      inventoryButton.appendChild(shieldButton);
+      inventoryButton.appendChild(shoesButton);
+
+      frame.appendChild(inventoryContainer);
+      frame.appendChild(inventoryButton);
+
+
+
+
+      parent.appendChild(frame);
     }
+
+    function buildStatButton(className, top, src, metadata) {
+      var button = buildElement("img", "statButton", "statButton " + className)
+      button.src = src;
+      button.style.top = top;
+      button.value = metadata;
+
+      button.addEventListener("mouseover", (event) => {
+        showTraitStats(metadata);
+      });
+      button.addEventListener("mouseleave", (event) => {
+        document.getElementById('statsContainer').style.visibility = 'hidden';
+      });
+      return button;
+    }
+
+    function showTraitStats(trait) {
+      //console.log("show stats for " + trait);
+      var attributes = getAttributesForTrait(trait);
+
+      document.getElementById('statsContainer').style.visibility = 'visible';
+      document.getElementById('statsTitle').innerText = getShortName(trait);
+
+      document.getElementById('attackStatValue').innerText = attributes.attack;
+      document.getElementById('defenseStatValue').innerText = attributes.defense;
+      document.getElementById('weightStatValue').innerText = attributes.weight;
+
+    }
+
+    function buildBattleReportElement(id, w, h, l, t, align, content, container, lineThrough = false) {
+      var element = buildElement("div", id, "battleReportText", content);
+      element.style.height = h;
+      element.style.width = w;
+      element.style.left = l;
+      element.style.top = t;
+      element.style.textAlign = align;
+      if (lineThrough) element.style.textDecoration = 'line-through';
+      container.appendChild(element);
+    }
+
+    function buildAttacker(parent, seeed) {
+      _attackerSeed = seeed;
+
+      var metadata = buildTraitsFromSeed(seeed);
+      fightData.attackerMetadata = metadata;
+      var burned = buildElement("img", "burnedAttacker", "burnedAttacker");
+      burned.src = `assets/sprites/CharacterBurned.png`;
+      parent.appendChild(burned);
+
+      var attackerContainer = buildElement("div", "attackerContainer", "attackerContainer");
+
+      var characterImage = buildElement("img", "attackerTraitImage", "traitImage attackerTraitImage");
+      characterImage.src = "assets/sprites/Character.png";
+      attackerContainer.appendChild(characterImage);
+
+      for (let index = 0; index < metadata.length - 1; index++) {
+        var traitImage = buildElement("img", "attackerTraitImage", "traitImage attackerTraitImage");
+        traitImage.src = `assets/traits/${_traitTypeNames[index]}/${metadata[index]}.png`;
+        attackerContainer.appendChild(traitImage);
+      }
+      parent.appendChild(attackerContainer);
+    }
+
     function buildElement(elementType, id, classList, content) {
       var divElement = document.createElement(elementType);
       divElement.id = id;
@@ -295,65 +726,8 @@
       divElement.innerHTML = `${content.toString()}`
       return divElement;
     }
-    function getStackedImageNew(tokenInfo, spareBase = false) {
-      //Build stackContainer
-      var stackContainer = buildElement("div", "sixImagesInOne", "sixImagesInOne");
 
+  </script>
+</body>
 
-      var characterImage = buildElement("img", "imageTop", "imageTop imageFull");
-      characterImage.src = "assets/sprites/Character.png";
-
-      if (!spareBase) {
-        let aura = tokenInfo.metadata[5];
-        var auraImage = buildElement("img", "imageBehind", "imageBehind imageFull");
-        auraImage.src = `assets/traits/Aura/${aura}.png`;
-        stackContainer.appendChild(auraImage);
-      }
-      else {
-        var signerImage = buildElement("img", "imageBehind", "imageBehind imageFull");
-        signerImage.src = `assets/sprites/PartsSigner.png`;
-        stackContainer.appendChild(signerImage);
-      }
-      stackContainer.appendChild(characterImage);
-      //console.log(JSON.stringify(tokenInfo.metadata));
-      for (let index = 0; index < tokenInfo.metadata.length - 1; index++) {
-
-        let attribute = tokenInfo.metadata[index];
-        var traitImage = document.createElement("img");
-        let path = `assets/traits/${_traitTypeNames[index]}/${attribute}.png`;
-        traitImage.src = path;
-        traitImage.classList = "imageTop imageFull";
-        stackContainer.appendChild(traitImage);
-      }
-      return stackContainer;
-    }
-
-    /*_________________________________________________________________________
-    CLIENT DEVICE HANDLING CLIENT DEVICE HANDLING CLIENT DEVICE HANDLING 
-    `````````````````````````````````````````````````````````````````````````*/
-    function getResolution() {
-      var devicenow = 2;
-      var devicenowString = "mobile";
-
-      var width = measureBox.clientWidth * window.devicePixelRatio;
-      var height = measureBox.clientHeight * window.devicePixelRatio;
-      var ratioT = height > width;
-      if (width > 1100 && !ratioT) {
-        devicenow = 0;
-        devicenowString = "desktop";
-      }
-      else if (width > 420 && !ratioT) {
-        devicenow = 1
-        devicenowString = "tablet";
-      }
-      if (devicenow != device) {
-        device = devicenow;
-        deviceString = devicenowString;
-        changeView(device);
-      }
-    }
-    function changeView(newDevice) {
-      console.log("Switched resolution to " + deviceString);
-      setClientTokenSelectorText();
-      setClientTokenSelectorSize();
-    }
+</html>
